@@ -34,4 +34,8 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 
 ### Support or Contact
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out..
+
+And I don't sure It can be work or not(ues language of the Chinese )!
+Let us try!
+嗨，这是我在Github 上我博客，我会分享一些 我在学习生物信息学中积累的经验，喜欢的话可以关注我！
