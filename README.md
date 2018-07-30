@@ -1,4 +1,4 @@
-#<center>使用github page 搭建个人博客</center>  
+# <center>使用github page 搭建个人博客</center>    
 ### This is my blog test     
 1.原因：  
 github 和 博客太分散，个人简历上添加的链接太多  
