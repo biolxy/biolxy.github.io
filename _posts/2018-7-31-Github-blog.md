@@ -21,7 +21,7 @@ mv shenmengyuan.github.io/* biolxy.github.io
 4. 修改如下等文件替换为自己的信息  
 `CNAME _config.yml` `favicon.ico` `index.html` `page/3collections.md` `age/4about.md`  
 5. 该主题更详细的信息需要去该主题作者的github查看[地址](https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md)
-6. push 到github，打开 `https://biolxy.github.io/` 即可看到效果
+6. push到github，打开 `https://biolxy.github.io/` 即可看到效果
 7. 注册七牛云，建立空间，做图床
 8. 绑定MPic软件，方便上传图片及插入图片链接
 
