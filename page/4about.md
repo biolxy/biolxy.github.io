@@ -18,7 +18,7 @@ icon: heart
 
 ## 联系我
 
-欢迎对我感兴趣的朋友可以提取联系我（上海、深圳和广州）。
+欢迎对我感兴趣的朋友可以联系我（上海、深圳和广州）。
 
 * GitHub：[biolxy](https://github.com/biolxy)
 
