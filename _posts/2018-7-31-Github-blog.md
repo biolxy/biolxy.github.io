@@ -10,7 +10,7 @@ description: Github个人博客搭建记录
 * content
 {:toc}
 
-##
+# 搭建记录
 1. 在github账号下创建 biolxy.github.io   
 2. git clone 该项目到本地
 3. git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除_post文件加下md文件，保留一个做模板
