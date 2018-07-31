@@ -14,7 +14,7 @@ icon: heart
 
 现在工作与上海，从事精准医疗行业，肿瘤基因组研究，NGS生物信息分析流程研发。
 
-![mark](http://oiz501hli.bkt.clouddn.com/blog/180731/ci4k7m68Ec.png?imageslim)
+![mark](http://oiz501hli.bkt.clouddn.com/blog/180731/diGgdhiLe2.jpg?imageslim)
 
 ## 联系我
 
