@@ -14,7 +14,7 @@ icon: heart
 
 现在工作与上海，从事精准医疗行业，肿瘤基因组研究，NGS生物信息分析流程研发。
 
-
+![mark](http://oiz501hli.bkt.clouddn.com/blog/180731/ci4k7m68Ec.png?imageslim)
 
 ## 联系我
 
@@ -23,7 +23,6 @@ icon: heart
 * GitHub：[biolxy](https://github.com/biolxy)
 
 * email：biolxy@aliyun.com
-
 
 * 微信公众号：先空着，回头添加
 
