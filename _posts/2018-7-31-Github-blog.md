@@ -14,7 +14,7 @@ description: Github个人博客搭建记录
 1. 在github账号下创建 `biolxy.github.io`  
 2. git clone 该项目到本地
 3. git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除`_post`文件夹下文件，保留一个做模板，命名最好为全英文字符  
-```
+```shell
 git clone https://github.com/shenmengyuan/shenmengyuan.github.io.git 
 mv shenmengyuan.github.io/* biolxy.github.io
 ```
