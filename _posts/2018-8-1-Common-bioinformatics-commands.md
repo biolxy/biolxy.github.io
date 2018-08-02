@@ -1,4 +1,17 @@
-# <center>我的博客[http://biolxy.github.io](http://biolxy.github.io)</center>
+---
+layout: post
+title: "生物信息学常用的Linux命令"
+categories: 生物信息学
+tags: 生物信息学 肿瘤基因组
+keywords: Linux shell sed wak 
+description: 这是我最初接触生物信息学时用到的命令，未仔细整理
+---
+
+* content
+{:toc}
+
+
+# 生物信息学常用的Linux命令
 
 
 <!-- MarkdownTOC -->

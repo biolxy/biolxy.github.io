@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Gene signature
+title: "初识Gene signature"
 categories: 肿瘤基因组
 tags: signature
 keywords: Gene signature
@@ -10,7 +10,7 @@ description: Gene signature
 * content
 {:toc}
 
-# Gene signature
+# 初识Gene signature
 
 <!-- MarkdownTOC -->
 
