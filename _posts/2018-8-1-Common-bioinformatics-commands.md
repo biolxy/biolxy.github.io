@@ -11,7 +11,7 @@ description: 这是我最初接触生物信息学时用到的命令，未仔细�
 {:toc}
 
 
-# 生物信息学常用的Linux命令
+
 
 
 <!-- MarkdownTOC -->
