@@ -39,4 +39,4 @@ if __name__ == '__main__':
 
 ### 一个公式
 
-$$$\overbrace{a+b+\dots+n}^{m个}$|$$
+$$ \left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right) $$
