@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>李祥永的博客</title>
+    <description></description>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sat, 04 Aug 2018 03:26:29 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Aug 2018 03:26:29 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.3</generator>
+    
+      <item>
+        <title>初识Gene signature</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#什么是gene-signature&quot; id=&quot;markdown-toc-什么是gene-signature&quot;&gt;什么是Gene signature&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gene-signature-的原理&quot; id=&quot;markdown-toc-gene-signature-的原理&quot;&gt;Gene signature 的原理&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gene-signature的用途&quot; id=&quot;markdown-toc-gene-signature的用途&quot;&gt;Gene signature的用途&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#如何提取gene-signature&quot; id=&quot;markdown-toc-如何提取gene-signature&quot;&gt;如何提取Gene signature&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#deconstrucsigs的安装&quot; id=&quot;markdown-toc-deconstrucsigs的安装&quot;&gt;deconstrucSigs的安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#输入数据格式&quot; id=&quot;markdown-toc-输入数据格式&quot;&gt;输入数据格式&lt;/a&gt;        &lt;ul&gt;
+          &lt;li&gt;&lt;a href=&quot;#批量保存图片&quot; id=&quot;markdown-toc-批量保存图片&quot;&gt;批量保存图片&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a href=&quot;#批量输出各signature-的weights&quot; id=&quot;markdown-toc-批量输出各signature-的weights&quot;&gt;批量输出各signature 的weights&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;什么是gene-signature&quot;&gt;什么是Gene signature&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://cancer.sanger.ac.uk/cosmic/signatures&quot;&gt;https://cancer.sanger.ac.uk/cosmic/signatures&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;gene-signature-的原理&quot;&gt;Gene signature 的原理&lt;/h2&gt;
+&lt;p&gt;人类的参考基因组序列是固定的，可以由此计算出任意三个连续的碱基序列的先的频率&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;这样的三个连续的碱基ATG，TCG等共有96种
+    &lt;ul&gt;
+      &lt;li&gt;密码子有64个，但是碱基组合有96（4 * 4 * 4 = 96）种&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;参考基因组的这96中序列的出现的频率也是固定的，以柱状图显示出来，即使原始signature
+    &lt;ul&gt;
+      &lt;li&gt;图为cosmic数据计算出的一种signature1&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://cancer.sanger.ac.uk/signatures/Signature-1.png&quot; alt=&quot;signature&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;期吸烟的患者，体内基因发生变异，导致其测序统计后的signature与原始signature出现差异&lt;/li&gt;
+  &lt;li&gt;统计大量上述数据，得出的signature即可视为吸烟患者的signaure，cosmic数据给出了30种signature1-30&lt;/li&gt;
+  &lt;li&gt;测序获得一个新的signature-new,即可与signature1-30进行比较,从而解读该signature-new&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;gene-signature的用途&quot;&gt;Gene signature的用途&lt;/h2&gt;
+&lt;p&gt;预后诊断&lt;/p&gt;
+
+&lt;h2 id=&quot;如何提取gene-signature&quot;&gt;如何提取Gene signature&lt;/h2&gt;
+
+&lt;p&gt;r语言，有两个两个包可以实现:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/PoisonAlien/maftools/&quot;&gt;maftools&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;这个包功能比较全面，不局限在signature上&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/raerose01/deconstructSigs&quot;&gt;deconstrucSigs&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;仅仅实现signature作图，但是可以把signature的权重提取出来，示例如下&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;deconstrucsigs的安装&quot;&gt;deconstrucSigs的安装&lt;/h3&gt;
+&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;http://bioconductor.org/biocLite.R&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;biocLite&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;输入数据格式&quot;&gt;输入数据格式&lt;/h3&gt;
+&lt;p&gt;由病人的vcf文件中提取，整理为deconstrucSigs的格式&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sample  chr      pos ref alt
+1 chr1   905907   A   T
+1 chr1  1192480   C   A
+1 chr1  1854885   G   C
+1 chr1  9713992   G   A
+1 chr1 12908093   C   A
+1 chr1 17257855   C   T
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;注意decon.maf 中chr那一列为 chr1 ，不是 Chr1&lt;/li&gt;
+  &lt;li&gt;sep = “\t”&lt;/li&gt;
+  &lt;li&gt;多个病人的数据&lt;code class=&quot;highlighter-rouge&quot;&gt;cat&lt;/code&gt; 在一起，用sampleID做区分&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;批量保存图片&quot;&gt;批量保存图片&lt;/h4&gt;
+&lt;p&gt;其中 ‘XH01’, ‘XH11’, ‘XH12’, ‘XH19’, ‘XH28’, ‘XH31’, ‘XH33’, ‘XH34’, ‘XH36’, ‘XH38’, ‘XH39’, ‘XH40’, ‘XH43’, ‘XH44’, ‘XH45’, ‘XH47’, ‘XH49’, ‘XH51’, ‘XH52’, ‘XH54’, ‘XH56’, ‘XH58’ 为我的数据中SampleID&lt;/p&gt;
+&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;suppressPackageStartupMessages&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;library&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;deconstructSigs&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigs.input&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mut.to.sigs.input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mut.ref&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;decon.maf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sample.id&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Sample&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;chr&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;chr&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pos&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;pos&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ref&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ref&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;alt&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;alt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH01'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH11'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH12'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH19'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH28'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH31'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH33'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH34'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH36'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH38'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH39'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH40'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH43'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH44'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH45'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH47'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH49'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH51'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH52'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH54'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH56'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'XH58'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pdf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;plot.cosmic.pdf&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whichSignatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tumor.ref&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigs.input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signatures.ref&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signatures.cosmic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sample.id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signature.cutoff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contexts.needed&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tri.counts.method&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plotSignatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;makePie&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dev.off&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;该方法有个缺陷，图片输出的title字体太大，当signature较多时显示不完全&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;批量输出各signature-的weights&quot;&gt;批量输出各signature 的weights&lt;/h4&gt;
+&lt;div class=&quot;language-r highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;whichSignatures&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tumor.ref&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sigs.input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signatures.ref&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signatures.cosmic&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sample.id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;signature.cutoff&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;contexts.needed&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;TRUE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tri.counts.method&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'default'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;-&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;weights&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write.table&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;cosmic.weight.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sep&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\t&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;col.names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;row.names&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quote&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;T&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;可以将 &lt;code class=&quot;highlighter-rouge&quot;&gt;signatures.ref = signatures.cosmic&lt;/code&gt; 改为 &lt;code class=&quot;highlighter-rouge&quot;&gt;signatures.ref = signatures.signatures.nature2013&lt;/code&gt; ,这是两个不同来源的数据集算出的signature，我们用计算出的signature 与该数据的signature进行比较，为我们的数据做注释
+    &lt;ul&gt;
+      &lt;li&gt;得出的结果是：signature_sample1 = signature1 * weight1 + signature2 * weight2 + ··· + signature30 * weight30&lt;/li&gt;
+      &lt;li&gt;通过权重的比值对我们算出的signature进行注释&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Fri, 03 Aug 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/08/03/gene-signature/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/03/gene-signature/</guid>
+        
+        <category>signature</category>
+        
+        
+        <category>肿瘤基因组</category>
+        
+      </item>
+    
+      <item>
+        <title>生物信息学常用的Linux命令</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#前言&quot; id=&quot;markdown-toc-前言&quot;&gt;前言&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#构建blast数据库&quot; id=&quot;markdown-toc-构建blast数据库&quot;&gt;构建blast数据库&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#碱基蛋白序列比对&quot; id=&quot;markdown-toc-碱基蛋白序列比对&quot;&gt;碱基/蛋白序列比对&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#画树&quot; id=&quot;markdown-toc-画树&quot;&gt;画树&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#提取cdspep序列&quot; id=&quot;markdown-toc-提取cdspep序列&quot;&gt;提取CDS/pep序列&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#修改环境变量&quot; id=&quot;markdown-toc-修改环境变量&quot;&gt;修改环境变量&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#prottest的使用&quot; id=&quot;markdown-toc-prottest的使用&quot;&gt;prottest的使用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#shell-脚本知识&quot; id=&quot;markdown-toc-shell-脚本知识&quot;&gt;shell 脚本知识&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#awk的使用&quot; id=&quot;markdown-toc-awk的使用&quot;&gt;awk的使用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#sed的使用&quot; id=&quot;markdown-toc-sed的使用&quot;&gt;sed的使用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#linux-命令&quot; id=&quot;markdown-toc-linux-命令&quot;&gt;linux 命令&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#单行-perl&quot; id=&quot;markdown-toc-单行-perl&quot;&gt;单行 perl&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#r-命令行&quot; id=&quot;markdown-toc-r-命令行&quot;&gt;R 命令行&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#kaks计算&quot; id=&quot;markdown-toc-kaks计算&quot;&gt;kaks计算&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#gff和gtf之间的格式转化&quot; id=&quot;markdown-toc-gff和gtf之间的格式转化&quot;&gt;gff和gtf之间的格式转化&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#vim-的使用&quot; id=&quot;markdown-toc-vim-的使用&quot;&gt;vim 的使用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#数据存放&quot; id=&quot;markdown-toc-数据存放&quot;&gt;数据存放&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;前言&quot;&gt;前言&lt;/h3&gt;
+
+&lt;p&gt;东西有点杂乱，还需要慢慢整理。其中的 sed awk perl 等命令我觉得都可以单独分出来讲了&lt;/p&gt;
+
+&lt;h3 id=&quot;构建blast数据库&quot;&gt;构建blast数据库&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;makeblastdb &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; ../ATaa.fa &lt;span class=&quot;nt&quot;&gt;-dbtype&lt;/span&gt; prot &lt;span class=&quot;nt&quot;&gt;-title&lt;/span&gt; ATaa-parse_seqids &lt;span class=&quot;nt&quot;&gt;-out&lt;/span&gt; ATdb   &lt;span class=&quot;c&quot;&gt;#可用的蛋白库&lt;/span&gt;
+makeblastdb &lt;span class=&quot;nt&quot;&gt;-in&lt;/span&gt; ../ATaa.fa &lt;span class=&quot;nt&quot;&gt;-dbtype&lt;/span&gt; nucl &lt;span class=&quot;nt&quot;&gt;-title&lt;/span&gt; ATaa-parse_seqids &lt;span class=&quot;nt&quot;&gt;-out&lt;/span&gt; ATdb  &lt;span class=&quot;c&quot;&gt;#可用的核酸白库&lt;/span&gt;
+blastp &lt;span class=&quot;nt&quot;&gt;-db&lt;/span&gt; /home/hanyapeng/prot/DB/Mtrdb &lt;span class=&quot;nt&quot;&gt;-query&lt;/span&gt; At.fa &lt;span class=&quot;nt&quot;&gt;-outfmt&lt;/span&gt; 6 &lt;span class=&quot;nt&quot;&gt;-evalue&lt;/span&gt; 1e-20 &lt;span class=&quot;nt&quot;&gt;-out&lt;/span&gt; Mtr.blast &lt;span class=&quot;nt&quot;&gt;-num_threads&lt;/span&gt; 8
+blastn &lt;span class=&quot;nt&quot;&gt;-query&lt;/span&gt; seq.fasta &lt;span class=&quot;nt&quot;&gt;-out&lt;/span&gt; seq.blast &lt;span class=&quot;nt&quot;&gt;-db&lt;/span&gt; dbname &lt;span class=&quot;nt&quot;&gt;-outfmt&lt;/span&gt; 6 &lt;span class=&quot;nt&quot;&gt;-evalue&lt;/span&gt; 1e-5 &lt;span class=&quot;nt&quot;&gt;-num_descriptions&lt;/span&gt; 10 &lt;span class=&quot;nt&quot;&gt;-num_threads&lt;/span&gt; 8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;碱基蛋白序列比对&quot;&gt;碱基/蛋白序列比对&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;muscle -in AtLj.fa -out AtLj.phy  # -out，输出默认的fasta格式
+muscle -in At.fasta -phyiout At.phy  # -phyiout，则输出sequential phylip格式
+mafft aa.fa &amp;gt; aa.fas
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;画树&quot;&gt;画树&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;nohup &lt;/span&gt;raxmlHPC-PTHREADS &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; ALO.phy &lt;span class=&quot;nt&quot;&gt;-n&lt;/span&gt; ALO &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; PROTCATJTT &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; a &lt;span class=&quot;nt&quot;&gt;-N&lt;/span&gt; 100 &lt;span class=&quot;nt&quot;&gt;-p&lt;/span&gt; 12345 &lt;span class=&quot;nt&quot;&gt;-x&lt;/span&gt; 1234567 &lt;span class=&quot;nt&quot;&gt;-T&lt;/span&gt; 8 &amp;amp;  &lt;span class=&quot;c&quot;&gt;# RaxML树&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;nohup&lt;/span&gt; ../software/PhyML_3.0_linux64 &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; AGO.phy &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; aa &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 0  &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; e &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; BEST &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; 4 &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; VT &lt;span class=&quot;nt&quot;&gt;-v&lt;/span&gt; e &lt;span class=&quot;nt&quot;&gt;-a&lt;/span&gt; e &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; lr &lt;span class=&quot;nt&quot;&gt;--no_memory_check&lt;/span&gt; &amp;amp;  &lt;span class=&quot;c&quot;&gt;# Phyml 树&lt;/span&gt;
+../software/FastTree TCP123.phy  &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; TCP.tree   &lt;span class=&quot;c&quot;&gt;#fasttree 画树&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;提取cdspep序列&quot;&gt;提取CDS/pep序列&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;nohup &lt;/span&gt;hmmsearch &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; 1e-5 TCP.hmm  /home/hanyapeng/prot/Gma.prot &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Gma.hmm &amp;amp;
+less &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; Gma.hmm |awk &lt;span class=&quot;s1&quot;&gt;'{if ($1~/e-/) print $9}'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; list     &lt;span class=&quot;c&quot;&gt;#if第一行匹配到e-，则调出第9行#  &lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;nohup &lt;/span&gt;hmmsearch &lt;span class=&quot;nt&quot;&gt;--domtblout&lt;/span&gt; hmmresult.txt &lt;span class=&quot;nt&quot;&gt;-E&lt;/span&gt; 1e-5 TCP.hmm  /home/hanyapeng/prot/Gma.prot  &amp;amp;
+less &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; hmmresult.txt |awk &lt;span class=&quot;s1&quot;&gt;'{ if ($1~/e-/) print$1&quot;\t&quot;$20&quot;\t&quot;$21}'&lt;/span&gt;|less &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; GmaTCPdomain.list    &lt;span class=&quot;c&quot;&gt;# 提取第1.20.21列为坐标&lt;/span&gt;
+
+perl /home/lixiangyong/software/getseq.pl Osa.list /home/hanyapeng/prot/Osa.prot &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Osa.fa
+perl /home/lixiangyong/software/get_domain.pl  /home/hanyapeng/prot/Osa.prot  OsaTCPdomain.list &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; OsaTCPdomain.fa  &lt;span class=&quot;c&quot;&gt;#提取domain&lt;/span&gt;
+
+perl /home/lixiangyong/software/getseq.pl Chr13 Gmax275.fa &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; Chr13.fa  
+perl /home/hanyapeng/comm/getpromoter.pl /data/plant_genome/Glyma2.0/Gmax275.fa Q1.txt &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 1  &lt;span class=&quot;c&quot;&gt;# 提取启动子序列 Q1为启动子坐标&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;AT.fa Lj.fa Osa.fa &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; ATLjOsa.fa
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;修改环境变量&quot;&gt;修改环境变量&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vi .bash_profile     # 或则 .bash_login   .profile   .bashrc 
+vi .bash_profile     # 添加环境变量 PATH=$PATH:$HOME/bin
+source .bash_profile  #   立刻执行更改
+
+nano .bashrc             #和vi类似的编辑器
+source .bashrc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;prottest的使用&quot;&gt;prottest的使用&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;nohup java -jar prottest-3.4.jar -i AGO.phy -all-matrices -all-distributions  &amp;gt; a.txt  &amp;amp;  # 此.phy 文件为比对过的氨基酸序列文件
+
+nohup java -jar prottest-3.4.jar -i namefail.phy -o namefail.txt -S 1 -AIC -I -G -IG -F -ncat 8 -all &amp;amp;
+
+nohup java -jar prottest-3.4.jar -i AGOdomain.phy -o AGOdomain.txt -all-matrices -all-distributions &amp;amp;
+
+nohup java -jar jModelTest.jar -d example-data/aP6.fas -f -i -g 4 -s 11 -AIC -a &amp;gt;a.txt  &amp;amp;  此.fas文件为核苷酸序列文件
+
+PhyML-3.1_linux64 -i aP6.phy -d nt -n 1 -b 0 --run_id F81+I -m 000000 -f m -v e -c 1 --no_memory_check -o tlr -s BEST
+
+PhyML-3.1_linux64 -i aP6.phy -q -d aa -m JTT -c 4 -a e
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;shell-脚本知识&quot;&gt;shell 脚本知识&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; 不等于,如:if &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$b&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;awk的使用&quot;&gt;awk的使用&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;less Y2.blast |awk &lt;span class=&quot;s1&quot;&gt;' {if ($11 ~ /0\.0/) print $0}'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; 1      &lt;span class=&quot;c&quot;&gt;# 每一行中，如果第11列=0.0，则输出全部  “~”是 =  ，$11 调取第11列 ， \ 反义符 &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{line[NR]=$0}END{for(i=NR;i&amp;gt;0;i--)print line[i]}'&lt;/span&gt; sed.txt  &lt;span class=&quot;c&quot;&gt;# 把sed.txt 中的内容按行倒着输出&lt;/span&gt;
+less &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; Gma3.fa |awk &lt;span class=&quot;s1&quot;&gt;'{if ($1~/&amp;gt;/) print $head}'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; a
+&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'!seen[$0]++'&lt;/span&gt; &amp;lt;filename&amp;gt;    &lt;span class=&quot;c&quot;&gt;# awk 去除重复的行&lt;/span&gt;
+less Step1.2.sh | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&quot;&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;cut&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;=&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-f&lt;/span&gt; 1 | &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{printf $quot&quot; &quot;;$0}'&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#将一列输出为一行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'{ print $(NF-1)}'&lt;/span&gt; file     &lt;span class=&quot;c&quot;&gt;# 出输出倒数第二列&lt;/span&gt;
+
+less file |  &lt;span class=&quot;nb&quot;&gt;awk&lt;/span&gt;  &lt;span class=&quot;s1&quot;&gt;'{split($1,a,&quot;:&quot;);print a[1]&quot;-&quot;a[3]&quot;\t&quot;$5}'&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; our.w.d    &lt;span class=&quot;c&quot;&gt;# 对awk截取字符串，file中的数据格式为:`ACAN:ENST00000561243:p.D1390E The mutant peptide: APGVEEISGLP is found in wild type sequence`， [参考](https://www.cnblogs.com/sunada2005/p/3493941.html) &lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;sed的使用&quot;&gt;sed的使用&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/Gma/Glyma/g'&lt;/span&gt; Glyma.fa
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/^$/d'&lt;/span&gt; 2_domain.txt  &lt;span class=&quot;c&quot;&gt;# 删除文件空行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/#/d'&lt;/span&gt; AtTCP.txt      &lt;span class=&quot;c&quot;&gt;# 删除有\#的行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; s/^M// AAt.list.txt   &lt;span class=&quot;c&quot;&gt;# 此处^M必需手动输入！！&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; /^&lt;span class=&quot;nv&quot;&gt;$/&lt;/span&gt;d file     &lt;span class=&quot;c&quot;&gt;#删除空行   d 指删除含有空行符的这一行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; s/tr.&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;//g LjTCP.fa  &lt;span class=&quot;c&quot;&gt;#  去除无用的注释    :%s/|.*.\[//g  #去除从|开始，到[结束内的所有字符，包括[#&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/^/aaa/g'&lt;/span&gt; filename.txt &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; outputfile.txt  &lt;span class=&quot;c&quot;&gt;# 在文件中的每一行之前加上一个字符串，比如：aaa    行尾将^是 $ &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt;/&lt;span class=&quot;se&quot;&gt;\&amp;gt;&lt;/span&gt;Chr17/d Chr17.fa   &lt;span class=&quot;c&quot;&gt;# 删除Chr17.fa 中的Chr字符&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;s/zhangsan/lisi/g&quot;&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;grep &lt;/span&gt;zhangsan &lt;span class=&quot;nt&quot;&gt;-rl&lt;/span&gt; modules&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;c&quot;&gt;#批量替换，讲文件夹modules中所有文件执行sed -i       &quot;s/zhangsan/lisi/g&quot; 该符号`不是点，是Esc下面的符号 &lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;sed&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'1iNew Top Line'&lt;/span&gt; aa.txt    &lt;span class=&quot;c&quot;&gt;#  sed 在句首添加一行 New Top Line&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;linux-命令&quot;&gt;linux 命令&lt;/h3&gt;
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;#  查看系统日期&lt;/span&gt;
+cal 1 2016   &lt;span class=&quot;c&quot;&gt;# 查看2016年1月的日历&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;df&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;# 查看磁盘驱动器的可用空间  &lt;/span&gt;
+free   &lt;span class=&quot;c&quot;&gt;# 显示可用内存&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;     &lt;span class=&quot;c&quot;&gt;# 工作目录     &lt;/span&gt;
+..   &lt;span class=&quot;c&quot;&gt;# 工作目录的父目录   如：  cd ..   返回上一级    cd  ./software/  &lt;/span&gt;
+file Gma1.fa   &lt;span class=&quot;c&quot;&gt;# 显示  Gma1.fa: ASCII text  该文件为文本文档ASCII&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;foo&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'cd /usr; ls; cd -'&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;# 自己创建命令   unalias foo 删除&lt;/span&gt;
+gedit Gma1.fa   &lt;span class=&quot;c&quot;&gt;# 图形编辑器编辑Gma1.fa &lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-foo&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;# 要删除第一个字符为‘-’的文件 (例如‘-foo’)&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt; ./-foo   &lt;span class=&quot;c&quot;&gt;# 要删除第一个字符为‘-’的文件 (例如‘-foo’)&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;chmod &lt;/span&gt;755 lixiangyong/  &lt;span class=&quot;c&quot;&gt;# 更改目录权限为可读&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; filename &lt;span class=&quot;c&quot;&gt;# 就是查看文件里有多少行&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-w&lt;/span&gt; filename &lt;span class=&quot;c&quot;&gt;# 看文件里有多少个word。&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-L&lt;/span&gt; filename &lt;span class=&quot;c&quot;&gt;# 文件里最长的那一行是多少个字&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;wc&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt;  filename   &lt;span class=&quot;c&quot;&gt;# 统计字节数&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;Y.list | &lt;span class=&quot;nb&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; YRedundancy.list    &lt;span class=&quot;c&quot;&gt;# 去除文件Y.list中的重复的行命名为YR.list&lt;/span&gt;
+less &lt;span class=&quot;nt&quot;&gt;-S&lt;/span&gt; AGO.fa |grep &lt;span class=&quot;s2&quot;&gt;&quot;&amp;gt;&quot;&lt;/span&gt; |wc &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# 检索&amp;gt;有多少个  同  grep -c &quot;&amp;gt;&quot; AGO.fa&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.tar.gz&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;  &lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar &lt;/span&gt;xvf &lt;span class=&quot;nv&quot;&gt;$tar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;#批量解压文件#&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;split&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; 10 splitfile.txt D  &lt;span class=&quot;c&quot;&gt;# 将文件按每10行分割，新文件命名为 Daa Dab#&lt;/span&gt;
+rename linux unix linux&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;    &lt;span class=&quot;c&quot;&gt;# 文件批量  &lt;/span&gt;
+find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-name&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'*.txt'&lt;/span&gt; | xargs perl &lt;span class=&quot;nt&quot;&gt;-pi&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'s/aaa/bbb/g'&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;# 遍历整个文件夹，把所有txt文件中的aaa替换成bbb&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;date&lt;/span&gt; +%F&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#创建一个以日期为名的文件夹&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;touch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;1..9&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;.txt   &lt;span class=&quot;c&quot;&gt;# 批量创建文件&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/$'&lt;/span&gt;         &lt;span class=&quot;c&quot;&gt;#  查看当前目录下的文件夹 &lt;/span&gt;
+
+rename &lt;span class=&quot;s2&quot;&gt;&quot;s/AA/aa/&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
+rename .fas .fa &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.fas    &lt;span class=&quot;c&quot;&gt;# CentOS 下可用&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;单行-perl&quot;&gt;单行 perl&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perl -e &quot;print lc($a)&quot;    # Perl 大小写转换
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;r-命令行&quot;&gt;R 命令行&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Rscript /home/muscle/test.r  # linux 上运行r脚本
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;kaks计算&quot;&gt;kaks计算&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;perl pal2nal.perl aligned.protein.fas original.cds.fas -output fasta &amp;gt; aligned.cds.fas
+perl ../software/pal2nal.pl 2.fas 2.cds -output paml &amp;gt; 2.nuc    #kaks计算
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;gff和gtf之间的格式转化&quot;&gt;gff和gtf之间的格式转化&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;gffread my.gff3 -T -o my.gtf # gff2gtf
+gffread merged.gtf -o- &amp;gt; merged.gff3  # gtf2gff
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;vim-的使用&quot;&gt;vim 的使用&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;:12,23s/aa/bb/g     # 将从12 行到23 行中出现的所有包含aa 的字符串中的aa 替换为bb
+:s/\&amp;lt;aa\&amp;gt;/bb/g      # 将光标所在行出现的所有aa 替换为bb, 仅替换aa 这个单词
+:12,23s/^/#/        # 将从12 行到23 行的行首加入# 字符
+
+:10,15s#^#\#\##g          #  vim的 V模式下，下注释x  10 -15  行，##注释
+
+Esc shift+ : wq   enter   =  Esc shift+ : x  enter       #保存并退出
+Esc shift+ : q！  enter                                  #不保存强制退出 
+vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffer 2 来回切换     也可以先打开一个，在用：e ls-output.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;数据存放&quot;&gt;数据存放&lt;/h3&gt;
+&lt;p&gt;/data/public/hanyapeng/Gm/Gma.collinear.groups      # 大豆中所有旁系同源基因&lt;br /&gt;
+/data/public/wanglei/inparanoid4.0/Soybeanparalog2.txt     # 大豆中所有旁系同源基因&lt;/p&gt;
+</description>
+        <pubDate>Wed, 01 Aug 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/08/01/Common-bioinformatics-commands/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/01/Common-bioinformatics-commands/</guid>
+        
+        <category>生物信息学</category>
+        
+        <category>肿瘤基因组</category>
+        
+        
+        <category>生物信息学</category>
+        
+      </item>
+    
+      <item>
+        <title>Github个人博客搭建记录</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#搭建记录&quot; id=&quot;markdown-toc-搭建记录&quot;&gt;搭建记录&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;搭建记录&quot;&gt;搭建记录&lt;/h1&gt;
+&lt;ol&gt;
+  &lt;li&gt;在github账号下创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;biolxy.github.io&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;git clone 该项目到本地&lt;/li&gt;
+  &lt;li&gt;git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除&lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt;文件夹下文件，保留一个做模板，命名最好为全英文字符
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/shenmengyuan/shenmengyuan.github.io.git 
+&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;shenmengyuan.github.io/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; biolxy.github.io
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;修改如下等文件替换为自己的信息&lt;br /&gt;
+&lt;code class=&quot;highlighter-rouge&quot;&gt;CNAME _config.yml&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;favicon.ico&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;page/3collections.md&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;age/4about.md&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;该主题更详细的信息需要去该主题作者的github查看&lt;a href=&quot;https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md&quot;&gt;地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;push到github，打开 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://biolxy.github.io/&lt;/code&gt; 即可看到效果&lt;/li&gt;
+  &lt;li&gt;注册七牛云，建立空间，做图床&lt;/li&gt;
+  &lt;li&gt;绑定MPic软件，方便上传图片及插入图片链接&lt;/li&gt;
+&lt;/ol&gt;
+
+</description>
+        <pubDate>Tue, 31 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/07/31/Github-blog/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/31/Github-blog/</guid>
+        
+        <category>markdown</category>
+        
+        <category>博客</category>
+        
+        <category>图床</category>
+        
+        <category>七牛</category>
+        
+        
+        <category>生活札记</category>
+        
+      </item>
+    
+      <item>
+        <title>一个test博客</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#段落标题&quot; id=&quot;markdown-toc-段落标题&quot;&gt;段落标题&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#列表测试&quot; id=&quot;markdown-toc-列表测试&quot;&gt;列表测试&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#表格测试&quot; id=&quot;markdown-toc-表格测试&quot;&gt;表格测试&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一段代码&quot; id=&quot;markdown-toc-一段代码&quot;&gt;一段代码&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#一个公式&quot; id=&quot;markdown-toc-一个公式&quot;&gt;一个公式&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;段落标题&quot;&gt;段落标题&lt;/h3&gt;
+&lt;p&gt;一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧，一个段落，好像有点短啊，那就cp几遍吧&lt;br /&gt;
+嗯，够了吧&lt;br /&gt;
+&lt;img src=&quot;https://ws3.sinaimg.cn/large/6af89bc8gw1f8q3b3qu9xg205z0423yj.gif&quot; alt=&quot;得瑟&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;列表测试&quot;&gt;列表测试&lt;/h3&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;冒烟&lt;/strong&gt;：一个名不见经传的人。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;可爱&lt;/strong&gt;：一个天生丽质的人。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;表格测试&quot;&gt;表格测试&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;书籍&lt;/th&gt;
+      &lt;th&gt;技能&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Python高性能编程&lt;/td&gt;
+      &lt;td&gt;python&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;一段代码&quot;&gt;一段代码&lt;/h3&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nd&quot;&gt;@requires_authorization&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;pass&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;# A comment&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'hello world'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;一个公式&quot;&gt;一个公式&lt;/h3&gt;
+
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;a + b = c&lt;/script&gt;
+$\overbrace{a+b+\dots+n}^{m个}$&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x) = ax + b&lt;/script&gt;
+</description>
+        <pubDate>Mon, 30 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/07/30/a-test-markdownfile/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/07/30/a-test-markdownfile/</guid>
+        
+        <category>markdown</category>
+        
+        
+        <category>生活札记</category>
+        
+      </item>
+    
+  </channel>
+</rss>
