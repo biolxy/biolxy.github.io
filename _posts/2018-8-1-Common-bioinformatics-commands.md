@@ -10,58 +10,29 @@ description: 这是我最初接触生物信息学时用到的命令，未仔细�
 * content
 {:toc}
 
-
-
-
-
-<!-- MarkdownTOC -->
-
-- [1、 构建blast数据库](#1、-构建blast数据库)
-- [2、 碱基/蛋白序列比对](#2、-碱基蛋白序列比对)
-- [3、 画树](#3、-画树)
-- [4、 提取CDS/pep序列](#4、-提取cdspep序列)
-- [5、 修改环境变量](#5、-修改环境变量)
-- [6、 prottest的使用](#6、-prottest的使用)
-- [7、 shell 脚本知识](#7、-shell-脚本知识)
-- [8、 awk的使用](#8、-awk的使用)
-- [9、 sed的使用](#9、-sed的使用)
-- [10、 linux 命令](#10、-linux-命令)
-- [11、 单行 perl](#11、-单行-perl)
-- [12、 R 命令行](#12、-r-命令行)
-- [13、 kaks计算](#13、-kaks计算)
-- [14、 gff和gtf之间的格式转化](#14、-gff和gtf之间的格式转化)
-- [15、 vim 的使用](#15、-vim-的使用)
-- [16、 数据存放](#16、-数据存放)
-
-<!-- /MarkdownTOC -->
-
-
-
-
-<a id="1、-构建blast数据库"></a>
-### 1、 构建blast数据库
+### 构建blast数据库
 ```shell
 makeblastdb -in ../ATaa.fa -dbtype prot -title ATaa-parse_seqids -out ATdb   #可用的蛋白库
 makeblastdb -in ../ATaa.fa -dbtype nucl -title ATaa-parse_seqids -out ATdb  #可用的核酸白库
 blastp -db /home/hanyapeng/prot/DB/Mtrdb -query At.fa -outfmt 6 -evalue 1e-20 -out Mtr.blast -num_threads 8
 blastn -query seq.fasta -out seq.blast -db dbname -outfmt 6 -evalue 1e-5 -num_descriptions 10 -num_threads 8
 ```   
-<a id="2、-碱基蛋白序列比对"></a>
-### 2、 碱基/蛋白序列比对
+
+### 碱基/蛋白序列比对
 ```
 muscle -in AtLj.fa -out AtLj.phy  # -out，输出默认的fasta格式
 muscle -in At.fasta -phyiout At.phy  # -phyiout，则输出sequential phylip格式
 mafft aa.fa > aa.fas
 ```
-<a id="3、-画树"></a>
-### 3、 画树
+
+### 画树
 ```shell
 nohup raxmlHPC-PTHREADS -s ALO.phy -n ALO -m PROTCATJTT -f a -N 100 -p 12345 -x 1234567 -T 8 &  # RaxML树
 nohup ../software/PhyML_3.0_linux64 -i AGO.phy -d aa -b 0  -f e -s BEST -c 4 -m VT -v e -a e -o lr --no_memory_check &  # Phyml 树
 ../software/FastTree TCP123.phy  > TCP.tree   #fasttree 画树
 ```
-<a id="4、-提取cdspep序列"></a>
-### 4、 提取CDS/pep序列
+
+### 提取CDS/pep序列
 ```shell
 nohup hmmsearch -E 1e-5 TCP.hmm  /home/hanyapeng/prot/Gma.prot > Gma.hmm &
 less -S Gma.hmm |awk '{if ($1~/e-/) print $9}' > list     #if第一行匹配到e-，则调出第9行#  
@@ -77,8 +48,8 @@ perl /home/hanyapeng/comm/getpromoter.pl /data/plant_genome/Glyma2.0/Gmax275.fa 
 cat AT.fa Lj.fa Osa.fa > ATLjOsa.fa
 ```
 
-<a id="5、-修改环境变量"></a>
-### 5、 修改环境变量
+
+### 修改环境变量
 ```
 vi .bash_profile     # 或则 .bash_login   .profile   .bashrc 
 vi .bash_profile     # 添加环境变量 PATH=$PATH:$HOME/bin
@@ -89,8 +60,8 @@ source .bashrc
 ```
 
 
-<a id="6、-prottest的使用"></a>
-### 6、 prottest的使用
+
+### prottest的使用
 ```
 nohup java -jar prottest-3.4.jar -i AGO.phy -all-matrices -all-distributions  > a.txt  &  # 此.phy 文件为比对过的氨基酸序列文件
 
@@ -106,15 +77,15 @@ PhyML-3.1_linux64 -i aP6.phy -q -d aa -m JTT -c 4 -a e
 ```
 
 
-<a id="7、-shell-脚本知识"></a>
-### 7、 shell 脚本知识
+
+### shell 脚本知识
 ```shell
 != 不等于,如:if [ "$a" != "$b" ] 
 ```
 
 
-<a id="8、-awk的使用"></a>
-### 8、 awk的使用
+
+### awk的使用
 ```shell
 less Y2.blast |awk ' {if ($11 ~ /0\.0/) print $0}' > 1      # 每一行中，如果第11列=0.0，则输出全部  “~”是 =  ，$11 调取第11列 ， \ 反义符 
 awk '{line[NR]=$0}END{for(i=NR;i>0;i--)print line[i]}' sed.txt  # 把sed.txt 中的内容按行倒着输出
@@ -123,8 +94,8 @@ awk '!seen[$0]++' <filename>    # awk 去除重复的行
 less Step1.2.sh | grep "=" | cut -d "=" -f 1 | awk '{printf $quot" ";$0}'  # 将一列输出为一行
 ```
 
-<a id="9、-sed的使用"></a>
-### 9、 sed的使用
+
+### sed的使用
 ```shell
 sed -i 's/Gma/Glyma/g' Glyma.fa
 sed -i '/^$/d' 2_domain.txt  # 删除文件空行
@@ -140,8 +111,8 @@ sed -i '1iNew Top Line' aa.txt    #  sed 在句首添加一行 New Top Line
 ```
 
 
-<a id="10、-linux-命令"></a>
-### 10、 linux 命令
+
+### linux 命令
 ```shell
 date   #  查看系统日期
 cal 1 2016   # 查看2016年1月的日历
@@ -178,34 +149,33 @@ rename "s/AA/aa/" *
 rename .fas .fa *.fas    # CentOS 下可用
 ```
 
-<a id="11、-单行-perl"></a>
-### 11、 单行 perl
+### 单行 perl
 ```
 perl -e "print lc($a)"    # Perl 大小写转换
 ```
 
-<a id="12、-r-命令行"></a>
-### 12、 R 命令行
+
+### R 命令行
 ```
 Rscript /home/muscle/test.r  # linux 上运行r脚本
 ```
 
-<a id="13、-kaks计算"></a>
-### 13、 kaks计算
+
+### kaks计算
 ```
 perl pal2nal.perl aligned.protein.fas original.cds.fas -output fasta > aligned.cds.fas
 perl ../software/pal2nal.pl 2.fas 2.cds -output paml > 2.nuc    #kaks计算
 ```
 
-<a id="14、-gff和gtf之间的格式转化"></a>
-### 14、 gff和gtf之间的格式转化
+
+### gff和gtf之间的格式转化
 ```  
 gffread my.gff3 -T -o my.gtf # gff2gtf
 gffread merged.gtf -o- > merged.gff3  # gtf2gff
 ```
 
-<a id="15、-vim-的使用"></a>
-### 15、 vim 的使用
+
+### vim 的使用
 
 ```
 :12,23s/aa/bb/g     # 将从12 行到23 行中出现的所有包含aa 的字符串中的aa 替换为bb
@@ -219,7 +189,7 @@ Esc shift+ : q！  enter                                  #不保存强制退出
 vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffer 2 来回切换     也可以先打开一个，在用：e ls-output.txt
 ```
 
-<a id="16、-数据存放"></a>
-### 16、 数据存放
+
+### 数据存放
 /data/public/hanyapeng/Gm/Gma.collinear.groups      # 大豆中所有旁系同源基因  
 /data/public/wanglei/inparanoid4.0/Soybeanparalog2.txt     # 大豆中所有旁系同源基因
