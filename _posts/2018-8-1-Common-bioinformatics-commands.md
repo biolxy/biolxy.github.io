@@ -10,6 +10,10 @@ description: 这是我最初接触生物信息学时用到的命令，未仔细�
 * content
 {:toc}
 
+### 前言
+
+东西有点杂乱，还需要慢慢整理。其中的 sed awk perl 等命令我觉得都可以单独分出来讲了
+
 ### 构建blast数据库
 ```shell
 makeblastdb -in ../ATaa.fa -dbtype prot -title ATaa-parse_seqids -out ATdb   #可用的蛋白库
@@ -91,7 +95,10 @@ less Y2.blast |awk ' {if ($11 ~ /0\.0/) print $0}' > 1      # 每一行中，如
 awk '{line[NR]=$0}END{for(i=NR;i>0;i--)print line[i]}' sed.txt  # 把sed.txt 中的内容按行倒着输出
 less -S Gma3.fa |awk '{if ($1~/>/) print $head}' > a
 awk '!seen[$0]++' <filename>    # awk 去除重复的行
-less Step1.2.sh | grep "=" | cut -d "=" -f 1 | awk '{printf $quot" ";$0}'  # 将一列输出为一行
+less Step1.2.sh | grep "=" | cut -d "=" -f 1 | awk '{printf $quot" ";$0}' #将一列输出为一行
+awk '{ print $(NF-1)}' file     # 出输出倒数第二列
+
+less file |  awk  '{split($1,a,":");print a[1]"-"a[3]"\t"$5}' > our.w.d    # 对awk截取字符串，file中的数据格式为:`ACAN:ENST00000561243:p.D1390E The mutant peptide: APGVEEISGLP is found in wild type sequence`， [参考](https://www.cnblogs.com/sunada2005/p/3493941.html) 
 ```
 
 
