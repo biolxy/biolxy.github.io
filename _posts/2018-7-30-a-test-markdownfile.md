@@ -36,3 +36,9 @@ if __name__ == '__main__':
     # A comment
     print 'hello world'
 ```
+
+### 一个公式
+
+$$
+$\overbrace{a+b+\dots+n}^{m个}$|
+$$
