@@ -11,10 +11,12 @@
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
-    <link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css ">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
     <link rel="canonical" href="http://localhost:4000/">
     <link rel="alternate" type="application/rss+xml" title="李祥永的博客" href="http://localhost:4000/feed.xml ">
+
 
     <script>
     // 百度统计代码
@@ -40,6 +42,8 @@
 
     </script>
 
+
+
 </head>
 
 
@@ -62,53 +66,13 @@
 
                 
                     
-                    <li>
-                        
-                        <a href="/archive/">
-                        
-                            <i class="fa fa-archive"></i>Archives
-                        </a>
-                    </li>
+                
                     
                 
                     
-                    <li>
-                        
-                        <a href="/category/">
-                        
-                            <i class="fa fa-th-list"></i>Categories
-                        </a>
-                    </li>
-                    
                 
                     
-                    <li>
-                        
-                        <a href="/tag/">
-                        
-                            <i class="fa fa-tags"></i>Tags
-                        </a>
-                    </li>
-                    
                 
-                    
-                    <li>
-                        
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/about/">
-                        
-                            <i class="fa fa-heart"></i>About
-                        </a>
-                    </li>
                     
                 
                     
@@ -370,9 +334,9 @@ source .bashrc
 <ol>
   <li>在github账号下创建 <code class="highlighter-rouge">biolxy.github.io</code></li>
   <li>git clone 该项目到本地</li>
-  <li>git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/shenmengyuan/shenmengyuan.github.io.git 
-<span class="nb">mv </span>shenmengyuan.github.io/<span class="k">*</span> biolxy.github.io
+  <li>git clone 作者博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
+<span class="nb">mv </span>gaohaoyang.github.io/<span class="k">*</span> biolxy.github.io
 </code></pre></div>    </div>
   </li>
   <li>修改如下等文件替换为自己的信息<br />
@@ -382,6 +346,7 @@ source .bashrc
   <li>注册七牛云，建立空间，做图床</li>
   <li>绑定MPic软件，方便上传图片及插入图片链接</li>
 </ol>
+
 
                 </div>
                 <div class="read-all">
@@ -446,7 +411,7 @@ source .bashrc
   <li><a href="#列表测试" id="markdown-toc-列表测试">列表测试</a></li>
   <li><a href="#表格测试" id="markdown-toc-表格测试">表格测试</a></li>
   <li><a href="#一段代码" id="markdown-toc-一段代码">一段代码</a></li>
-  <li><a href="#一个公式" id="markdown-toc-一个公式">一个公式</a></li>
+  <li><a href="#公式" id="markdown-toc-公式">公式</a></li>
 </ul>
 
 <h3 id="段落标题">段落标题</h3>
@@ -488,12 +453,11 @@ source .bashrc
     <span class="k">print</span> <span class="s">'hello world'</span>
 </code></pre></div></div>
 
-<h3 id="一个公式">一个公式</h3>
+<h3 id="公式">公式</h3>
 
-<p><script type="math/tex">a + b = c</script>
-$\overbrace{a+b+\dots+n}^{m个}$</p>
-
-<script type="math/tex; mode=display">f(x) = ax + b</script>
+<p><script type="math/tex">a + b = c</script><br />
+$\overbrace{a+b+\dots+n}^{m个}$  <br />
+行中 <script type="math/tex">f(x) = ax + b</script></p>
 
                 </div>
                 <div class="read-all">
@@ -689,13 +653,21 @@ $\overbrace{a+b+\dots+n}^{m个}$</p>
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     <div class="back-to-top">
-    <a href="#top" class="scroll">
+    <a href="#top" data-scroll>
         <i class="fa fa-arrow-up" aria-hidden="true"></i>
     </a>
 </div>
 
     <script src=" /js/main.js " charset="utf-8"></script>
-    <script src=" /js/scroll.min.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
   </body>
 
 </html>

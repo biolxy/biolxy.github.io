@@ -7,14 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Github个人博客搭建记录</title>
-    <meta name="description" content="  搭建记录搭建记录  在github账号下创建 biolxy.github.io  git clone 该项目到本地  git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除_post文件夹下文件，保留一个做模板，命名最好为全英文字符    git clone https://github.com...">
+    <meta name="description" content="  搭建记录搭建记录  在github账号下创建 biolxy.github.io  git clone 该项目到本地  git clone 作者博客到本地，填补博客必要的样式文件,删除_post文件夹下文件，保留一个做模板，命名最好为全英文字符    git clone https://github.com/G...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
-    <link rel="stylesheet" href="/css/fontawesome/css/font-awesome.min.css ">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
     <link rel="canonical" href="http://localhost:4000/2018/07/31/Github-blog/">
     <link rel="alternate" type="application/rss+xml" title="李祥永的博客" href="http://localhost:4000/feed.xml ">
+
 
     <script>
     // 百度统计代码
@@ -40,6 +42,8 @@
 
     </script>
 
+
+
 </head>
 
 
@@ -62,53 +66,13 @@
 
                 
                     
-                    <li>
-                        
-                        <a href="/archive/">
-                        
-                            <i class="fa fa-archive"></i>Archives
-                        </a>
-                    </li>
+                
                     
                 
                     
-                    <li>
-                        
-                        <a href="/category/">
-                        
-                            <i class="fa fa-th-list"></i>Categories
-                        </a>
-                    </li>
-                    
                 
                     
-                    <li>
-                        
-                        <a href="/tag/">
-                        
-                            <i class="fa fa-tags"></i>Tags
-                        </a>
-                    </li>
-                    
                 
-                    
-                    <li>
-                        
-                        <a href="/collection/">
-                        
-                            <i class="fa fa-bookmark"></i>Collections
-                        </a>
-                    </li>
-                    
-                
-                    
-                    <li>
-                        
-                        <a href="/about/">
-                        
-                            <i class="fa fa-heart"></i>About
-                        </a>
-                    </li>
                     
                 
                     
@@ -195,9 +159,9 @@
 <ol>
   <li>在github账号下创建 <code class="highlighter-rouge">biolxy.github.io</code></li>
   <li>git clone 该项目到本地</li>
-  <li>git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/shenmengyuan/shenmengyuan.github.io.git 
-<span class="nb">mv </span>shenmengyuan.github.io/<span class="k">*</span> biolxy.github.io
+  <li>git clone 作者博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
+    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
+<span class="nb">mv </span>gaohaoyang.github.io/<span class="k">*</span> biolxy.github.io
 </code></pre></div>    </div>
   </li>
   <li>修改如下等文件替换为自己的信息<br />
@@ -255,11 +219,11 @@
                 
                     
                         
-                        <h2 id="similar_posts">相似文章</h2>
+                        <h2 id="similar_posts">Similar Posts</h2>
                         <ul>
                         
                         <li class="relatedPost">
-                            <a href="http://localhost:4000/2018/07/30/a-test-markdownfile/">一个test博客
+                            <a href="/2018/07/30/a-test-markdownfile/">一个test博客
                             
                             </a>
                         </li>
@@ -294,7 +258,7 @@
 </div>
 
 
-        <h2 id="comments">评论</h2>
+        <h2 id="comments">Comments</h2>
         
 
 
@@ -336,8 +300,10 @@
                     Content
                 </div>
                 <ul id="content-side" class="content-ul">
-                    <li><a href="#similar_posts">相似文章</a></li>
-                    <li><a href="#comments">评论</a></li>
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
+                    
+                    <li><a href="#comments">Comments</a></li>
                 </ul>
             </div>
             <!-- 其他div框放到这里 -->
@@ -388,13 +354,21 @@
 <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     <div class="back-to-top">
-    <a href="#top" class="scroll">
+    <a href="#top" data-scroll>
         <i class="fa fa-arrow-up" aria-hidden="true"></i>
     </a>
 </div>
 
     <script src=" /js/main.js " charset="utf-8"></script>
-    <script src=" /js/scroll.min.js " charset="utf-8"></script>
+    <script src=" /js/smooth-scroll.min.js " charset="utf-8"></script>
+    <script type="text/javascript">
+      smoothScroll.init({
+        speed: 500, // Integer. How fast to complete the scroll in milliseconds
+        easing: 'easeInOutCubic', // Easing pattern to use
+        offset: 20, // Integer. How far to offset the scrolling anchor location in pixels
+      });
+    </script>
+    <!-- <script src=" /js/scroll.min.js " charset="utf-8"></script> -->
   </body>
 
 </html>

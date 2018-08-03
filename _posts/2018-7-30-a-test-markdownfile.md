@@ -39,9 +39,8 @@ if __name__ == '__main__':
     print 'hello world'
 ```
 
-### 一个公式
+### 公式
 
-$$a + b = c$$
-$\overbrace{a+b+\dots+n}^{m个}$
-
-$$ f(x) = ax + b $$
+$$a + b = c$$  
+$\overbrace{a+b+\dots+n}^{m个}$    
+行中 $$ f(x) = ax + b $$

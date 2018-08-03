@@ -5,8 +5,8 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 04 Aug 2018 03:26:29 +0800</pubDate>
-    <lastBuildDate>Sat, 04 Aug 2018 03:26:29 +0800</lastBuildDate>
+    <pubDate>Sat, 04 Aug 2018 03:40:15 +0800</pubDate>
+    <lastBuildDate>Sat, 04 Aug 2018 03:40:15 +0800</lastBuildDate>
     <generator>Jekyll v3.8.3</generator>
     
       <item>
@@ -347,9 +347,9 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
 &lt;ol&gt;
   &lt;li&gt;在github账号下创建 &lt;code class=&quot;highlighter-rouge&quot;&gt;biolxy.github.io&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;git clone 该项目到本地&lt;/li&gt;
-  &lt;li&gt;git clone 沈梦圆的博客到本地，填补博客必要的样式文件,删除&lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt;文件夹下文件，保留一个做模板，命名最好为全英文字符
-    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/shenmengyuan/shenmengyuan.github.io.git 
-&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;shenmengyuan.github.io/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; biolxy.github.io
+  &lt;li&gt;git clone 作者博客到本地，填补博客必要的样式文件,删除&lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt;文件夹下文件，保留一个做模板，命名最好为全英文字符
+    &lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
+&lt;span class=&quot;nb&quot;&gt;mv &lt;/span&gt;gaohaoyang.github.io/&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; biolxy.github.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;修改如下等文件替换为自己的信息&lt;br /&gt;
@@ -385,7 +385,7 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
   &lt;li&gt;&lt;a href=&quot;#列表测试&quot; id=&quot;markdown-toc-列表测试&quot;&gt;列表测试&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#表格测试&quot; id=&quot;markdown-toc-表格测试&quot;&gt;表格测试&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#一段代码&quot; id=&quot;markdown-toc-一段代码&quot;&gt;一段代码&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#一个公式&quot; id=&quot;markdown-toc-一个公式&quot;&gt;一个公式&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#公式&quot; id=&quot;markdown-toc-公式&quot;&gt;公式&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h3 id=&quot;段落标题&quot;&gt;段落标题&lt;/h3&gt;
@@ -427,12 +427,11 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
     &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'hello world'&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;一个公式&quot;&gt;一个公式&lt;/h3&gt;
+&lt;h3 id=&quot;公式&quot;&gt;公式&lt;/h3&gt;
 
-&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;a + b = c&lt;/script&gt;
-$\overbrace{a+b+\dots+n}^{m个}$&lt;/p&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;f(x) = ax + b&lt;/script&gt;
+&lt;p&gt;&lt;script type=&quot;math/tex&quot;&gt;a + b = c&lt;/script&gt;&lt;br /&gt;
+$\overbrace{a+b+\dots+n}^{m个}$  &lt;br /&gt;
+行中 &lt;script type=&quot;math/tex&quot;&gt;f(x) = ax + b&lt;/script&gt;&lt;/p&gt;
 </description>
         <pubDate>Mon, 30 Jul 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/2018/07/30/a-test-markdownfile/</link>
