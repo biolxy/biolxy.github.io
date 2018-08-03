@@ -39,6 +39,4 @@ if __name__ == '__main__':
 
 ### 一个公式
 
-$$
-$\overbrace{a+b+\dots+n}^{m个}$|
-$$
+$$$\overbrace{a+b+\dots+n}^{m个}$|$$
