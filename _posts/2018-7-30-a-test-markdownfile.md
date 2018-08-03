@@ -5,6 +5,8 @@ categories: 生活札记
 tags: markdown
 keywords: 第一次
 description: 简单的markdown博客的测试
+author: biolxy
+mathjax: true
 ---
 
 * content
