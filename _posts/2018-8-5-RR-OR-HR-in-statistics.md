@@ -5,13 +5,14 @@ categories: 肿瘤基因组
 tags: 统计学
 keywords: RR OR HR
 description: 统计学中常用的 RR、OR、HR的含义及区别
+author: biolxy
+mathjax: true
 ---
 
 * content
 {:toc}
 
 
-# 统计学中常用的 RR、OR、HR的含义及区别
 
 ## 相对危险度 (RR)   
 
