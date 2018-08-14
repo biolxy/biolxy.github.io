@@ -20,7 +20,7 @@ makeblastdb -in ../ATaa.fa -dbtype prot -title ATaa-parse_seqids -out ATdb   #�
 makeblastdb -in ../ATaa.fa -dbtype nucl -title ATaa-parse_seqids -out ATdb  #可用的核酸白库
 blastp -db /home/hanyapeng/prot/DB/Mtrdb -query At.fa -outfmt 6 -evalue 1e-20 -out Mtr.blast -num_threads 8
 blastn -query seq.fasta -out seq.blast -db dbname -outfmt 6 -evalue 1e-5 -num_descriptions 10 -num_threads 8
-```   
+```
 
 ### 碱基/蛋白序列比对
 ```
@@ -151,9 +151,14 @@ mkdir $(date +%F)  #创建一个以日期为名的文件夹
 touch {1..9}.txt   # 批量创建文件
 
 ls -F | grep '/$'         #  查看当前目录下的文件夹 
+for i in `ls -F | grep '/$'`;do sudo du -sh $i;done   #查看当前目录下，每个子目录及其子目录的总大小
 
 rename "s/AA/aa/" *
 rename .fas .fa *.fas    # CentOS 下可用
+
+iostat -d -k 1 10可以看到每个盘的读写速度
+
+find /home/lxy -type f -size +100M    #列出文件夹 /home/lxy 下大于100M的文件
 ```
 
 ### 单行 perl
