@@ -19,11 +19,16 @@ git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git
 mv gaohaoyang.github.io/* biolxy.github.io
 ```
 4. 修改如下等文件替换为自己的信息  
-`CNAME`  `_config.yml` `favicon.ico` `index.html` `page/3collections.md` `age/4about.md`  
+  `CNAME`  `_config.yml` `favicon.ico` `index.html` `page/3collections.md` `age/4about.md`  
 5. 该主题更详细的信息需要去该主题作者的github查看[地址](https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md)
 6. push到github，打开 `https://biolxy.github.io/` 即可看到效果
-7. 注册七牛云，建立空间，做图床
-8. 绑定MPic软件，方便上传图片及插入图片链接
+7. 当然你也可以
+   1. 先参考主题作者的博客[地址](https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md)，先 `安装 ruby 和 jekyll 环境` ，博客里讲的都有，我就不赘述了
+   2. 切换到`biolxy.github.io` 文件夹下，注意不是`_post` 文件夹
+   3. 执行 `jekyll s`
+   4. 此时打开浏览器，输入`http://127.0.0.1:4000/` ，你就可以在本地预览到上传github后的效果了
+8. 为了`上传图片`， 你需要注册七牛云，建立空间，做图床（我写的简单，你操作的时候不懂的就百度）
+9. 七牛云账户可以绑定MPic软件，绑定后可以方便的上传图片及插入图片链接。
 
 
 
