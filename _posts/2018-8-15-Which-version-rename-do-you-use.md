@@ -8,7 +8,9 @@ author: biolxy
 mathjax: true
 ---
 
-# 你用的是哪个版本的rename
+* content
+{:toc}
+
 
 ###  mv 与 rename 的区别
 

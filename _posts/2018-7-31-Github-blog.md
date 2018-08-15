@@ -19,7 +19,7 @@ git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git
 mv gaohaoyang.github.io/* biolxy.github.io
 ```
 4. 修改如下等文件替换为自己的信息  
-  `CNAME`  `_config.yml` `favicon.ico` `index.html` `page/3collections.md` `age/4about.md`  
+    `CNAME`  `_config.yml` `favicon.ico` `index.html` `page/3collections.md` `age/4about.md`  
 5. 该主题更详细的信息需要去该主题作者的github查看[地址](https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md)
 6. push到github，打开 `https://biolxy.github.io/` 即可看到效果
 7. 当然你也可以
