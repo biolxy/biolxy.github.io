@@ -159,6 +159,8 @@ rename .fas .fa *.fas    # CentOS 下可用
 iostat -d -k 1 10可以看到每个盘的读写速度
 
 find /home/lxy -type f -size +100M    #列出文件夹 /home/lxy 下大于100M的文件
+find . -type l -exec rm  {} \;  #列出当前路径 .  下的link类型的文件(type
+ l) 并删除
 ```
 
 ### 单行 perl
