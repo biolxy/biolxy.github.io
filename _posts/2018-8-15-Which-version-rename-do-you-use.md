@@ -90,7 +90,7 @@ Perl 版本的好处是，你可以使用正则表达式来完成很奇特的功
 
 具体用法就不细说了。
 
-### 如果你的服务器不幸安装的时C版的rename，怎么版？安装一个rename
+### 如果你的服务器不幸安装的时C版的rename，怎么办？安装一个rename
 
 ```
 conda install rename
