@@ -70,7 +70,7 @@ aroth85 ：
 >>> matplotlib.matplotlib_fname()
 '/home/foo/.config/matplotlib/matplotlibrc'
 ```
-
+[参考](https://matplotlib.org/1.3.1/users/customizing.html)
 1. 编辑你的 matplotlibrc (第44行) ：
 
 ```shell
