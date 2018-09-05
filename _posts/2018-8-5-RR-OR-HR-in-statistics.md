@@ -1,8 +1,8 @@
 ---
 layout: post
 title: "统计学中常用的 RR、OR、HR的含义及区别"
-categories: 肿瘤基因组
-tags: 统计学
+categories: 统计学
+tags: 肿瘤基因组 统计学
 keywords: RR OR HR
 description: 统计学中常用的 RR、OR、HR的含义及区别
 author: biolxy
