@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "PyClone 安装，报错及解决"
-categories: Linux
+categories: 肿瘤基因组
 tags: 肿瘤基因组 癌症基因组
 description: rename的介绍
 author: biolxy
