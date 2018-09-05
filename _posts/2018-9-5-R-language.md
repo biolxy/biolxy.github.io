@@ -16,7 +16,7 @@ mathjax: true
 ### R 拓展包的安装
 
 #### 官方在线安装
-
+例如：安装 "ggplots" 包
 ```R
 options(CRAN="http://cran.r-project.org");
 install.packages("ggplots");
@@ -41,11 +41,12 @@ install.packages("C:\\ggplot2.zip",contriburl=NULL)
 
 ```R
 source("http://bioconductor.org/biocLite.R")
-biocLite("limma")
+biocLite("ggplots")
 ```
 
 #### 通过第三方工具在线安装（devtools + github）安装发布在github上的R包
 
+例如：安装 "clonevol" 包，安装GitHub上的R包，需要指定R包的作者，一般这个包的github页面都会介绍安装的步骤  
 
 ```R
 install.packages('devtools')
