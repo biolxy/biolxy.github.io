@@ -1,0 +1,67 @@
+---
+layout: post
+title: "R 语言的使用"
+categories: R
+tags: R R包安装
+description: R 语言的使用
+author: biolxy
+mathjax: true
+---
+
+* content
+{:toc}
+
+
+
+### R 拓展包的安装
+
+#### 官方在线安装
+
+```R
+options(CRAN="http://cran.r-project.org");
+install.packages("ggplots");
+```
+
+#### 本地安装
+
+将安装包下载到本地，然后本地安装
+
+我一般都在这俩地址下载：
+
+- https://mirrors.tuna.tsinghua.edu.cn/CRAN/
+- http://bioconductor.org/
+
+注意win下的地址的写法
+
+```R
+install.packages("C:\\ggplot2.zip",contriburl=NULL)
+```
+
+#### 通过第三方工具在线安装（bioconductor）
+
+```R
+source("http://bioconductor.org/biocLite.R")
+biocLite("limma")
+```
+
+#### 通过第三方工具在线安装（devtools + github）安装发布在github上的R包
+
+
+```R
+install.packages('devtools')
+library(devtools)
+install_github('hdng/clonevol')
+```
+
+### 内网安装
+
+https://blog.csdn.net/liu365560704/article/details/70321153
+
+### 常用技巧
+
+```R
+rm(list = ls(all=TRUE))   # 清除变量
+```
+
+
+
