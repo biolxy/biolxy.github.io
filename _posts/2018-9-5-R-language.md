@@ -46,15 +46,26 @@ biocLite("ggplots")
 
 #### 通过第三方工具在线安装（devtools + github）安装发布在github上的R包
 
-例如：安装 "clonevol" 包，安装GitHub上的R包，需要指定R包的作者，一般这个包的github页面都会介绍安装的步骤  
+例如：安装 "fishplot" 包，安装GitHub上的R包，需要指定R包的作者，一般这个包的github页面都会介绍安装的步骤  
 
 ```R
-install.packages('devtools')
+#install devtools if you don't have it already for easy installation
+install.packages("devtools")
 library(devtools)
-install_github('hdng/clonevol')
+install_github("chrisamiller/fishplot")
 ```
 
-### 内网安装
+#### github上R包的本地安装
+例如：安装 "fishplot" 包， Linux 直接在命令行安装
+windows需要在cmd界面安装
+```R 
+git clone git@github.com:chrisamiller/fishplot.git
+R CMD build fishplot
+R CMD INSTALL fishplot_0.2.tar.gz
+```
+
+
+#### 内网安装
 
 https://blog.csdn.net/liu365560704/article/details/70321153
 
