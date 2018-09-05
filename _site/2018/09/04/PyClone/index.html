@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Github个人博客搭建记录</title>
-    <meta name="description" content="  搭建记录搭建记录  在github账号下创建 biolxy.github.io  git clone 该项目到本地  git clone 作者博客到本地，填补博客必要的样式文件,删除_post文件夹下文件，保留一个做模板，命名最好为全英文字符    git clone https://github.com/G...">
+    <title>PyClone 安装，报错及解决</title>
+    <meta name="description" content="  PyClone 安装，报错及解决          安装      报错：      解决：      PyClone 安装，报错及解决安装conda install PyClone命令如下：PyClone run_analysis_pipeline --in_files SRR385938.tsv SRR3...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2018/07/31/Github-blog/">
+    <link rel="canonical" href="http://localhost:4000/2018/09/04/PyClone/">
     <link rel="alternate" type="application/rss+xml" title="李祥永的博客" href="http://localhost:4000/feed.xml ">
 
 
@@ -43,6 +43,18 @@
     </script>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 </head>
 
@@ -91,14 +103,15 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>Github个人博客搭建记录</h1>
+        <h1>PyClone 安装，报错及解决</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2018-07-31
+                <i class="fa fa-calendar"></i>2018-09-04
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>biolxy
                 
             </div>
 
@@ -115,7 +128,7 @@
   <i class="fa fa-th-list"></i>
   
     
-        <a href="/category/#生活札记" title="Category: 生活札记" rel="category">生活札记</a>
+        <a href="/category/#Linux" title="Category: Linux" rel="category">Linux</a>
     
   
 
@@ -132,17 +145,11 @@
   <i class="fa fa-tags"></i>
   
     
-        <!--a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a-->
-        <a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a>&nbsp;
+        <!--a href="/tag/#%E8%82%BF%E7%98%A4%E5%9F%BA%E5%9B%A0%E7%BB%84" title="Tag: 肿瘤基因组" rel="tag">肿瘤基因组</a-->
+        <a href="/tag/#肿瘤基因组" title="Tag: 肿瘤基因组" rel="tag">肿瘤基因组</a>&nbsp;
     
-        <!--a href="/tag/#%E5%8D%9A%E5%AE%A2" title="Tag: 博客" rel="tag">博客</a-->
-        <a href="/tag/#博客" title="Tag: 博客" rel="tag">博客</a>&nbsp;
-    
-        <!--a href="/tag/#%E5%9B%BE%E5%BA%8A" title="Tag: 图床" rel="tag">图床</a-->
-        <a href="/tag/#图床" title="Tag: 图床" rel="tag">图床</a>&nbsp;
-    
-        <!--a href="/tag/#%E4%B8%83%E7%89%9B" title="Tag: 七牛" rel="tag">七牛</a-->
-        <a href="/tag/#七牛" title="Tag: 七牛" rel="tag">七牛</a>
+        <!--a href="/tag/#%E7%99%8C%E7%97%87%E5%9F%BA%E5%9B%A0%E7%BB%84" title="Tag: 癌症基因组" rel="tag">癌症基因组</a-->
+        <a href="/tag/#癌症基因组" title="Tag: 癌症基因组" rel="tag">癌症基因组</a>
     
   
 
@@ -154,34 +161,86 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#搭建记录" id="markdown-toc-搭建记录">搭建记录</a></li>
+  <li><a href="#pyclone-安装报错及解决" id="markdown-toc-pyclone-安装报错及解决">PyClone 安装，报错及解决</a>    <ul>
+      <li><a href="#安装" id="markdown-toc-安装">安装</a></li>
+      <li><a href="#报错" id="markdown-toc-报错">报错：</a></li>
+      <li><a href="#解决" id="markdown-toc-解决">解决：</a></li>
+    </ul>
+  </li>
 </ul>
 
-<h1 id="搭建记录">搭建记录</h1>
+<h2 id="pyclone-安装报错及解决">PyClone 安装，报错及解决</h2>
+
+<h3 id="安装">安装</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda <span class="nb">install </span>PyClone
+</code></pre></div></div>
+
+<p>命令如下：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PyClone run_analysis_pipeline <span class="nt">--in_files</span> SRR385938.tsv SRR385939.tsv SRR385940.tsv SRR385941.tsv <span class="nt">--working_dir</span> ./tt
+</code></pre></div></div>
+
+<h3 id="报错">报错：</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/bin/PyClone"</span>, line 11, <span class="k">in</span> &lt;module&gt;
+    load_entry_point<span class="o">(</span><span class="s1">'PyClone==0.13.1'</span>, <span class="s1">'console_scripts'</span>, <span class="s1">'PyClone'</span><span class="o">)()</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/cli.py"</span>, line 78, <span class="k">in </span>main
+    args.func<span class="o">(</span>args<span class="o">)</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/run.py"</span>, line 97, <span class="k">in </span>run_analysis_pipeline
+    args.thin
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/run.py"</span>, line 409, <span class="k">in </span>_cluster_plot
+    <span class="nv">samples</span><span class="o">=</span>samples,
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/post_process/plot/clusters.py"</span>, line 58, <span class="k">in </span>density_plot
+    fig <span class="o">=</span> pp.figure<span class="o">(</span><span class="nv">figsize</span><span class="o">=(</span>width, height<span class="o">))</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/pyplot.py"</span>, line 534, <span class="k">in </span>figure
+    <span class="k">**</span>kwargs<span class="o">)</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backend_bases.py"</span>, line 170, <span class="k">in </span>new_figure_manager
+    <span class="k">return </span>cls.new_figure_manager_given_figure<span class="o">(</span>num, fig<span class="o">)</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backend_bases.py"</span>, line 176, <span class="k">in </span>new_figure_manager_given_figure
+    canvas <span class="o">=</span> cls.FigureCanvas<span class="o">(</span>figure<span class="o">)</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5agg.py"</span>, line 35, <span class="k">in </span>__init__
+    super<span class="o">(</span>FigureCanvasQTAggBase, self<span class="o">)</span>.__init__<span class="o">(</span><span class="nv">figure</span><span class="o">=</span>figure<span class="o">)</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5.py"</span>, line 235, <span class="k">in </span>__init__
+    _create_qApp<span class="o">()</span>
+  File <span class="s2">"/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5.py"</span>, line 122, <span class="k">in </span>_create_qApp
+    raise RuntimeError<span class="o">(</span><span class="s1">'Invalid DISPLAY variable'</span><span class="o">)</span>
+RuntimeError: Invalid DISPLAY variabl
+</code></pre></div></div>
+
+<h3 id="解决">解决：</h3>
+<p>aroth85 ：</p>
+<blockquote>
+  <p>Please check user group (<a href="https://groups.google.com/forum/#!forum/pyclone-user-group">https://groups.google.com/forum/#!forum/pyclone-user-group</a>) for threads on this.</p>
+</blockquote>
+
+<blockquote>
+  <p>There is another bit in the links about changing your “matplotlibrc” file, instead of the code. This will globally set the backend for all Python scripts to Agg which is what you likely want for a remote server. You should not need to edit the code if you set this file up correctly. See the matplotlib help page with search terms matplotlibrc for details.</p>
+</blockquote>
+
+<p><strong>具体：</strong></p>
+
 <ol>
-  <li>在github账号下创建 <code class="highlighter-rouge">biolxy.github.io</code></li>
-  <li>git clone 该项目到本地</li>
-  <li>git clone 作者博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
-<span class="nb">mv </span>gaohaoyang.github.io/<span class="k">*</span> biolxy.github.io
-</code></pre></div>    </div>
-  </li>
-  <li>修改如下等文件替换为自己的信息<br />
- <code class="highlighter-rouge">CNAME</code>  <code class="highlighter-rouge">_config.yml</code> <code class="highlighter-rouge">favicon.ico</code> <code class="highlighter-rouge">index.html</code> <code class="highlighter-rouge">page/3collections.md</code> <code class="highlighter-rouge">age/4about.md</code></li>
-  <li>该主题更详细的信息需要去该主题作者的github查看<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a></li>
-  <li>push到github，打开 <code class="highlighter-rouge">https://biolxy.github.io/</code> 即可看到效果</li>
-  <li>当然你也可以
-    <ol>
-      <li>先参考主题作者的博客<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a>，先 <code class="highlighter-rouge">安装 ruby 和 jekyll 环境</code> ，博客里讲的都有，我就不赘述了</li>
-      <li>切换到<code class="highlighter-rouge">biolxy.github.io</code> 文件夹下，注意不是<code class="highlighter-rouge">_post</code> 文件夹</li>
-      <li>执行 <code class="highlighter-rouge">jekyll s</code></li>
-      <li>此时打开浏览器，输入<code class="highlighter-rouge">http://127.0.0.1:4000/</code> ，你就可以在本地预览到上传github后的效果了</li>
-    </ol>
-  </li>
-  <li>为了<code class="highlighter-rouge">上传图片</code>， 你需要注册七牛云，建立空间，做图床（我写的简单，你操作的时候不懂的就百度）</li>
-  <li>七牛云账户可以绑定MPic软件，绑定后可以方便的上传图片及插入图片链接。</li>
+  <li>报错的原因是 matplotlib的配置文件没有设置好：</li>
+  <li>找到配置文件：</li>
 </ol>
 
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> import matplotlib
+<span class="o">&gt;&gt;&gt;</span> matplotlib.matplotlib_fname<span class="o">()</span>
+<span class="s1">'/home/foo/.config/matplotlib/matplotlibrc'</span>
+</code></pre></div></div>
+<p><a href="https://matplotlib.org/1.3.1/users/customizing.html">参考</a></p>
+<ol>
+  <li>编辑你的 matplotlibrc (第44行) ：</li>
+</ol>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim /home/foo/.config/matplotlib/matplotlibrc :
+<span class="c"># backend      : qt5agg</span>
+backend      : Agg
+</code></pre></div></div>
+
+<p>再次执行命令，成功！</p>
 
         </article>
         <hr>
@@ -195,15 +254,7 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
                 
                     
                 
@@ -218,15 +269,10 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
+        
+            
+            
                 
                     
                 
@@ -241,49 +287,6 @@
                 
                     
                 
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
-            
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-            
             
                 
                     
@@ -292,7 +295,7 @@
                         <ul>
                         
                         <li class="relatedPost">
-                            <a href="/2018/07/30/a-test-markdownfile/">一个test博客
+                            <a href="/2018/08/01/Common-bioinformatics-commands/">生物信息学常用的Linux命令
                             
                             </a>
                         </li>
@@ -301,6 +304,38 @@
                     
                 
                     
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
                 
                     
                 
@@ -315,13 +350,11 @@
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2018/07/30/a-test-markdownfile/">一个test博客</a></p>
+        <p><strong>上一篇</strong> <a href="/2018/08/15/Which-version-rename-do-you-use/">你用的是哪个版本的rename</a></p>
         
     </div>
     <div class="nex">
 
-        
-        <p><strong>下一篇</strong> <a href="/2018/08/01/Common-bioinformatics-commands/">生物信息学常用的Linux命令</a></p>
         
     </div>
 </div>
@@ -339,8 +372,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2018/09/04/PyClone/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2018/09/04/PyClone/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE

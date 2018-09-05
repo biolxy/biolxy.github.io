@@ -5,9 +5,372 @@
     <description></description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 04 Aug 2018 03:40:15 +0800</pubDate>
-    <lastBuildDate>Sat, 04 Aug 2018 03:40:15 +0800</lastBuildDate>
+    <pubDate>Wed, 05 Sep 2018 09:59:59 +0800</pubDate>
+    <lastBuildDate>Wed, 05 Sep 2018 09:59:59 +0800</lastBuildDate>
     <generator>Jekyll v3.8.3</generator>
+    
+      <item>
+        <title>PyClone 安装，报错及解决</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#pyclone-安装报错及解决&quot; id=&quot;markdown-toc-pyclone-安装报错及解决&quot;&gt;PyClone 安装，报错及解决&lt;/a&gt;    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#安装&quot; id=&quot;markdown-toc-安装&quot;&gt;安装&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#报错&quot; id=&quot;markdown-toc-报错&quot;&gt;报错：&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#解决&quot; id=&quot;markdown-toc-解决&quot;&gt;解决：&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;pyclone-安装报错及解决&quot;&gt;PyClone 安装，报错及解决&lt;/h2&gt;
+
+&lt;h3 id=&quot;安装&quot;&gt;安装&lt;/h3&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;PyClone
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;命令如下：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PyClone run_analysis_pipeline &lt;span class=&quot;nt&quot;&gt;--in_files&lt;/span&gt; SRR385938.tsv SRR385939.tsv SRR385940.tsv SRR385941.tsv &lt;span class=&quot;nt&quot;&gt;--working_dir&lt;/span&gt; ./tt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;报错&quot;&gt;报错：&lt;/h3&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Traceback &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;most recent call last&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/bin/PyClone&quot;&lt;/span&gt;, line 11, &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &amp;lt;module&amp;gt;
+    load_entry_point&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'PyClone==0.13.1'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'console_scripts'&lt;/span&gt;, &lt;span class=&quot;s1&quot;&gt;'PyClone'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)()&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/cli.py&quot;&lt;/span&gt;, line 78, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;main
+    args.func&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;args&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/run.py&quot;&lt;/span&gt;, line 97, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;run_analysis_pipeline
+    args.thin
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/run.py&quot;&lt;/span&gt;, line 409, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;_cluster_plot
+    &lt;span class=&quot;nv&quot;&gt;samples&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;samples,
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/pyclone/post_process/plot/clusters.py&quot;&lt;/span&gt;, line 58, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;density_plot
+    fig &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; pp.figure&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=(&lt;/span&gt;width, height&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/pyplot.py&quot;&lt;/span&gt;, line 534, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;figure
+    &lt;span class=&quot;k&quot;&gt;**&lt;/span&gt;kwargs&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backend_bases.py&quot;&lt;/span&gt;, line 170, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;new_figure_manager
+    &lt;span class=&quot;k&quot;&gt;return &lt;/span&gt;cls.new_figure_manager_given_figure&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;num, fig&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backend_bases.py&quot;&lt;/span&gt;, line 176, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;new_figure_manager_given_figure
+    canvas &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; cls.FigureCanvas&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;figure&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5agg.py&quot;&lt;/span&gt;, line 35, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;__init__
+    super&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;FigureCanvasQTAggBase, self&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;.__init__&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;figure&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5.py&quot;&lt;/span&gt;, line 235, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;__init__
+    _create_qApp&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+  File &lt;span class=&quot;s2&quot;&gt;&quot;/home/lixy/miniconda2/envs/ngs2/lib/python2.7/site-packages/matplotlib/backends/backend_qt5.py&quot;&lt;/span&gt;, line 122, &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;_create_qApp
+    raise RuntimeError&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Invalid DISPLAY variable'&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+RuntimeError: Invalid DISPLAY variabl
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;解决&quot;&gt;解决：&lt;/h3&gt;
+&lt;p&gt;aroth85 ：&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Please check user group (&lt;a href=&quot;https://groups.google.com/forum/#!forum/pyclone-user-group&quot;&gt;https://groups.google.com/forum/#!forum/pyclone-user-group&lt;/a&gt;) for threads on this.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;There is another bit in the links about changing your “matplotlibrc” file, instead of the code. This will globally set the backend for all Python scripts to Agg which is what you likely want for a remote server. You should not need to edit the code if you set this file up correctly. See the matplotlib help page with search terms matplotlibrc for details.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;strong&gt;具体：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;报错的原因是 matplotlib的配置文件没有设置好：&lt;/li&gt;
+  &lt;li&gt;找到配置文件：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; import matplotlib
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; matplotlib.matplotlib_fname&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;s1&quot;&gt;'/home/foo/.config/matplotlib/matplotlibrc'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://matplotlib.org/1.3.1/users/customizing.html&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;编辑你的 matplotlibrc (第44行) ：&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim /home/foo/.config/matplotlib/matplotlibrc :
+&lt;span class=&quot;c&quot;&gt;# backend      : qt5agg&lt;/span&gt;
+backend      : Agg
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;再次执行命令，成功！&lt;/p&gt;
+</description>
+        <pubDate>Tue, 04 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/09/04/PyClone/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/09/04/PyClone/</guid>
+        
+        <category>肿瘤基因组</category>
+        
+        <category>癌症基因组</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>你用的是哪个版本的rename</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#mv-与-rename-的区别&quot; id=&quot;markdown-toc-mv-与-rename-的区别&quot;&gt;mv 与 rename 的区别&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#rename-有两个版本&quot; id=&quot;markdown-toc-rename-有两个版本&quot;&gt;rename 有两个版本&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#如何区分系统里的rename命令是哪个版本的&quot; id=&quot;markdown-toc-如何区分系统里的rename命令是哪个版本的&quot;&gt;如何区分系统里的rename命令是哪个版本的?&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#两个版本的语法差异&quot; id=&quot;markdown-toc-两个版本的语法差异&quot;&gt;两个版本的语法差异：&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#perl-版本的批量重命名&quot; id=&quot;markdown-toc-perl-版本的批量重命名&quot;&gt;Perl 版本的批量重命名&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#如果你的服务器不幸安装的时c版的rename怎么办安装一个rename&quot; id=&quot;markdown-toc-如果你的服务器不幸安装的时c版的rename怎么办安装一个rename&quot;&gt;如果你的服务器不幸安装的时C版的rename，怎么办？安装一个rename&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;mv-与-rename-的区别&quot;&gt;mv 与 rename 的区别&lt;/h3&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;“mv命令只能对单个文件重命名”，这实就是mv命令和rename命令的在重命名方面的根本区别。&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;当你的目录下由大量的文件需要批量命名时，rename的作用就体现出来了，例如100个后最为&lt;code class=&quot;highlighter-rouge&quot;&gt;.html&lt;/code&gt; 的文件替换为 &lt;code class=&quot;highlighter-rouge&quot;&gt;.txt&lt;/code&gt; 文件，通常你需要写一行for循环，如&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.html&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;basename&lt;/span&gt; .html&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mv&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$name&lt;/span&gt;.txt &lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果你想替换的字符不再文件的最前或最后方，由或则你想实现更多功能，那么你就需要&lt;code class=&quot;highlighter-rouge&quot;&gt;rename&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;rename-有两个版本&quot;&gt;rename 有两个版本&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt; 的rename命令有两个版本，一个是C语言版本的，一个是Perl语言版本的，早期的Linux发行版基本上使用的是C语言版本的，现在已经很难见到C语言版本的了，由于历史原因，在Perl语言大红大紫的时候，Linux的工具开发者们信仰Perl能取代C，所以大部分工具原来是C版本的都被Perl改写了，因为Perl版本的支持正则处理，所以功能更加强大，已经不再需要C语言版本的了。&lt;/p&gt;
+
+&lt;h3 id=&quot;如何区分系统里的rename命令是哪个版本的&quot;&gt;如何区分系统里的rename命令是哪个版本的?&lt;/h3&gt;
+
+&lt;p&gt;我在网上搜到描述都是这个&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;输入man rename 看到第一行是
+RENAME(1)     Linux Programmer’s Manual      RENAME(1)
+那么 这个就是C语言版本的。
+而如果出现的是：
+RENAME(1)              Perl Programmers Reference Guide              RENAME(1)
+这个就是Perl版本的了！&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;然而这根本就&lt;strong&gt;不对！&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;我的 centOS下是c版rename ：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://oiz501hli.bkt.clouddn.com/blog/180815/97ElgiA8d0.jpg?imageslim&quot; alt=&quot;mark&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;是&lt;code class=&quot;highlighter-rouge&quot;&gt;RENAME(1)            User Commands              RENAME(1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;并不是 &lt;code class=&quot;highlighter-rouge&quot;&gt;RENAME(1)     Linux Programmer’s Manual      RENAME(1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;我的ubuntu下是perl版的rename：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://oiz501hli.bkt.clouddn.com/blog/180815/BIbgEChBhI.jpg?imageslim&quot; alt=&quot;mark&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;是&lt;code class=&quot;highlighter-rouge&quot;&gt;RENAME(1p)     User Contributed Perl Documentation          RENAME(1p)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;并不是&lt;code class=&quot;highlighter-rouge&quot;&gt;RENAME(1)              Perl Programmers Reference Guide              RENAME(1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;正确的做法:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;vim &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;which rename&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;c语言版本的是一个二进制文件，打开后是乱码&lt;/p&gt;
+
+&lt;p&gt;perl语言的你会明显看到 &lt;code class=&quot;highlighter-rouge&quot;&gt;&lt;span class=&quot;c1&quot;&gt;#!/usr/bin/perl -w&lt;/span&gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;亦或者你可以通过上述图片中rename的用法来判断你用的是哪个版本&lt;/p&gt;
+
+&lt;h3 id=&quot;两个版本的语法差异&quot;&gt;两个版本的语法差异：&lt;/h3&gt;
+
+&lt;p&gt;C语言的rename的语法格式是：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rename .html .txt  &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;C语言的rename的语法格式是：&lt;/p&gt;
+
+&lt;div class=&quot;language-shell highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rename &lt;span class=&quot;s1&quot;&gt;'s/\.html$/\.txt/'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.html
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;rename C语言版本所能实现的功能：批量修改文件名，结果是每个文件会被用相同的一个字符串替换掉！也就是说，无法实现诸如循环 然后按编号重命名！&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;重点：&lt;/strong&gt; C语言版本的rename无法处理带有&lt;code class=&quot;highlighter-rouge&quot;&gt;-&lt;/code&gt; 的替换（别问怎么知道，都是泪啊）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;perl-版本的批量重命名&quot;&gt;Perl 版本的批量重命名&lt;/h3&gt;
+
+&lt;p&gt;Perl 版本的好处是，你可以使用正则表达式来完成很奇特的功能。&lt;/p&gt;
+
+&lt;p&gt;具体用法就不细说了。&lt;/p&gt;
+
+&lt;h3 id=&quot;如果你的服务器不幸安装的时c版的rename怎么办安装一个rename&quot;&gt;如果你的服务器不幸安装的时C版的rename，怎么办？安装一个rename&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;conda install rename
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 15 Aug 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/08/15/Which-version-rename-do-you-use/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/15/Which-version-rename-do-you-use/</guid>
+        
+        <category>Linux</category>
+        
+        <category>rename</category>
+        
+        
+        <category>Linux</category>
+        
+      </item>
+    
+      <item>
+        <title>统计学中常用的 RR、OR、HR的含义及区别</title>
+        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#相对危险度-rr&quot; id=&quot;markdown-toc-相对危险度-rr&quot;&gt;相对危险度 (RR)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#优势比-or&quot; id=&quot;markdown-toc-优势比-or&quot;&gt;优势比 (OR)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#风险比-hr&quot; id=&quot;markdown-toc-风险比-hr&quot;&gt;风险比 (HR)&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#补充&quot; id=&quot;markdown-toc-补充&quot;&gt;补充&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;相对危险度-rr&quot;&gt;相对危险度 (RR)&lt;/h2&gt;
+
+&lt;p&gt;RR也叫相对风险（relative risk ）或风险比（risk ratio ）&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;RR＝暴露组的发病或死亡率/非暴露组的发病或死亡率&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;它是反映暴露与发病（死亡）关联强度的指标。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;队列研究是将某一特定人群按是否暴露于某可疑因素或暴露程度分为不同的亚组，追踪观察两组或多组成员结局（如疾病）发生的情况，比较各组之间结局发生率的差异，从而判定这些因素与该结局之间有无因果关联及关联程度的一种观察性研究方法。&lt;/li&gt;
+  &lt;li&gt;通常，暴露可以指危险因素，比如吸烟、高血压，也可指服用某种药物。而事件可以是疾病发生，比如肺癌、心血管病，也可指服药后的治疗效果。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;RR表明暴露组发病或死亡的危险是非暴露组的多少倍。RR值越大，表明暴露的效应越大，暴露与结局关联的强度越大。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;适用于前瞻性研究&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;示例1：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt; &lt;/th&gt;
+      &lt;th&gt;患肺癌&lt;/th&gt;
+      &lt;th&gt;未患肺癌&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;抽烟者&lt;/td&gt;
+      &lt;td&gt;a&lt;/td&gt;
+      &lt;td&gt;b&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;非吸烟者&lt;/td&gt;
+      &lt;td&gt;c&lt;/td&gt;
+      &lt;td&gt;d&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;其中吸烟者患肺癌的概率为20％，非吸烟者患肺癌的概率为1％。这种情况在上边的2×2表中表示。&lt;/p&gt;
+
+&lt;p&gt;这里，&lt;em&gt;a&lt;/em&gt;  = 20，&lt;em&gt;b&lt;/em&gt;  = 80，&lt;em&gt;c&lt;/em&gt;  = 1，&lt;em&gt;d&lt;/em&gt;  = 99。 那么与吸烟相关的癌症的相对风险将是:&lt;br /&gt;
+&lt;script type=&quot;math/tex&quot;&gt;RR={a/(a+b) \over c/(c+d)} = {20 / 100 \over 1/100} =20&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;统计学意义时&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;相对风险经常用于二元结果的统计分析，其中感兴趣的结果具有相对低的概率。因此，它通常适用于临床试验数据，用于比较未接受新药物治疗（或接受安慰剂）的人群与接受既定（标准治疗）治疗的人群发生疾病的风险。或者，它用于比较接受药物的人产生副作用的风险与未接受治疗（或接受安慰剂）的人相比。它特别有吸引力，因为它可以在简单的情况下手工计算，但也适用于回归建模，通常在泊松回归框架中。&lt;/p&gt;
+
+&lt;p&gt;在实验组和对照组之间进行简单比较：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RR = 1&lt;/code&gt; 意味着两组之间的风险没有差异。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RR &amp;lt;1&lt;/code&gt; 表示实验组中发生的事件不太可能发生在对照组中。&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;RR&amp;gt; 1&lt;/code&gt; 表示事件更可能发生在实验组而不是对照组。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;优势比-or&quot;&gt;优势比 (OR)&lt;/h2&gt;
+
+&lt;p&gt;优势比 (OR, Odds Ratio)，又称比值比，用于反映病例与对照在暴露上的差异，从而建立疾病与暴露因素之间的联系。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;OR＝（病例组暴露人数/非暴露人数）/（对照组暴露人数/非暴露人数）&lt;/li&gt;
+  &lt;li&gt;适用于回溯性研究&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;示例:&lt;/p&gt;
+
+&lt;p&gt;OR的计算公式是:
+&lt;script type=&quot;math/tex&quot;&gt;OR = \frac  {a / c }  { b / d } = { {ad} \over {cb} }&lt;/script&gt;&lt;/p&gt;
+
+&lt;p&gt;OR 的三个要素:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;OR的值&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;P value ， &amp;lt;0.05 时两组的暴露史比例差异显著，提示暴露可能与疾病有联系。&lt;/li&gt;
+  &lt;li&gt;计算OR 95%可信限（confidence interval）&lt;/li&gt;
+  &lt;li&gt;可由R软件 fisher.test() 函数计算出这三个值&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;OR与RR的区别:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;RR的计算需要使用发病率，因此队列研究、随机对照试验等前瞻性研究均可使用RR；但若是开展回顾性研究（如病例-对照研究），只能根据研究对象状态分组，无法直接计算暴露人群和非暴露人群的发病率，这种情况则需要使用OR.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;公式不难看出，两者的差异主要来源于分母，即 $a/(a+b)$
+和 $a/b$ 的区别，因此，若a数值较小，则 $a/(a+b) \approx a/b$ ，也就是说，当该&lt;strong&gt;疾病发生率较低时（罕见病）&lt;/strong&gt;，其RR值和OR值的大小是近似的。因此这类疾病，若无法实施队列研究，则可采用病例-对照研究中的&lt;strong&gt;OR值替代RR值&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;风险比-hr&quot;&gt;风险比 (HR)&lt;/h2&gt;
+
+&lt;p&gt;风险比(HR, hazardratio)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;HR=的风险函数h1(t)/非暴露组的风险函数h2(t)&lt;/li&gt;
+  &lt;li&gt;t指在相同的时间点上&lt;/li&gt;
+  &lt;li&gt;风险函数指危险率函数、条件死亡率、瞬时死亡率。&lt;/li&gt;
+  &lt;li&gt;Cox比例风险模型可以得到，HR要用于生存分析。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;HR与RR的区别&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;两者均用于前瞻性研究，多数认为HR与RR意思一样，但从计算公式可看出，HR还考虑了时间因素，换言之，包含了时间效应的RR就是HR；&lt;/li&gt;
+  &lt;li&gt;从终点时间的角度来看，也可以这样理解，RR考虑了终点事件的差异，而HR不仅考虑了终点事件的有无，还考虑了到达终点所用的时间及截尾数据。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;补充&quot;&gt;补充&lt;/h2&gt;
+&lt;p&gt;研究的目的、时间、成本、可行性决定研究类型。
+研究类型分两种：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;观察性研究（描述性，分析性）
+    &lt;ul&gt;
+      &lt;li&gt;横断面研究&lt;/li&gt;
+      &lt;li&gt;回顾性研究&lt;/li&gt;
+      &lt;li&gt;前瞻性研究&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;实验性研究
+    &lt;ul&gt;
+      &lt;li&gt;临床试验&lt;/li&gt;
+      &lt;li&gt;社区干预试验&lt;/li&gt;
+      &lt;li&gt;现场试验&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Sun, 05 Aug 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/2018/08/05/RR-OR-HR-in-statistics/</link>
+        <guid isPermaLink="true">http://localhost:4000/2018/08/05/RR-OR-HR-in-statistics/</guid>
+        
+        <category>统计学</category>
+        
+        
+        <category>肿瘤基因组</category>
+        
+      </item>
     
       <item>
         <title>初识Gene signature</title>
@@ -284,9 +647,16 @@ find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quo
 &lt;span class=&quot;nb&quot;&gt;touch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;1..9&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;.txt   &lt;span class=&quot;c&quot;&gt;# 批量创建文件&lt;/span&gt;
 
 &lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/$'&lt;/span&gt;         &lt;span class=&quot;c&quot;&gt;#  查看当前目录下的文件夹 &lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ls&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'/$'&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;do &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo du&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sh&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;   &lt;span class=&quot;c&quot;&gt;#查看当前目录下，每个子目录及其子目录的总大小&lt;/span&gt;
 
 rename &lt;span class=&quot;s2&quot;&gt;&quot;s/AA/aa/&quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;
 rename .fas .fa &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;.fas    &lt;span class=&quot;c&quot;&gt;# CentOS 下可用&lt;/span&gt;
+
+iostat &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-k&lt;/span&gt; 1 10可以看到每个盘的读写速度
+
+find /home/lxy &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; f &lt;span class=&quot;nt&quot;&gt;-size&lt;/span&gt; +100M    &lt;span class=&quot;c&quot;&gt;#列出文件夹 /home/lxy 下大于100M的文件&lt;/span&gt;
+find &lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-type&lt;/span&gt; l &lt;span class=&quot;nt&quot;&gt;-exec&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;rm&lt;/span&gt;  &lt;span class=&quot;o&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\;&lt;/span&gt;  &lt;span class=&quot;c&quot;&gt;#列出当前路径 .  下的link类型的文件(type&lt;/span&gt;
+ l&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 并删除
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h3 id=&quot;单行-perl&quot;&gt;单行 perl&lt;/h3&gt;
@@ -353,11 +723,19 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;修改如下等文件替换为自己的信息&lt;br /&gt;
-&lt;code class=&quot;highlighter-rouge&quot;&gt;CNAME _config.yml&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;favicon.ico&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;page/3collections.md&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;age/4about.md&lt;/code&gt;&lt;/li&gt;
+ &lt;code class=&quot;highlighter-rouge&quot;&gt;CNAME&lt;/code&gt;  &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;favicon.ico&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;page/3collections.md&lt;/code&gt; &lt;code class=&quot;highlighter-rouge&quot;&gt;age/4about.md&lt;/code&gt;&lt;/li&gt;
   &lt;li&gt;该主题更详细的信息需要去该主题作者的github查看&lt;a href=&quot;https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md&quot;&gt;地址&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;push到github，打开 &lt;code class=&quot;highlighter-rouge&quot;&gt;https://biolxy.github.io/&lt;/code&gt; 即可看到效果&lt;/li&gt;
-  &lt;li&gt;注册七牛云，建立空间，做图床&lt;/li&gt;
-  &lt;li&gt;绑定MPic软件，方便上传图片及插入图片链接&lt;/li&gt;
+  &lt;li&gt;当然你也可以
+    &lt;ol&gt;
+      &lt;li&gt;先参考主题作者的博客&lt;a href=&quot;https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md&quot;&gt;地址&lt;/a&gt;，先 &lt;code class=&quot;highlighter-rouge&quot;&gt;安装 ruby 和 jekyll 环境&lt;/code&gt; ，博客里讲的都有，我就不赘述了&lt;/li&gt;
+      &lt;li&gt;切换到&lt;code class=&quot;highlighter-rouge&quot;&gt;biolxy.github.io&lt;/code&gt; 文件夹下，注意不是&lt;code class=&quot;highlighter-rouge&quot;&gt;_post&lt;/code&gt; 文件夹&lt;/li&gt;
+      &lt;li&gt;执行 &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll s&lt;/code&gt;&lt;/li&gt;
+      &lt;li&gt;此时打开浏览器，输入&lt;code class=&quot;highlighter-rouge&quot;&gt;http://127.0.0.1:4000/&lt;/code&gt; ，你就可以在本地预览到上传github后的效果了&lt;/li&gt;
+    &lt;/ol&gt;
+  &lt;/li&gt;
+  &lt;li&gt;为了&lt;code class=&quot;highlighter-rouge&quot;&gt;上传图片&lt;/code&gt;， 你需要注册七牛云，建立空间，做图床（我写的简单，你操作的时候不懂的就百度）&lt;/li&gt;
+  &lt;li&gt;七牛云账户可以绑定MPic软件，绑定后可以方便的上传图片及插入图片链接。&lt;/li&gt;
 &lt;/ol&gt;
 
 </description>

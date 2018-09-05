@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Github个人博客搭建记录</title>
-    <meta name="description" content="  搭建记录搭建记录  在github账号下创建 biolxy.github.io  git clone 该项目到本地  git clone 作者博客到本地，填补博客必要的样式文件,删除_post文件夹下文件，保留一个做模板，命名最好为全英文字符    git clone https://github.com/G...">
+    <title>你用的是哪个版本的rename</title>
+    <meta name="description" content="  mv 与 rename 的区别  rename 有两个版本  如何区分系统里的rename命令是哪个版本的?  两个版本的语法差异：  Perl 版本的批量重命名  如果你的服务器不幸安装的时C版的rename，怎么办？安装一个renamemv 与 rename 的区别  “mv命令只能对单个文件重命名”，这...">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2018/07/31/Github-blog/">
+    <link rel="canonical" href="http://localhost:4000/2018/08/15/Which-version-rename-do-you-use/">
     <link rel="alternate" type="application/rss+xml" title="李祥永的博客" href="http://localhost:4000/feed.xml ">
 
 
@@ -43,6 +43,18 @@
     </script>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 </head>
 
@@ -91,14 +103,15 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>Github个人博客搭建记录</h1>
+        <h1>你用的是哪个版本的rename</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2018-07-31
+                <i class="fa fa-calendar"></i>2018-08-15
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>biolxy
                 
             </div>
 
@@ -115,7 +128,7 @@
   <i class="fa fa-th-list"></i>
   
     
-        <a href="/category/#生活札记" title="Category: 生活札记" rel="category">生活札记</a>
+        <a href="/category/#Linux" title="Category: Linux" rel="category">Linux</a>
     
   
 
@@ -132,17 +145,11 @@
   <i class="fa fa-tags"></i>
   
     
-        <!--a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a-->
-        <a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a>&nbsp;
+        <!--a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a-->
+        <a href="/tag/#Linux" title="Tag: Linux" rel="tag">Linux</a>&nbsp;
     
-        <!--a href="/tag/#%E5%8D%9A%E5%AE%A2" title="Tag: 博客" rel="tag">博客</a-->
-        <a href="/tag/#博客" title="Tag: 博客" rel="tag">博客</a>&nbsp;
-    
-        <!--a href="/tag/#%E5%9B%BE%E5%BA%8A" title="Tag: 图床" rel="tag">图床</a-->
-        <a href="/tag/#图床" title="Tag: 图床" rel="tag">图床</a>&nbsp;
-    
-        <!--a href="/tag/#%E4%B8%83%E7%89%9B" title="Tag: 七牛" rel="tag">七牛</a-->
-        <a href="/tag/#七牛" title="Tag: 七牛" rel="tag">七牛</a>
+        <!--a href="/tag/#rename" title="Tag: rename" rel="tag">rename</a-->
+        <a href="/tag/#rename" title="Tag: rename" rel="tag">rename</a>
     
   
 
@@ -154,33 +161,100 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#搭建记录" id="markdown-toc-搭建记录">搭建记录</a></li>
+  <li><a href="#mv-与-rename-的区别" id="markdown-toc-mv-与-rename-的区别">mv 与 rename 的区别</a></li>
+  <li><a href="#rename-有两个版本" id="markdown-toc-rename-有两个版本">rename 有两个版本</a></li>
+  <li><a href="#如何区分系统里的rename命令是哪个版本的" id="markdown-toc-如何区分系统里的rename命令是哪个版本的">如何区分系统里的rename命令是哪个版本的?</a></li>
+  <li><a href="#两个版本的语法差异" id="markdown-toc-两个版本的语法差异">两个版本的语法差异：</a></li>
+  <li><a href="#perl-版本的批量重命名" id="markdown-toc-perl-版本的批量重命名">Perl 版本的批量重命名</a></li>
+  <li><a href="#如果你的服务器不幸安装的时c版的rename怎么办安装一个rename" id="markdown-toc-如果你的服务器不幸安装的时c版的rename怎么办安装一个rename">如果你的服务器不幸安装的时C版的rename，怎么办？安装一个rename</a></li>
 </ul>
 
-<h1 id="搭建记录">搭建记录</h1>
-<ol>
-  <li>在github账号下创建 <code class="highlighter-rouge">biolxy.github.io</code></li>
-  <li>git clone 该项目到本地</li>
-  <li>git clone 作者博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
-<span class="nb">mv </span>gaohaoyang.github.io/<span class="k">*</span> biolxy.github.io
-</code></pre></div>    </div>
-  </li>
-  <li>修改如下等文件替换为自己的信息<br />
- <code class="highlighter-rouge">CNAME</code>  <code class="highlighter-rouge">_config.yml</code> <code class="highlighter-rouge">favicon.ico</code> <code class="highlighter-rouge">index.html</code> <code class="highlighter-rouge">page/3collections.md</code> <code class="highlighter-rouge">age/4about.md</code></li>
-  <li>该主题更详细的信息需要去该主题作者的github查看<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a></li>
-  <li>push到github，打开 <code class="highlighter-rouge">https://biolxy.github.io/</code> 即可看到效果</li>
-  <li>当然你也可以
-    <ol>
-      <li>先参考主题作者的博客<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a>，先 <code class="highlighter-rouge">安装 ruby 和 jekyll 环境</code> ，博客里讲的都有，我就不赘述了</li>
-      <li>切换到<code class="highlighter-rouge">biolxy.github.io</code> 文件夹下，注意不是<code class="highlighter-rouge">_post</code> 文件夹</li>
-      <li>执行 <code class="highlighter-rouge">jekyll s</code></li>
-      <li>此时打开浏览器，输入<code class="highlighter-rouge">http://127.0.0.1:4000/</code> ，你就可以在本地预览到上传github后的效果了</li>
-    </ol>
-  </li>
-  <li>为了<code class="highlighter-rouge">上传图片</code>， 你需要注册七牛云，建立空间，做图床（我写的简单，你操作的时候不懂的就百度）</li>
-  <li>七牛云账户可以绑定MPic软件，绑定后可以方便的上传图片及插入图片链接。</li>
-</ol>
+<h3 id="mv-与-rename-的区别">mv 与 rename 的区别</h3>
+
+<blockquote>
+  <p><strong>“mv命令只能对单个文件重命名”，这实就是mv命令和rename命令的在重命名方面的根本区别。</strong></p>
+</blockquote>
+
+<p>当你的目录下由大量的文件需要批量命名时，rename的作用就体现出来了，例如100个后最为<code class="highlighter-rouge">.html</code> 的文件替换为 <code class="highlighter-rouge">.txt</code> 文件，通常你需要写一行for循环，如</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span><span class="nb">ls</span> <span class="k">*</span>.html<span class="sb">`</span><span class="p">;</span><span class="k">do </span><span class="nv">name</span><span class="o">=</span><span class="sb">`</span><span class="nb">basename</span> .html<span class="sb">`</span><span class="p">;</span> <span class="nb">mv</span> <span class="nv">$i</span> <span class="nv">$name</span>.txt <span class="p">;</span><span class="k">done</span>
+</code></pre></div></div>
+
+<p>如果你想替换的字符不再文件的最前或最后方，由或则你想实现更多功能，那么你就需要<code class="highlighter-rouge">rename</code></p>
+
+<h3 id="rename-有两个版本">rename 有两个版本</h3>
+
+<p><strong>Linux</strong> 的rename命令有两个版本，一个是C语言版本的，一个是Perl语言版本的，早期的Linux发行版基本上使用的是C语言版本的，现在已经很难见到C语言版本的了，由于历史原因，在Perl语言大红大紫的时候，Linux的工具开发者们信仰Perl能取代C，所以大部分工具原来是C版本的都被Perl改写了，因为Perl版本的支持正则处理，所以功能更加强大，已经不再需要C语言版本的了。</p>
+
+<h3 id="如何区分系统里的rename命令是哪个版本的">如何区分系统里的rename命令是哪个版本的?</h3>
+
+<p>我在网上搜到描述都是这个</p>
+
+<blockquote>
+  <p>输入man rename 看到第一行是
+RENAME(1)     Linux Programmer’s Manual      RENAME(1)
+那么 这个就是C语言版本的。
+而如果出现的是：
+RENAME(1)              Perl Programmers Reference Guide              RENAME(1)
+这个就是Perl版本的了！</p>
+</blockquote>
+
+<p>然而这根本就<strong>不对！</strong></p>
+
+<p>我的 centOS下是c版rename ：</p>
+
+<p><img src="http://oiz501hli.bkt.clouddn.com/blog/180815/97ElgiA8d0.jpg?imageslim" alt="mark" /></p>
+
+<p>是<code class="highlighter-rouge">RENAME(1)            User Commands              RENAME(1)</code></p>
+
+<p>并不是 <code class="highlighter-rouge">RENAME(1)     Linux Programmer’s Manual      RENAME(1)</code></p>
+
+<p>我的ubuntu下是perl版的rename：</p>
+
+<p><img src="http://oiz501hli.bkt.clouddn.com/blog/180815/BIbgEChBhI.jpg?imageslim" alt="mark" /></p>
+
+<p>是<code class="highlighter-rouge">RENAME(1p)     User Contributed Perl Documentation          RENAME(1p)</code></p>
+
+<p>并不是<code class="highlighter-rouge">RENAME(1)              Perl Programmers Reference Guide              RENAME(1)</code></p>
+
+<p><strong>正确的做法:</strong></p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>vim <span class="sb">`</span>which rename<span class="sb">`</span>
+</code></pre></div></div>
+
+<p>c语言版本的是一个二进制文件，打开后是乱码</p>
+
+<p>perl语言的你会明显看到 <code class="highlighter-rouge"><span class="c1">#!/usr/bin/perl -w</span></code></p>
+
+<p>亦或者你可以通过上述图片中rename的用法来判断你用的是哪个版本</p>
+
+<h3 id="两个版本的语法差异">两个版本的语法差异：</h3>
+
+<p>C语言的rename的语法格式是：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rename .html .txt  <span class="k">*</span>.html
+</code></pre></div></div>
+
+<p>C语言的rename的语法格式是：</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rename <span class="s1">'s/\.html$/\.txt/'</span> <span class="k">*</span>.html
+</code></pre></div></div>
+
+<ul>
+  <li>rename C语言版本所能实现的功能：批量修改文件名，结果是每个文件会被用相同的一个字符串替换掉！也就是说，无法实现诸如循环 然后按编号重命名！</li>
+  <li><strong>重点：</strong> C语言版本的rename无法处理带有<code class="highlighter-rouge">-</code> 的替换（别问怎么知道，都是泪啊）</li>
+</ul>
+
+<h3 id="perl-版本的批量重命名">Perl 版本的批量重命名</h3>
+
+<p>Perl 版本的好处是，你可以使用正则表达式来完成很奇特的功能。</p>
+
+<p>具体用法就不细说了。</p>
+
+<h3 id="如果你的服务器不幸安装的时c版的rename怎么办安装一个rename">如果你的服务器不幸安装的时C版的rename，怎么办？安装一个rename</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>conda install rename
+</code></pre></div></div>
 
 
         </article>
@@ -195,15 +269,7 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
                 
                     
                 
@@ -218,15 +284,10 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
+        
+            
+            
                 
                     
                 
@@ -241,18 +302,7 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-        
-            
-            
-                
-                    
-                
-                    
                 
                     
                 
@@ -267,6 +317,8 @@
                 
                     
                 
+            
+                
                     
                 
                     
@@ -277,30 +329,7 @@
                 
                     
                 
-                    
-                
-                    
-                
             
-        
-            
-            
-                
-                    
-                        
-                        <h2 id="similar_posts">Similar Posts</h2>
-                        <ul>
-                        
-                        <li class="relatedPost">
-                            <a href="/2018/07/30/a-test-markdownfile/">一个test博客
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
                 
                     
                 
@@ -308,20 +337,27 @@
                 
             
         
+            
+            
+                
+                    
+                
+                    
+                
+            
         
-            </ul>
         
 
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2018/07/30/a-test-markdownfile/">一个test博客</a></p>
+        <p><strong>上一篇</strong> <a href="/2018/08/05/RR-OR-HR-in-statistics/">统计学中常用的 RR、OR、HR的含义及区别</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2018/08/01/Common-bioinformatics-commands/">生物信息学常用的Linux命令</a></p>
+        <p><strong>下一篇</strong> <a href="/2018/09/04/PyClone/">PyClone 安装，报错及解决</a></p>
         
     </div>
 </div>
@@ -339,8 +375,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2018/08/15/Which-version-rename-do-you-use/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2018/08/15/Which-version-rename-do-you-use/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -369,8 +405,6 @@
                     Content
                 </div>
                 <ul id="content-side" class="content-ul">
-                    
-                    <li><a href="#similar_posts">Similar Posts</a></li>
                     
                     <li><a href="#comments">Comments</a></li>
                 </ul>

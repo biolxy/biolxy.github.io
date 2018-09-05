@@ -58,6 +58,8 @@ RuntimeError: Invalid DISPLAY variabl
 aroth85 ：
 > Please check user group (<https://groups.google.com/forum/#!forum/pyclone-user-group>) for threads on this.  
 
+> There is another bit in the links about changing your "matplotlibrc" file, instead of the code. This will globally set the backend for all Python scripts to Agg which is what you likely want for a remote server. You should not need to edit the code if you set this file up correctly. See the matplotlib help page with search terms matplotlibrc for details.  
+
 
 
 **具体：** 

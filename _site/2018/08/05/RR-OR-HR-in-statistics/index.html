@@ -6,15 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Github个人博客搭建记录</title>
-    <meta name="description" content="  搭建记录搭建记录  在github账号下创建 biolxy.github.io  git clone 该项目到本地  git clone 作者博客到本地，填补博客必要的样式文件,删除_post文件夹下文件，保留一个做模板，命名最好为全英文字符    git clone https://github.com/G...">
+    <title>统计学中常用的 RR、OR、HR的含义及区别</title>
+    <meta name="description" content="">
 
     <link rel="shortcut icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="icon" href="/favicon.ico?" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://at.alicdn.com/t/font_8v3czwksspqlg14i.css">
     <link rel="stylesheet" href="/css/main.css ">
-    <link rel="canonical" href="http://localhost:4000/2018/07/31/Github-blog/">
+    <link rel="canonical" href="http://localhost:4000/2018/08/05/RR-OR-HR-in-statistics/">
     <link rel="alternate" type="application/rss+xml" title="李祥永的博客" href="http://localhost:4000/feed.xml ">
 
 
@@ -43,6 +43,18 @@
     </script>
 
 
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    tex2jax: { inlineMath: [["$","$"],["\\(","\\)"]] },
+    "HTML-CSS": {
+      linebreaks: { automatic: true, width: "container" }
+    }
+});
+</script>
+<script type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 </head>
 
@@ -91,14 +103,15 @@
 
         <div class="page clearfix" post>
     <div class="left">
-        <h1>Github个人博客搭建记录</h1>
+        <h1>统计学中常用的 RR、OR、HR的含义及区别</h1>
         <div class="label">
 
             <div class="label-card">
-                <i class="fa fa-calendar"></i>2018-07-31
+                <i class="fa fa-calendar"></i>2018-08-05
             </div>
 
             <div class="label-card">
+                <i class="fa fa-user"></i>biolxy
                 
             </div>
 
@@ -115,7 +128,7 @@
   <i class="fa fa-th-list"></i>
   
     
-        <a href="/category/#生活札记" title="Category: 生活札记" rel="category">生活札记</a>
+        <a href="/category/#肿瘤基因组" title="Category: 肿瘤基因组" rel="category">肿瘤基因组</a>
     
   
 
@@ -132,17 +145,8 @@
   <i class="fa fa-tags"></i>
   
     
-        <!--a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a-->
-        <a href="/tag/#markdown" title="Tag: markdown" rel="tag">markdown</a>&nbsp;
-    
-        <!--a href="/tag/#%E5%8D%9A%E5%AE%A2" title="Tag: 博客" rel="tag">博客</a-->
-        <a href="/tag/#博客" title="Tag: 博客" rel="tag">博客</a>&nbsp;
-    
-        <!--a href="/tag/#%E5%9B%BE%E5%BA%8A" title="Tag: 图床" rel="tag">图床</a-->
-        <a href="/tag/#图床" title="Tag: 图床" rel="tag">图床</a>&nbsp;
-    
-        <!--a href="/tag/#%E4%B8%83%E7%89%9B" title="Tag: 七牛" rel="tag">七牛</a-->
-        <a href="/tag/#七牛" title="Tag: 七牛" rel="tag">七牛</a>
+        <!--a href="/tag/#%E7%BB%9F%E8%AE%A1%E5%AD%A6" title="Tag: 统计学" rel="tag">统计学</a-->
+        <a href="/tag/#统计学" title="Tag: 统计学" rel="tag">统计学</a>
     
   
 
@@ -154,33 +158,144 @@
         <hr>
         <article itemscope itemtype="http://schema.org/BlogPosting">
         <ul id="markdown-toc">
-  <li><a href="#搭建记录" id="markdown-toc-搭建记录">搭建记录</a></li>
+  <li><a href="#相对危险度-rr" id="markdown-toc-相对危险度-rr">相对危险度 (RR)</a></li>
+  <li><a href="#优势比-or" id="markdown-toc-优势比-or">优势比 (OR)</a></li>
+  <li><a href="#风险比-hr" id="markdown-toc-风险比-hr">风险比 (HR)</a></li>
+  <li><a href="#补充" id="markdown-toc-补充">补充</a></li>
 </ul>
 
-<h1 id="搭建记录">搭建记录</h1>
+<h2 id="相对危险度-rr">相对危险度 (RR)</h2>
+
+<p>RR也叫相对风险（relative risk ）或风险比（risk ratio ）</p>
+<ul>
+  <li>RR＝暴露组的发病或死亡率/非暴露组的发病或死亡率</li>
+</ul>
+
+<p>它是反映暴露与发病（死亡）关联强度的指标。</p>
+<ul>
+  <li>队列研究是将某一特定人群按是否暴露于某可疑因素或暴露程度分为不同的亚组，追踪观察两组或多组成员结局（如疾病）发生的情况，比较各组之间结局发生率的差异，从而判定这些因素与该结局之间有无因果关联及关联程度的一种观察性研究方法。</li>
+  <li>通常，暴露可以指危险因素，比如吸烟、高血压，也可指服用某种药物。而事件可以是疾病发生，比如肺癌、心血管病，也可指服药后的治疗效果。</li>
+</ul>
+
+<p>RR表明暴露组发病或死亡的危险是非暴露组的多少倍。RR值越大，表明暴露的效应越大，暴露与结局关联的强度越大。</p>
+<ul>
+  <li>适用于前瞻性研究</li>
+</ul>
+
+<p>示例1：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>患肺癌</th>
+      <th>未患肺癌</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>抽烟者</td>
+      <td>a</td>
+      <td>b</td>
+    </tr>
+    <tr>
+      <td>非吸烟者</td>
+      <td>c</td>
+      <td>d</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>其中吸烟者患肺癌的概率为20％，非吸烟者患肺癌的概率为1％。这种情况在上边的2×2表中表示。</p>
+
+<p>这里，<em>a</em>  = 20，<em>b</em>  = 80，<em>c</em>  = 1，<em>d</em>  = 99。 那么与吸烟相关的癌症的相对风险将是:<br />
+<script type="math/tex">RR={a/(a+b) \over c/(c+d)} = {20 / 100 \over 1/100} =20</script></p>
+
+<p><strong>统计学意义时</strong></p>
+
+<p>相对风险经常用于二元结果的统计分析，其中感兴趣的结果具有相对低的概率。因此，它通常适用于临床试验数据，用于比较未接受新药物治疗（或接受安慰剂）的人群与接受既定（标准治疗）治疗的人群发生疾病的风险。或者，它用于比较接受药物的人产生副作用的风险与未接受治疗（或接受安慰剂）的人相比。它特别有吸引力，因为它可以在简单的情况下手工计算，但也适用于回归建模，通常在泊松回归框架中。</p>
+
+<p>在实验组和对照组之间进行简单比较：</p>
+
+<ul>
+  <li><code class="highlighter-rouge">RR = 1</code> 意味着两组之间的风险没有差异。</li>
+  <li><code class="highlighter-rouge">RR &lt;1</code> 表示实验组中发生的事件不太可能发生在对照组中。</li>
+  <li><code class="highlighter-rouge">RR&gt; 1</code> 表示事件更可能发生在实验组而不是对照组。</li>
+</ul>
+
+<h2 id="优势比-or">优势比 (OR)</h2>
+
+<p>优势比 (OR, Odds Ratio)，又称比值比，用于反映病例与对照在暴露上的差异，从而建立疾病与暴露因素之间的联系。</p>
+
+<ul>
+  <li>OR＝（病例组暴露人数/非暴露人数）/（对照组暴露人数/非暴露人数）</li>
+  <li>适用于回溯性研究</li>
+</ul>
+
+<p>示例:</p>
+
+<p>OR的计算公式是:
+<script type="math/tex">OR = \frac  {a / c }  { b / d } = { {ad} \over {cb} }</script></p>
+
+<p>OR 的三个要素:</p>
+
+<ul>
+  <li>
+    <p>OR的值</p>
+  </li>
+  <li>P value ， &lt;0.05 时两组的暴露史比例差异显著，提示暴露可能与疾病有联系。</li>
+  <li>计算OR 95%可信限（confidence interval）</li>
+  <li>可由R软件 fisher.test() 函数计算出这三个值</li>
+</ul>
+
+<p>OR与RR的区别:</p>
+<ul>
+  <li>
+    <p>RR的计算需要使用发病率，因此队列研究、随机对照试验等前瞻性研究均可使用RR；但若是开展回顾性研究（如病例-对照研究），只能根据研究对象状态分组，无法直接计算暴露人群和非暴露人群的发病率，这种情况则需要使用OR.</p>
+  </li>
+  <li>
+    <p>公式不难看出，两者的差异主要来源于分母，即 $a/(a+b)$
+和 $a/b$ 的区别，因此，若a数值较小，则 $a/(a+b) \approx a/b$ ，也就是说，当该<strong>疾病发生率较低时（罕见病）</strong>，其RR值和OR值的大小是近似的。因此这类疾病，若无法实施队列研究，则可采用病例-对照研究中的<strong>OR值替代RR值</strong></p>
+  </li>
+</ul>
+
+<h2 id="风险比-hr">风险比 (HR)</h2>
+
+<p>风险比(HR, hazardratio)</p>
+<ul>
+  <li>HR=的风险函数h1(t)/非暴露组的风险函数h2(t)</li>
+  <li>t指在相同的时间点上</li>
+  <li>风险函数指危险率函数、条件死亡率、瞬时死亡率。</li>
+  <li>Cox比例风险模型可以得到，HR要用于生存分析。</li>
+</ul>
+
+<p><strong>HR与RR的区别</strong>：</p>
+
 <ol>
-  <li>在github账号下创建 <code class="highlighter-rouge">biolxy.github.io</code></li>
-  <li>git clone 该项目到本地</li>
-  <li>git clone 作者博客到本地，填补博客必要的样式文件,删除<code class="highlighter-rouge">_post</code>文件夹下文件，保留一个做模板，命名最好为全英文字符
-    <div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/Gaohaoyang/gaohaoyang.github.io.git 
-<span class="nb">mv </span>gaohaoyang.github.io/<span class="k">*</span> biolxy.github.io
-</code></pre></div>    </div>
-  </li>
-  <li>修改如下等文件替换为自己的信息<br />
- <code class="highlighter-rouge">CNAME</code>  <code class="highlighter-rouge">_config.yml</code> <code class="highlighter-rouge">favicon.ico</code> <code class="highlighter-rouge">index.html</code> <code class="highlighter-rouge">page/3collections.md</code> <code class="highlighter-rouge">age/4about.md</code></li>
-  <li>该主题更详细的信息需要去该主题作者的github查看<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a></li>
-  <li>push到github，打开 <code class="highlighter-rouge">https://biolxy.github.io/</code> 即可看到效果</li>
-  <li>当然你也可以
-    <ol>
-      <li>先参考主题作者的博客<a href="https://github.com/Gaohaoyang/gaohaoyang.github.io/blob/master/README-zh-cn.md">地址</a>，先 <code class="highlighter-rouge">安装 ruby 和 jekyll 环境</code> ，博客里讲的都有，我就不赘述了</li>
-      <li>切换到<code class="highlighter-rouge">biolxy.github.io</code> 文件夹下，注意不是<code class="highlighter-rouge">_post</code> 文件夹</li>
-      <li>执行 <code class="highlighter-rouge">jekyll s</code></li>
-      <li>此时打开浏览器，输入<code class="highlighter-rouge">http://127.0.0.1:4000/</code> ，你就可以在本地预览到上传github后的效果了</li>
-    </ol>
-  </li>
-  <li>为了<code class="highlighter-rouge">上传图片</code>， 你需要注册七牛云，建立空间，做图床（我写的简单，你操作的时候不懂的就百度）</li>
-  <li>七牛云账户可以绑定MPic软件，绑定后可以方便的上传图片及插入图片链接。</li>
+  <li>两者均用于前瞻性研究，多数认为HR与RR意思一样，但从计算公式可看出，HR还考虑了时间因素，换言之，包含了时间效应的RR就是HR；</li>
+  <li>从终点时间的角度来看，也可以这样理解，RR考虑了终点事件的差异，而HR不仅考虑了终点事件的有无，还考虑了到达终点所用的时间及截尾数据。</li>
 </ol>
+
+<h2 id="补充">补充</h2>
+<p>研究的目的、时间、成本、可行性决定研究类型。
+研究类型分两种：</p>
+
+<ul>
+  <li>观察性研究（描述性，分析性）
+    <ul>
+      <li>横断面研究</li>
+      <li>回顾性研究</li>
+      <li>前瞻性研究</li>
+    </ul>
+  </li>
+  <li>实验性研究
+    <ul>
+      <li>临床试验</li>
+      <li>社区干预试验</li>
+      <li>现场试验</li>
+    </ul>
+  </li>
+</ul>
 
 
         </article>
@@ -193,19 +308,7 @@
                 
                     
                 
-                    
-                
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
-                
-                    
                 
                     
                 
@@ -216,19 +319,7 @@
                 
                     
                 
-                    
-                
-                    
-                
-                    
-                
             
-                
-                    
-                
-                    
-                
-                    
                 
                     
                 
@@ -239,9 +330,14 @@
                 
                     
                 
-                    
+            
+        
+            
+            
                 
                     
+                
+            
                 
                     
                 
@@ -252,9 +348,15 @@
                 
                     
                 
-                    
+            
                 
                     
+                
+            
+                
+                    
+                
+            
                 
                     
                 
@@ -265,63 +367,20 @@
                 
                     
                 
-                    
-                
-                    
-                
-                    
-                
-            
-                
-                    
-                
-                    
-                
-                    
-                
-                    
-                
             
         
-            
-            
-                
-                    
-                        
-                        <h2 id="similar_posts">Similar Posts</h2>
-                        <ul>
-                        
-                        <li class="relatedPost">
-                            <a href="/2018/07/30/a-test-markdownfile/">一个test博客
-                            
-                            </a>
-                        </li>
-                        
-                        
-                    
-                
-                    
-                
-                    
-                
-                    
-                
-            
-        
-        
-            </ul>
         
 
         <div class="post-recent">
     <div class="pre">
         
-        <p><strong>上一篇</strong> <a href="/2018/07/30/a-test-markdownfile/">一个test博客</a></p>
+        <p><strong>上一篇</strong> <a href="/2018/08/03/gene-signature/">初识Gene signature</a></p>
         
     </div>
     <div class="nex">
 
         
-        <p><strong>下一篇</strong> <a href="/2018/08/01/Common-bioinformatics-commands/">生物信息学常用的Linux命令</a></p>
+        <p><strong>下一篇</strong> <a href="/2018/08/15/Which-version-rename-do-you-use/">你用的是哪个版本的rename</a></p>
         
     </div>
 </div>
@@ -339,8 +398,8 @@
      */
 
     var disqus_config = function() {
-        this.page.url = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'http://localhost:4000/2018/07/31/Github-blog/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'http://localhost:4000/2018/08/05/RR-OR-HR-in-statistics/'; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'http://localhost:4000/2018/08/05/RR-OR-HR-in-statistics/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 
     (function() { // DON'T EDIT BELOW THIS LINE
@@ -369,8 +428,6 @@
                     Content
                 </div>
                 <ul id="content-side" class="content-ul">
-                    
-                    <li><a href="#similar_posts">Similar Posts</a></li>
                     
                     <li><a href="#comments">Comments</a></li>
                 </ul>

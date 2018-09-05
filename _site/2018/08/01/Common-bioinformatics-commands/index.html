@@ -81,6 +81,8 @@
                 
                     
                 
+                    
+                
             </ul>
         </nav>
     </div>
@@ -286,9 +288,16 @@ find <span class="nb">.</span> <span class="nt">-name</span> <span class="s1">'*
 <span class="nb">touch</span> <span class="o">{</span>1..9<span class="o">}</span>.txt   <span class="c"># 批量创建文件</span>
 
 <span class="nb">ls</span> <span class="nt">-F</span> | <span class="nb">grep</span> <span class="s1">'/$'</span>         <span class="c">#  查看当前目录下的文件夹 </span>
+<span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span><span class="nb">ls</span> <span class="nt">-F</span> | <span class="nb">grep</span> <span class="s1">'/$'</span><span class="sb">`</span><span class="p">;</span><span class="k">do </span><span class="nb">sudo du</span> <span class="nt">-sh</span> <span class="nv">$i</span><span class="p">;</span><span class="k">done</span>   <span class="c">#查看当前目录下，每个子目录及其子目录的总大小</span>
 
 rename <span class="s2">"s/AA/aa/"</span> <span class="k">*</span>
 rename .fas .fa <span class="k">*</span>.fas    <span class="c"># CentOS 下可用</span>
+
+iostat <span class="nt">-d</span> <span class="nt">-k</span> 1 10可以看到每个盘的读写速度
+
+find /home/lxy <span class="nt">-type</span> f <span class="nt">-size</span> +100M    <span class="c">#列出文件夹 /home/lxy 下大于100M的文件</span>
+find <span class="nb">.</span> <span class="nt">-type</span> l <span class="nt">-exec</span> <span class="nb">rm</span>  <span class="o">{}</span> <span class="se">\;</span>  <span class="c">#列出当前路径 .  下的link类型的文件(type</span>
+ l<span class="o">)</span> 并删除
 </code></pre></div></div>
 
 <h3 id="单行-perl">单行 perl</h3>
@@ -337,6 +346,57 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
                     
                 
                     
+                        
+                        <h2 id="similar_posts">Similar Posts</h2>
+                        <ul>
+                        
+                        <li class="relatedPost">
+                            <a href="/2018/09/04/PyClone/">PyClone 安装，报错及解决
+                            
+                            </a>
+                        </li>
+                        
+                        
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
+                
+            
+        
+            
+            
+                
+                    
+                
+                    
                 
             
         
@@ -376,6 +436,8 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
                 
             
         
+        
+            </ul>
         
 
         <div class="post-recent">
@@ -435,6 +497,8 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
                     Content
                 </div>
                 <ul id="content-side" class="content-ul">
+                    
+                    <li><a href="#similar_posts">Similar Posts</a></li>
                     
                     <li><a href="#comments">Comments</a></li>
                 </ul>
