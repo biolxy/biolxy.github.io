@@ -58,7 +58,7 @@ install_github("chrisamiller/fishplot")
 #### github上R包的本地安装
 例如：安装 "fishplot" 包， Linux 直接在命令行安装
 windows需要在cmd界面安装
-```R 
+```shell
 git clone git@github.com:chrisamiller/fishplot.git
 R CMD build fishplot
 R CMD INSTALL fishplot_0.2.tar.gz
