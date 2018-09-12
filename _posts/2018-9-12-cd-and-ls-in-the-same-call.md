@@ -38,7 +38,7 @@ source ~/.zshrc
 source ~/.cshrc
 ```
 
-在终端里敲 `cl + /home` 查看效果
+在终端里敲 `cl /home` 查看效果
 
 > 该命令是 cd 和 ls 的组合命令，若cd命令执行失败，则 ls 命令不会执行
 
