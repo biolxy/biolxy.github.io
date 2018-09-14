@@ -26,6 +26,8 @@ mathjax: true
 cl() {
     cd "$@" && ls
 }
+
+alias 'cd'=' cl'
 ```
 
 保存退出，刷新
