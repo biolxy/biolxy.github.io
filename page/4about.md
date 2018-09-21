@@ -29,22 +29,23 @@ type: page
 
 ### 3、 关注我
 
-* 我的微信公众号：
-* ![](https://open.weixin.qq.com/qr/code?username=gh_ae6833e34551)
+* 我的微信公众号：**生信风雨路**  
+![](https://open.weixin.qq.com/qr/code?username=gh_ae6833e34551)
 
 ### 4、 赞助我 donate
 您也可以捐助我喝杯咖啡！感谢！
 
-| 支付宝                                                       | 微信支付                                                     |
-| :------------------------------------------------------------: | :------------------------------------------------------------: |
-| ![mark](http://oiz501hli.bkt.clouddn.com/blog/180922/fi4b75Cl56.jpg?imageslim) | ![mark](http://oiz501hli.bkt.clouddn.com/blog/180922/CKlHigc55k.jpg?imageslim) |
+|                            支付宝                            |                           微信支付                           |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![mark](http://oiz501hli.bkt.clouddn.com/blog/180922/DEbLiDE1aB.jpg?imageslim) | ![mark](http://oiz501hli.bkt.clouddn.com/blog/180922/dBi1kEL2Fj.jpg?imageslim) |
 
 
 
 ### 5、 关于本站
 
-> 偶尔可以犹豫彷徨，更多时候还是要砥砺奋进！
-这里记录我学习生物信息的路程，希望能对你也有帮助！
+> 偶尔可以犹豫彷徨，更多时候还是要砥砺奋进！  
+
+这里记录我学习生物信息的路程，希望能对你也有帮助！  
 ### 6、 评论
 
 {% include comments.html %}
