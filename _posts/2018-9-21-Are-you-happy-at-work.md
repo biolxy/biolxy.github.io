@@ -12,9 +12,7 @@ mathjax: true
 {:toc}
 
 
-## 你是否工作的开心？
-
-### 自我决定论 
+### 1、 自我决定论
 
 ![mark](http://oiz501hli.bkt.clouddn.com/blog/180921/m7m0lKAmhl.jpg?imageslim)
 
@@ -22,7 +20,7 @@ mathjax: true
 
 参考：
 
-- https://www.bilibili.com/video/av24554786
+- [https://www.bilibili.com/video/av24554786](https://www.bilibili.com/video/av24554786)
 
 **我的几点看法：**
 

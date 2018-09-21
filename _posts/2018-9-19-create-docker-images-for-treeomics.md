@@ -11,14 +11,14 @@ mathjax: true
 * content
 {:toc}
 
-### 创建docker images 有两种方法
+### 1、 创建docker images 有两种方法
 
-1. 运行一个容器，在运行容器的基础上安装软件，部署服务，然后导出为新的image
-2. 通过编写dockerfile文件来创建新的image
+- 运行一个容器，在运行容器的基础上安装软件，部署服务，然后导出为新的image
+- 通过编写dockerfile文件来创建新的image
 
 >  个人认为**方法1**更好用，配合docker 私有仓库，可以用来搭建持续集成系统，简直是生产研发必备好不好！
 
-### 缘起
+### 2、 缘起
 
 本文记录了在一个已近存在的docker image，安装软件，并保存为新image的过程。
 
@@ -36,7 +36,7 @@ docker images
 
 `docker.io/hiono/texlive`
 
-### 运行 docker 镜像：
+### 3、 运行 docker 镜像：
 
 ```shell
 docker run -it docker.io/hiono/texlive 
@@ -44,13 +44,13 @@ docker run -it docker.io/hiono/texlive
 
 **以下操作都发生在运行的该docker image中**
 
-#### 下载 anaconda
+#### 3.1、 下载 anaconda
 
 ```shell
 wget  https://repo.anaconda.com/archive/Anaconda3-5.2.0-Linux-x86_64.sh
 ```
 
-#### 安装 anaconda
+#### 3.2、 安装 anaconda
 
 ```shell
 Anaconda3-5.2.0-Linux-x86_64.sh: 350: Anaconda3-5.2.0-Linux-x86_64.sh: bunzip2: not found
@@ -61,7 +61,7 @@ root@890b8b636b88:~# yum install -y bzip2
 root@890b8b636b88:~# apt-get install -y bzip2
 ```
 
-#### 安装依赖环境以及treeomics软件
+#### 3.3、 安装依赖环境以及treeomics软件
 
 按照  https://github.com/johannesreiter/treeomics 要求创建环境，安装相应得依赖环境
 
@@ -85,7 +85,7 @@ pip install pyensembl
 git clone https://github.com/johannesreiter/treeomics
 ```
 
-#### 安装 cplex
+#### 3.4、 安装 cplex
 
 ```shell
 ./cplex_studio126.linux-x86-64.bin
@@ -94,7 +94,7 @@ cd /opt/ibm/ILOG/CPLEX_Studio1261/cplex/python/3.4/x86-64_linux
 python setup.py install
 ```
 
-### 测试
+### 4、 测试
 
 ```shell
 cd /root/treeomics/src
@@ -103,7 +103,7 @@ python treeomics -h
 
 出现帮助信息，表明依赖安装完毕……
 
-### docker 封装
+### 5、 docker 封装
 
 新开一个shell 窗口，docker ps 获得我们docker 容器的id  890b8b636b88
 
@@ -118,14 +118,13 @@ sha256:0bd8695dd6d647b249d7469eac397595ddbe40e7391415805d59f05d7d375e3d
 
 可以查看到我们创建的镜像了，OK
 
-####  使用：
+#### 5.1、 使用：
 
 ```shell
 docker run -it -v `pwd`:`pwd` -w `pwd`  ubuntu_treeomics
-# 挂载当前路径，并进入该路径
 ```
 
-### **参考**
+### 6、 **参考**
 
 - https://blog.csdn.net/leo15561050003/article/details/71274718?locationNum=14&fps=1  
 - https://www.cnblogs.com/mthoutai/p/6812871.html

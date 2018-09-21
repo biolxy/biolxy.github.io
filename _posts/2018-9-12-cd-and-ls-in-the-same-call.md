@@ -12,11 +12,12 @@ mathjax: true
 {:toc}
 
 
-## 将 cd 和 ls 两个命令组合起来使用
+
+## 1、 将 cd 和 ls 两个命令组合起来使用
 
 >  效果：很明显，可以少敲一次命令
 
-### 具体实现
+### 1.1、 具体实现
 
 编辑 `.bashrc`文件（如果你用的时`zsh`或者时`csh` 就去编辑其对应的配置文件，如`~/.zshrc` 或`~/.cshrc` ）
 
@@ -34,9 +35,7 @@ alias 'cd'=' cl'
 
 ```shell
 source ~/.bashrc 
-#或者
 source ~/.zshrc
-#或者
 source ~/.cshrc
 ```
 
