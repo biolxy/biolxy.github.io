@@ -20,8 +20,6 @@ type: page
 
 ### 2、 联系我
 
-欢迎对我感兴趣的朋友可以联系我（上海、深圳和广州）。
-
 * GitHub：[biolxy](https://github.com/biolxy)
 * email：biolxy@aliyun.com
 * CSDN博客：[https://blog.csdn.net/lixiangyong123](biolxy@aliyun.com)
@@ -43,7 +41,7 @@ type: page
 
 ### 5、 关于本站
 
-> 偶尔可以犹豫彷徨，更多时候还是要砥砺奋进！  
+> 偶尔可以犹豫彷徨，更多时候还是要砥砺奋进！    
 
 这里记录我学习生物信息的路程，希望能对你也有帮助！  
 ### 6、 评论
