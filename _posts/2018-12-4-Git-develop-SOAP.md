@@ -15,15 +15,19 @@ mathjax: true
 
 ![](https://segmentfault.com/img/remote/1460000008209347?w=1150&h=1524)
 
+
+
+
+
 ## 我的流程
 
-1. 要从Github下载一个项目，需要用到clone命令。
+### 1. 要从Github下载一个项目，需要用到clone命令。
 
 ```shell
 git clone xxxxxxx.git
 ```
 
-2. 创建并切换到新建的分支
+### 2. 创建并切换到新建的分支
 
 ```shell
 git checkout -b feature-A develop
@@ -31,14 +35,14 @@ git checkout -b feature-A develop
 
 然后可以在新的分支上愉快的写代码开发新功能了，开发测试完毕后：
 
-3. 用add命令来添加新写的代码，commit命令用来提交新写的代码
+### 3. 用add命令来添加新写的代码，commit命令用来提交新写的代码
 
 ```shell
 git add feature-A
 git commit -m "add feature A"
 ```
 
-4. add命令执行后，修改被保存到暂存区。可以理解为你操作本地文件按了下`ctrl + s`
+### 4. add命令执行后，修改被保存到暂存区。可以理解为你操作本地文件按了下`ctrl + s`
 
 接下来，不可以直接用到merge命令，合并feature-A分到develop去，如果这样做，很可能出现冲突。因为可能出现有很多人在develop分支上更新。所以你这个时候用pull命令，把远程仓库的更新取回并更新。
 
@@ -47,7 +51,7 @@ git checkout develop
 git pull origin develop
  ```
 
-5. 然后再切换回自己的分支，用rebase命令合并新更新到自己目前工作的分支。
+### 5. 然后再切换回自己的分支，用rebase命令合并新更新到自己目前工作的分支。
 
 ```shell
 git checkout feature-A
@@ -97,7 +101,7 @@ while(存在冲突) {
 
 最后冲突全部解决，rebase成功!!
 
-6. 合并分支git merge --no-ff feature-A 到develop
+### 6. 合并分支git merge --no-ff feature-A 到develop
 
 ```shell
 git checkout develop
@@ -105,7 +109,7 @@ git pull
 git merge --no-ff feature-A
 ```
 
-7. 更新到gitlab
+### 7. 更新到gitlab
 
 ```shell
 git push origin develop
@@ -130,5 +134,4 @@ git push origin develop
 - https://segmentfault.com/a/1190000008209343
 - http://www.open-open.com/lib/view/open1451353135339.html
 - http://www.open-open.com/lib/view/open1461324562769.html
-
 - https://blog.csdn.net/chenansic/article/details/44122107 
