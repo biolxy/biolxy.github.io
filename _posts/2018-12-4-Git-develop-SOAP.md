@@ -1,0 +1,134 @@
+---
+layout: post
+title: "git 开发功能分支标准流程"
+categories: Linux develop
+tags: git
+description: git develop soap
+author: biolxy
+mathjax: true
+---
+
+* content
+{:toc}
+
+# Git develop SOAP 
+
+![](https://segmentfault.com/img/remote/1460000008209347?w=1150&h=1524)
+
+## 我的流程
+
+1. 要从Github下载一个项目，需要用到clone命令。
+
+```shell
+git clone xxxxxxx.git
+```
+
+2. 创建并切换到新建的分支
+
+```shell
+git checkout -b feature-A develop
+```
+
+然后可以在新的分支上愉快的写代码开发新功能了，开发测试完毕后：
+
+3. 用add命令来添加新写的代码，commit命令用来提交新写的代码
+
+```shell
+git add feature-A
+git commit -m "add feature A"
+```
+
+4. add命令执行后，修改被保存到暂存区。可以理解为你操作本地文件按了下`ctrl + s`
+
+接下来，不可以直接用到merge命令，合并feature-A分到develop去，如果这样做，很可能出现冲突。因为可能出现有很多人在develop分支上更新。所以你这个时候用pull命令，把远程仓库的更新取回并更新。
+
+ ```shell
+git checkout develop
+git pull origin develop
+ ```
+
+5. 然后再切换回自己的分支，用rebase命令合并新更新到自己目前工作的分支。
+
+```shell
+git checkout feature-A
+git rebase develop
+```
+
+一般情况下rebase都是会有冲突的，详细查看冲突可以用命令`git status`然后就会显示哪个文件有冲突，然后打开有冲突的哪个文件，会发现有一些“<<<<<<<”， “=======”， “>>>>>>>” 这样的符号。
+
+```shell
+“<<<<<<<” 表示冲突代码开始
+
+“=======” 表示test与master冲突代码分隔符
+
+“>>>>>>>" 表示冲突代码的结束
+
+<<<<<<<  
+所以这一块区域test的代码
+
+=======  
+这一块区域master的代码
+
+>>>>>>> 
+```
+
+rebase 和 merge的另一个区别是rebase 的冲突是一个一个解决，如果有十个冲突，先解决第一个，然后用命令
+
+ ```shell
+git add -u 
+git rebase --continue 
+ ```
+
+继续后才会出现第二个冲突，直到所有冲突解决完，而merge 是所有的冲突都会显示出来。 
+
+所以rebase的工作流就是
+
+```shell
+git rebase 
+while(存在冲突) {
+    git status
+    找到当前冲突文件，编辑解决冲突
+    git add -u
+    git rebase --continue
+    if( git rebase --abort )
+        break; 
+}
+```
+
+最后冲突全部解决，rebase成功!!
+
+6. 合并分支git merge --no-ff feature-A 到develop
+
+```shell
+git checkout develop
+git pull
+git merge --no-ff feature-A
+```
+
+7. 更新到gitlab
+
+```shell
+git push origin develop
+```
+
+## 引用部分
+
+项目中长期存在的两个分支
+
+- `master`：主分支，负责记录上线版本的迭代，该分支代码与线上代码是完全一致的。
+- `develop`：开发分支，该分支记录相对稳定的版本，所有的feature分支和bugfix分支都从该分支创建。
+
+其它分支为短期分支，其完成功能开发之后需要删除
+
+- `feature/*`：特性（功能）分支，用于开发新的功能，不同的功能创建不同的功能分支，功能分支开发完成并自测通过之后，需要合并到 **develop** 分支，之后删除该分支。
+- `bugfix/*`：bug修复分支，用于修复不紧急的bug，普通bug均需要创建bugfix分支开发，开发完成自测没问题后合并到 **develop** 分支后，删除该分支。
+- `release/*`：发布分支，用于代码上线准备，该分支从**develop**分支创建，创建之后由测试同学发布到测试环境进行测试，测试过程中发现bug需要开发人员在该release分支上进行bug修复，所有bug修复完后，在上线之前，需要合并该release分支到**master**分支和**develop**分支。
+- `hotfix/*`：紧急bug修复分支，该分支只有在紧急情况下使用，从**master**分支创建，用于紧急修复线上bug，修复完成后，需要合并该分支到**master**分支以便上线，同时需要再合并到**develop**分支。
+
+## 参考
+
+- https://segmentfault.com/a/1190000008209343
+- http://www.open-open.com/lib/view/open1451353135339.html
+- http://www.open-open.com/lib/view/open1461324562769.html
+
+- https://blog.csdn.net/chenansic/article/details/44122107 
