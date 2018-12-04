@@ -14,7 +14,7 @@ mathjax: true
 
 ### 1、 自我决定论
 
-![mark](http://oiz501hli.bkt.clouddn.com/blog/180921/m7m0lKAmhl.jpg?imageslim)
+![mark](https://img-blog.csdn.net/20180921232338694?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpeGlhbmd5b25nMTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 自我决定论认为，满足上述三个条件，人心里健康和幸福感才能获得保障。
 
