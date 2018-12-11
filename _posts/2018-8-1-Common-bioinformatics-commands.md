@@ -207,3 +207,10 @@ vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffe
 ### 17、 数据存放
 /data/public/hanyapeng/Gm/Gma.collinear.groups      # 大豆中所有旁系同源基因  
 /data/public/wanglei/inparanoid4.0/Soybeanparalog2.txt     # 大豆中所有旁系同源基因
+
+
+
+## 推荐连接
+
+- [Bioinformatics one-liners](https://github.com/stephenturner/oneliners)
+
