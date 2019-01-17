@@ -3,7 +3,7 @@ layout: post
 title: "编程类开放书籍荟萃[转]"
 categories: Linux develop
 tags: linux python c shell perl R
-description: 编程类开放书籍荟萃
+description: 
 author: biolxy
 mathjax: false
 ---
