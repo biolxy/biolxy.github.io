@@ -29,7 +29,7 @@ mathjax: false
 - [Docker中文指南](https://github.com/widuu/chinese_docker)
 - [Docker —— 从入门到实践](https://github.com/yeasy/docker_practice)
 - [FreeRADIUS新手入门](http://freeradius.akagi201.org/)
-- [Mac 开发配置手册](http://aaaaaashu.gitbooks.io/mac-dev-setup/content/)
+- [Mac 开发配置手册](https://segmentfault.com/a/1190000005013881)  [源地址打不开](http://aaaaaashu.gitbooks.io/mac-dev-setup/content/)
 - [FreeBSD 使用手册](https://www.freebsd.org/doc/zh_CN/books/handbook/index.html)
 - [Linux 命令行(中文版)](http://billie66.github.io/TLCL/book/)
 
@@ -83,6 +83,9 @@ mathjax: false
 - [Scrapy 0.25 文档](http://scrapy-chs.readthedocs.org/zh_CN/latest/)
 - [ThinkPython](https://github.com/carfly/thinkpython-cn)
 - [python3-cookbook](https://python3-cookbook.readthedocs.io/zh_CN/latest/preface.html#)
+- [python之旅](http://funhacks.net/explore-python/)
+
+
 
 ## Shell
 
