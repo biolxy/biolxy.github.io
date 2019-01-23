@@ -154,3 +154,8 @@ mathjax: false
 - [selenium 中文文档](https://github.com/fool2fish/selenium-doc)
 - [Joel谈软件](http://local.joelonsoftware.com/wiki/Chinese_(Simplified))
 - [約耳談軟體(Joel on Software)](http://local.joelonsoftware.com/wiki/%E9%A6%96%E9%A0%81)
+
+## 生物信息学
+- [《生物信息学入门最佳实践》](http://www.biotrainee.com/jmzeng/book/basic/)
+- [The Biostar Handbook: A Beginner's Guide to Bioinformatics](https://www.biostarhandbook.com/)
+
