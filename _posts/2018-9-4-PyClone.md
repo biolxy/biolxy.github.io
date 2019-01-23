@@ -11,9 +11,9 @@ mathjax: true
 * content
 {:toc}
 
-## 1、 PyClone 安装，报错及解决
+### 1、 PyClone 安装，报错及解决
 
-### 1.1、 安装
+#### 1.1、 安装
 
 ``` shell
 conda install PyClone
@@ -25,7 +25,7 @@ conda install PyClone
 PyClone run_analysis_pipeline --in_files SRR385938.tsv SRR385939.tsv SRR385940.tsv SRR385941.tsv --working_dir ./tt
 ```
 
-### 1.2、 报错：
+#### 1.2、 报错：
 
 ```shell
 Traceback (most recent call last):
@@ -54,7 +54,7 @@ Traceback (most recent call last):
 RuntimeError: Invalid DISPLAY variabl
 ```
 
-### 1.3、 解决：
+#### 1.3、 解决：
 aroth85 ：
 > Please check user group (<https://groups.google.com/forum/#!forum/pyclone-user-group>) for threads on this.  
 
