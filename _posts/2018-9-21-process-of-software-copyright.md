@@ -16,10 +16,8 @@ mathjax: true
 ### 1、 网页账户注册
 - 注册账户
     + 登陆[中国版权保护中心](http://www.ccopyright.com.cn/)，最好使用IE浏览器，界面如图：
-    ![mark](http://oiz501hli.bkt.clouddn.com/blog/180803/ALD9hblIll.jpg?imageslim)
 - 注册账户
-- 注册后登陆界面如下：  
-    + ![mark](http://oiz501hli.bkt.clouddn.com/blog/180803/IgdbGIdE2e.jpg?imageslim)
+- 注册后登陆界面如下:
 - 点击`修改资料`, 完善个人信息，填写手机号和邮箱
 - 点及`我要登记` ， `R11.计算机软件著作权登记申请`
 - 填写你的各项信息，注意区分`企业法人`，`自然人`， 申请人的地址按身份证上的填写
