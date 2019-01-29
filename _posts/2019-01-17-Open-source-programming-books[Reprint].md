@@ -51,7 +51,8 @@ mathjax: false
 - [Cmake 实践](http://sewm.pku.edu.cn/src/paradise/reference/CMake%20Practice.pdf) (PDF版)
 - [C++ FAQ LITE(中文版)](http://www.sunistudio.com/cppfaq/)
 - [C++ Primer 5th Answers](https://github.com/Mooophy/Cpp-Primer)
-
+- [笨办法学C](https://wizardforcel.gitbooks.io/lcthw/content/)
+- [C程序设计基础图文教程(英文版)](https://computer.howstuffworks.com/c.htm/printable)
 
 ## Python
 
