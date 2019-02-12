@@ -32,6 +32,24 @@ mathjax: false
 - [Mac 开发配置手册](https://segmentfault.com/a/1190000005013881)  [源地址打不开](http://aaaaaashu.gitbooks.io/mac-dev-setup/content/)
 - [FreeBSD 使用手册](https://www.freebsd.org/doc/zh_CN/books/handbook/index.html)
 - [Linux 命令行(中文版)](http://billie66.github.io/TLCL/book/)
+- 鸟哥的linux私房菜 （第三版） 服务器架设篇
+  - [在线阅读](http://vbird.dic.ksu.edu.tw/linux_server/)
+- 鸟哥的linux私房菜 （第三版） 基础学习篇
+  - [在线阅读](http://vbird.dic.ksu.edu.tw/linux_basic/linux_basic.php)
+
+- Linux C API 参考
+
+  - [PDF格式](https://www.gitbook.com/download/pdf/book/wizardforcel/linux-c-api-ref)
+  - [EPUB格式](https://www.gitbook.com/download/epub/book/wizardforcel/linux-c-api-ref)
+  - [MOBI格式](https://www.gitbook.com/download/mobi/book/wizardforcel/linux-c-api-ref)
+
+- Linux 内核揭秘
+
+  - [在线阅读](https://www.gitbook.com/star/book/xinqiu/linux-insides-cn)
+  - [PDF格式](https://www.gitbook.com/download/pdf/book/xinqiu/linux-insides-cn)
+  - [EPUB格式](https://www.gitbook.com/download/epub/book/xinqiu/linux-insides-cn)
+  - [MOBI格式](https://www.gitbook.com/download/mobi/book/xinqiu/linux-insides-cn)
+
 
 ## C/C++
 
@@ -53,6 +71,20 @@ mathjax: false
 - [C++ Primer 5th Answers](https://github.com/Mooophy/Cpp-Primer)
 - [笨办法学C](https://wizardforcel.gitbooks.io/lcthw/content/)
 - [C程序设计基础图文教程(英文版)](https://computer.howstuffworks.com/c.htm/printable)
+- 像计算机科学家一样思考（C++版）
+  - [在线阅读](http://www.kancloud.cn/ituring/nvshengeweiwei)
+  - [下载地址](http://www.kancloud.cn/ituring/nvshengeweiwei)
+- effective c++ （中文第三版）
+  - [在线阅读](https://www.gitbook.com/book/wizardforcel/effective-cpp/details)
+  - [PDF格式](https://www.gitbook.com/download/pdf/book/wizardforcel/effective-cpp)
+  - [EPUB格式](https://www.gitbook.com/download/epub/book/wizardforcel/effective-cpp)
+  - [MOBI格式](https://www.gitbook.com/download/mobi/book/wizardforcel/effective-cpp)
+
+## 计算机科学的基础
+
+计算机科学的基础（中文版）
+
+- [在线阅读](http://www.ituring.com.cn/book/1019)
 
 ## Python
 
@@ -159,4 +191,15 @@ mathjax: false
 ## 生物信息学
 - [《生物信息学入门最佳实践》](http://www.biotrainee.com/jmzeng/book/basic/)
 - [The Biostar Handbook: A Beginner's Guide to Bioinformatics](https://www.biostarhandbook.com/)
+
+## 书单
+
+- 飞龙的程序员书单
+  - [在线阅读](https://www.gitbook.com/book/wizardforcel/flygon-booklist/details)
+  - [PDF格式](https://www.gitbook.com/download/pdf/book/wizardforcel/flygon-booklist)
+  - [EPUB格式](https://www.gitbook.com/download/epub/book/wizardforcel/flygon-booklist)
+  - [MOBI格式](https://www.gitbook.com/download/mobi/book/wizardforcel/flygon-booklist)
+- 程序员必读书单 1.0
+  - [在线阅读](http://www.kancloud.cn/nvshengweiwei/nvshenweiwwe)
+  - [下载地址](http://www.kancloud.cn/nvshengweiwei/nvshenweiwwe)
 
