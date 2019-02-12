@@ -82,9 +82,8 @@ mathjax: false
 
 ## 计算机科学的基础
 
-计算机科学的基础（中文版）
-
-- [在线阅读](http://www.ituring.com.cn/book/1019)
+- 计算机科学的基础（中文版）
+  - [在线阅读](http://www.ituring.com.cn/book/1019)
 
 ## Python
 
@@ -132,6 +131,7 @@ mathjax: false
 ## R
 
 - [R语言忍者秘笈](https://github.com/yihui/r-ninja)
+
 ## Perl
 
 - [Modern Perl 中文版](https://github.com/horus/modern_perl_book)
@@ -181,11 +181,11 @@ mathjax: false
 
 ## 项目相关
 
-- [持续集成（第二版）](http://article.yeeyan.org/view/2251/94882) (译言网)
+- [持续集成（第二版）](https://www.kancloud.cn/kancloud/continuousintegration/81214) (来自译言网)
 - [让开发自动化系列专栏](http://www.ibm.com/developerworks/cn/java/j-ap/)
 - [追求代码质量](http://www.ibm.com/developerworks/cn/java/j-cq/)
 - [selenium 中文文档](https://github.com/fool2fish/selenium-doc)
-- [Joel谈软件](http://local.joelonsoftware.com/wiki/Chinese_(Simplified))
+- [Joel谈软件](http://local.joelonsoftware.com/wiki/Chinese_Simplified)
 - [約耳談軟體(Joel on Software)](http://local.joelonsoftware.com/wiki/%E9%A6%96%E9%A0%81)
 
 ## 生物信息学
