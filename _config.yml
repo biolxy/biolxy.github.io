@@ -6,10 +6,10 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: 沈梦圆的博客
-brief-intro: 怕什么真理无穷, 进一寸有一寸的欢喜。
+title: 李祥永的博客
+brief-intro: 后来人有谁似我
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://shemy.site/" # the base hostname & protocol for your site
+url: "https://biolxy.github.io/" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
@@ -25,13 +25,12 @@ description_footer: 本站记录我学习之旅的沿途风景！
 # two ways to comment, only choose one, and use your own short name
 # 两种评论插件，选一个就好了，使用自己的 short_name
 duoshuo_shortname: #shenmengyuan
-disqus_shortname: shenmengyuan
-
+disqus_shortname: 李祥永
 # statistic analysis 统计代码
 # 百度统计 id，将统计代码替换为自己的百度统计id，即
 # hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
 # xxxxx字符串
-baidu_tongji_id: 35071de18ee57c6cfc5b624a6b667035
+baidu_tongji_id: e9624b27b1eea87dc5697d789610dce4
 #google_analytics_id: UA-72449510-4 # google 分析追踪id
 
 # Build settings
