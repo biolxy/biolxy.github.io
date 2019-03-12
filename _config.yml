@@ -6,16 +6,16 @@
 # 'jekyll serve'. If you change this file, please restart the server process.
 
 # Site settings
-title: 李祥永的博客
-brief-intro: 后来者有谁似我？
+title: 沈梦圆的博客
+brief-intro: 怕什么真理无穷, 进一寸有一寸的欢喜。
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://biolxy@github.io/" # the base hostname & protocol for your site
+url: "http://shemy.site/" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
 # other links
-github_username: biolxy
-email: biolxy@aliyun.com
+github_username: shenmengyuan
+email: mengyuanshen@126.com
 
 
 
@@ -25,15 +25,14 @@ description_footer: 本站记录我学习之旅的沿途风景！
 # two ways to comment, only choose one, and use your own short name
 # 两种评论插件，选一个就好了，使用自己的 short_name
 duoshuo_shortname: #shenmengyuan
-disqus_shortname: #lixiangyong
+disqus_shortname: shenmengyuan
 
 # statistic analysis 统计代码
 # 百度统计 id，将统计代码替换为自己的百度统计id，即
 # hm.src = "//hm.baidu.com/hm.js?xxxxxxxxxxxx";
 # xxxxx字符串
-baidu_tongji_id: e9624b27b1eea87dc5697d789610dce4
-google_analytics_id: UA-123145563-1
-# google 分析追踪id
+baidu_tongji_id: 35071de18ee57c6cfc5b624a6b667035
+#google_analytics_id: UA-72449510-4 # google 分析追踪id
 
 # Build settings
 markdown: kramdown
@@ -53,5 +52,5 @@ tag_dir: tag/
 excerpt_separator: "\n\n\n\n"
 
 # paginate
-plugins: [jekyll-paginate]
+gems: [jekyll-paginate]
 paginate: 6
