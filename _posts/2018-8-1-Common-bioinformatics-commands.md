@@ -98,7 +98,9 @@ awk '!seen[$0]++' <filename>    # awk 去除重复的行
 less Step1.2.sh | grep "=" | cut -d "=" -f 1 | awk '{printf $quot" ";$0}' #将一列输出为一行
 awk '{ print $(NF-1)}' file     # 出输出倒数第二列
 
-less file |  awk  '{split($1,a,":");print a[1]"-"a[3]"\t"$5}' > our.w.d    # 对awk截取字符串，file中的数据格式为:`ACAN:ENST00000561243:p.D1390E The mutant peptide: APGVEEISGLP is found in wild type sequence`， [参考](https://www.cnblogs.com/sunada2005/p/3493941.html) 
+less file |  awk  '{split($1,a,":");print a[1]"-"a[3]"\t"$5}' > our.w.d    # 对awk截取字符串，file中的数据格式为:`ACAN:ENST00000561243:p.D1390E The mutant peptide: APGVEEISGLP is found in wild type sequence`， [参考](https://www.cnblogs.com/sunada2005/p/3493941.html)
+
+awk 'BEGIN{total=0}{total+=$1}END{print total}' file   # 对文件第一列求和
 ```
 
 

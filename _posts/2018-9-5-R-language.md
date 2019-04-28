@@ -43,6 +43,8 @@ install.packages("C:\\ggplot2.zip",contriburl=NULL)
 source("http://bioconductor.org/biocLite.R")
 biocLite("ggplots")
 ```
+最新的 使用方法，参见：
+[http://bioconductor.org/install/](http://bioconductor.org/install/)
 
 #### 1.4、 通过第三方工具在线安装（devtools + github）安装发布在github上的R包
 
