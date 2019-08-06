@@ -88,34 +88,64 @@ mathjax: false
 ## Python
 
 - [小白的Python教程](http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000)
+
 - [简明Python教程](http://woodpecker.org.cn/abyteofpython_cn/chinese/)
+
 - [零基础学Python](http://looly.gitbooks.io/python-basic)
+
 - [Python 2.7 官方教程中文版](http://www.pythondoc.com/pythontutorial27/index.html)
+
 - [Python 3.3 官方教程中文版](http://www.pythondoc.com/pythontutorial3/index.html)
+
 - [深入 Python 3](http://sebug.net/paper/books/dive-into-python3/)
+
 - [PEP8 Python代码风格规范](https://code.google.com/p/zhong-wiki/wiki/PEP8)
+
 - [Google Python 风格指南 中文版](http://zh-google-styleguide.readthedocs.org/en/latest/google-python-styleguide/)
+
 - [Python入门教程](http://liam0205.me/2013/11/02/Python-tutorial-zh_cn/) ([PDF](http://liam0205.me/attachment/Python/The_Python_Tutorial_zh-cn.pdf))
+
 - [Python的神奇方法指南](http://article.yeeyan.org/view/311527/287706)
+
 - [笨办法学 Python](http://sebug.net/paper/books/LearnPythonTheHardWay/) （[PDF](http://liam0205.me/attachment/Python/PyHardWay/Learn_Python_The_Hard_Way_zh-cn.pdf)版下载）
+
 - [Django 文档中文版](http://django-chinese-docs.readthedocs.org/en/latest/)
+
 - [Django 最佳实践](https://github.com/brantyoung/zh-django-best-practices)
+
 - [The Django Book 中文版](http://djangobook.py3k.cn/2.0/)
+
 - [web.py 0.3 新手指南](http://webpy.org/tutorial3.zh-cn)
+
 - [Web.py Cookbook 简体中文版](http://webpy.org/cookbook/index.zh-cn)
+
 - [Dive Into Python 中文版](http://woodpecker.org.cn/diveintopython/)
+
 - [Bottle 文档中文版](https://associates.amazon.cn/gp/associates/network/main.html) (需翻墙)
+
 - [Flask 文档中文版](http://docs.jinkan.org/docs/flask/)
+
 - [Jinja2 文档中文版](http://docs.jinkan.org/docs/jinja2/)
+
 - [Werkzeug 文档中文版](http://werkzeug-docs-cn.readthedocs.org/zh_CN/latest/)
+
 - [Flask之旅](http://spacewander.github.io/explore-flask-zh)
+
 - [Introduction to Tornado 中文翻译](http://demo.pythoner.com/itt2zh/index.html)
+
 - [Python自然语言处理中文版](http://pan.baidu.com/s/1qW4pvnY) （感谢陈涛同学的翻译，也谢谢 [@shwley](https://github.com/shwley) 联系了作者）
+
 - [Python 绘图库 matplotlib 官方指南中文翻译](http://liam0205.me/2014/09/11/matplotlib-tutorial-zh-cn/)
+
 - [Scrapy 0.25 文档](http://scrapy-chs.readthedocs.org/zh_CN/latest/)
+
 - [ThinkPython](https://github.com/carfly/thinkpython-cn)
+
 - [python3-cookbook](https://python3-cookbook.readthedocs.io/zh_CN/latest/preface.html#)
+
 - [python之旅](http://funhacks.net/explore-python/)
+
+- [Biopython 教程与手册](https://biopython-cn.readthedocs.io/zh_CN/latest/#biopython)
 
 
 
@@ -202,4 +232,15 @@ mathjax: false
 - 程序员必读书单 1.0
   - [在线阅读](http://www.kancloud.cn/nvshengweiwei/nvshenweiwwe)
   - [下载地址](http://www.kancloud.cn/nvshengweiwei/nvshenweiwwe)
+
+
+
+## 精品视频推荐
+
+| 分类     | 课程名称                                              | 作者       | 来源                   | 备注                                                         |
+| -------- | ----------------------------------------------------- | ---------- | ---------------------- | ------------------------------------------------------------ |
+| C语言    | 程序设计入门                                          | 翁恺       | MOOC                   | https://yam.gift/2018/06/20/C/2018-06-20-C-Weng-ZhejiangUniversity/ |
+| C++      | 面向对象程序设计_C++                                  | 翁恺       | MOOC                   | https://github.com/Libaier/ABC/tree/master/c%2B%2B           |
+| 操作系统 | 操作系统原理                                          | 向勇、陈渝 | 实验楼、Mooc、学堂在线 | 配套上机实验地址： https://www.shiyanlou.com/courses/221                                    github上的课程项目： https://github.com/chyyuu/os_course_info |
+| C++      | C++面向对象高级开发   Part1\C++面向对象高级开发 Part2 | 侯捷       | GeekBand、Boolan       | https://github.com/FangYang970206/Cpp-Notes                  |
 
