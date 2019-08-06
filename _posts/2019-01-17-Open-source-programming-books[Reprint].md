@@ -237,10 +237,11 @@ mathjax: false
 
 ## 精品视频推荐
 
-| 分类     | 课程名称                                              | 作者       | 来源                   | 备注                                                         |
-| -------- | ----------------------------------------------------- | ---------- | ---------------------- | ------------------------------------------------------------ |
-| C语言    | 程序设计入门                                          | 翁恺       | MOOC                   | https://yam.gift/2018/06/20/C/2018-06-20-C-Weng-ZhejiangUniversity/ |
-| C++      | 面向对象程序设计_C++                                  | 翁恺       | MOOC                   | https://github.com/Libaier/ABC/tree/master/c%2B%2B           |
-| 操作系统 | 操作系统原理                                          | 向勇、陈渝 | 实验楼、Mooc、学堂在线 | 配套上机实验地址： https://www.shiyanlou.com/courses/221                                    github上的课程项目： https://github.com/chyyuu/os_course_info |
-| C++      | C++面向对象高级开发   Part1\C++面向对象高级开发 Part2 | 侯捷       | GeekBand、Boolan       | https://github.com/FangYang970206/Cpp-Notes                  |
-
+| 分类          | 课程名称                      | 作者       | 来源                   | 备注                                                         |
+| ------------- | ----------------------------- | ---------- | ---------------------- | ------------------------------------------------------------ |
+| C语言         | 程序设计入门                  | 翁恺       | MOOC                   | <https://yam.gift/2018/06/20/C/2018-06-20-C-Weng-ZhejiangUniversity/> |
+| C++           | 面向对象程序设计_C++          | 翁恺       | MOOC                   | <https://github.com/Libaier/ABC/tree/master/c%2B%2B>         |
+| 操作系统      | 操作系统原理                  | 向勇、陈渝 | 实验楼、MOOC、学堂在线 | - 配套上机实验地址：   https://www.shiyanlou.com/courses/221                                                                        github上的课程项目： https://github.com/chyyuu/os_course_info |
+| C++           | C++面向对象高级开发   Part1&2 | 侯捷       | GeekBand、Boolan       | <https://github.com/FangYang970206/Cpp-Notes>                |
+| Java          | 面向对象程序设计              | 翁恺       | MOOC                   | [https://www.icourse163.org/course/ZJU-1001542001   https://github.com/pageYe123/JavaMOOC_icourse](https://www.icourse163.org/course/ZJU-1001542001) |
+| 数据结构(C++) | 数据结构（上&下）             | 邓俊辉     | MOOC                   | [https://github.com/HuyuYasumi/DSA_CPP_Deng      https://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184+sp/about](https://github.com/HuyuYasumi/DSA_CPP_Deng%20%20%20%20-https:/www.xuetangx.com/courses/course-v1:TsinghuaX+30240184+sp/about) |
