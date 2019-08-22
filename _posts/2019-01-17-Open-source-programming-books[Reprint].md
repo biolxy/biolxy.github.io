@@ -235,7 +235,7 @@ mathjax: false
 
 
 
-## 精品视频推荐
+# 精品视频推荐
 
 | 分类          | 课程名称                      | 作者       | 来源                   | 备注                                                         |
 | ------------- | ----------------------------- | ---------- | ---------------------- | ------------------------------------------------------------ |
@@ -245,3 +245,21 @@ mathjax: false
 | C++           | C++面向对象高级开发   Part1&2 | 侯捷       | GeekBand、Boolan       | <https://github.com/FangYang970206/Cpp-Notes>                |
 | Java          | 面向对象程序设计              | 翁恺       | MOOC                   | [https://www.icourse163.org/course/ZJU-1001542001   https://github.com/pageYe123/JavaMOOC_icourse](https://www.icourse163.org/course/ZJU-1001542001) |
 | 数据结构(C++) | 数据结构（上&下）             | 邓俊辉     | MOOC                   | [https://github.com/HuyuYasumi/DSA_CPP_Deng      https://www.xuetangx.com/courses/course-v1:TsinghuaX+30240184+sp/about](https://github.com/HuyuYasumi/DSA_CPP_Deng%20%20%20%20-https:/www.xuetangx.com/courses/course-v1:TsinghuaX+30240184+sp/about) |
+
+
+
+# github 优质资源
+
+1. freeCodeCamp/freeCodeCamp
+   免费代码训练营
+2. [EbookFoundation/free-programming-book](https://github.com/EbookFoundation/free-programming-books/blob/master/free-programming-books-zh.md)
+   免费编程图书
+3. [CyC2018/CS-Notes](https://github.com/CyC2018/CS-Notes)
+   国人编写的计算机基础教程，中文
+4. jwasham/coding-interview-university
+   面试考点总结
+5. vinta/awesome-python
+   Python 的一些优质资源. 前面提到的 awesome 系列列表，不再赘述
+6. [github/gitignore](<https://github.com/github/gitignore>)
+   GitHub 提供的各种项目的 gitignore 文件模板，省了自己写了
+
