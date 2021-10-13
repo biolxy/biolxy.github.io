@@ -7,6 +7,11 @@ description: Linux
 author: biolxy
 mathjax: false
 ---
+
+* content
+{:toc}
+
+
 ##
 创建一个垃圾回收站，保存被删除距今3天的文件，过期则被删除
 
