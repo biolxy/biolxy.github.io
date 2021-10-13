@@ -14,8 +14,6 @@ mathjax: false
 
 
 
-# 由 reads count 数计算 TPM 和FPKM
-
 
 #### 由 reads count 数计算 TPM 和FPKM
 - 下载gff文件

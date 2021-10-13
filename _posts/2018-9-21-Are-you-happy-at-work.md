@@ -12,6 +12,11 @@ mathjax: true
 {:toc}
 
 
+
+
+
+
+
 ### 1、 自我决定论
 
 ![mark](https://img-blog.csdn.net/20180921232338694?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpeGlhbmd5b25nMTIz/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)

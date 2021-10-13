@@ -14,6 +14,9 @@ mathjax: true
 
 
 
+
+
+
 ## 1、 相对危险度 (RR)
 
 RR也叫相对风险（relative risk ）或风险比（risk ratio ）
