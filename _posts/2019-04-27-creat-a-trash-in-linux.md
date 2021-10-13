@@ -11,6 +11,11 @@ mathjax: false
 * content
 {:toc}
 
+
+
+
+
+
 # 给你的linux创建一个垃圾篓/回收站，防误删
 
 ##
