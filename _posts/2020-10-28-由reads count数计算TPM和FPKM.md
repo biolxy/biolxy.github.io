@@ -1,4 +1,14 @@
-# 由 reads count 数计算 TPM 和FPKM
+---
+layout: post
+title: "由 reads count 数计算 TPM 和FPKM"
+categories: 生物信息学
+tags: RNAseq
+description: RNAseq
+author: biolxy
+mathjax: false
+---
+
+#### 由 reads count 数计算 TPM 和FPKM
 - 下载gff文件
 - http://venanciogroup.uenf.br/cgi-bin/gmax_atlas/download_by_pub.cgi 去这里下载reads count 数据
 
@@ -59,7 +69,7 @@ write.table(fpkm,file="my_FPKM.txt",sep="\t",quote=F)
 
 ```
 
-## 计算 共表达相关性
+##### 计算 共表达相关性
 ```
 path1 = "C:\\Users\\95656\\Desktop\\hyp\\比较"
 setwd(path1)
@@ -99,7 +109,7 @@ for(i in 1:length(TCP))
 
 ```
 
-### 用 python df 计算相关性
+##### 用 python df 计算相关性
 
 ```python
 import pandas as pd
