@@ -3,7 +3,7 @@
 ## 起因
 
 
-看到![适用于绝大部分临床NGS数据分析的底层高度性能优化方案](https://mp.weixin.qq.com/s/BbxeIG_hfEwtvymfyCV0yg)想测试一下效果
+看到[适用于绝大部分临床NGS数据分析的底层高度性能优化方案](https://mp.weixin.qq.com/s/BbxeIG_hfEwtvymfyCV0yg)想测试一下效果
 
 
 ## 1. 查看 fq2fa.c 文件
