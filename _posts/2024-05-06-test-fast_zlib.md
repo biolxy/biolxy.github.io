@@ -103,6 +103,7 @@ $ sha256sum zlib-1.2.12.tar.gz
 3. `mv deflate.c deflate.old.c`
 4. `vim deflate.c`
 5. 写入：
+
 ```c
 #define ASMV
 #include "deflate.old.c"
@@ -119,7 +120,7 @@ void match_init()
 
 ## 5. 编译安装 zlib-1.2.12
 
-```
+```bash
 ./configure --prefix=/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build --shared --static
 make && make install
 ```
@@ -127,6 +128,7 @@ make && make install
 ## 6. 编译链接 fq2fa.c
 
 下载klib
+
 ```
 git clone git@github.com:attractivechaos/klib.git
 ```
@@ -137,6 +139,7 @@ gcc -o fq2fa_fast_zlib fq2fa.c -I/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/bui
 ```
 
 查看 MD5:
+
 ```
 $  md5sum fq2fa_zlib fq2fa_fast_zlib 
 4c03dc0377470f6a589e1bb4a9ffb7b0  fq2fa_zlib
@@ -146,6 +149,7 @@ e237f08440a7db5821aa902c5a8cfc1a  fq2fa_fast_zlib
 ## 7. 测试 zlib 和 fast_zlib 版本各自的速度
 
 生成测试文件, in.fq.gz 太小，体现不出速度差异
+
 ```bash
 for i in $(seq 1 4000);do cat in.fq.gz >> test.fq.gz ;done
 $ zcat in.fq.gz |wc -l 
@@ -155,7 +159,8 @@ $ zcat in.fq.gz |wc -l
 
 
 fq2fa_zlib: 
-```
+
+```bash
 $ /bin/time -v ./fq2fa_zlib test.fq.gz test_zlib.fa.gz  
 	Command being timed: "./fq2fa_zlib test.fq.gz test_zlib.fa.gz"
 	User time (seconds): 35.82
@@ -184,7 +189,8 @@ $ /bin/time -v ./fq2fa_zlib test.fq.gz test_zlib.fa.gz
 ```
 
 fq2fa_fast_zlib: 
-```
+
+```bash
 $ /bin/time -v ./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz  
 	Command being timed: "./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz"
 	User time (seconds): 34.85
@@ -213,7 +219,8 @@ $ /bin/time -v ./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz
 ```
 
 查看输出结果一致性：
-```
+
+```bash
 $ md5sum test_zlib.fa.gz test_fast_zlib.fa.gz  
 5bd3de8cf81c78962aa7100da6ab2719  test_zlib.fa.gz
 5bd3de8cf81c78962aa7100da6ab2719  test_fast_zlib.fa.gz
@@ -230,7 +237,7 @@ $ md5sum test_zlib.fa.gz test_fast_zlib.fa.gz
 
 或者 直接用 
 
-```
+```bash
 gcc -o fq2fa_fast_zlib fq2fa.c /home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build/lib/libz.a
 
 $ md5sum fq2fa_zlib fq2fa_fast_zlib               
@@ -239,7 +246,7 @@ $ md5sum fq2fa_zlib fq2fa_fast_zlib
 ```
 
 
-```
+```bash
 $ /bin/time -v ./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz                          
 	Command being timed: "./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz"
 	User time (seconds): 24.68
@@ -274,12 +281,12 @@ $ /bin/time -v ./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz
 - 上述测试是在Centos 7.9, 2 CPUs, 4G MEM 环境下测试
 - 切换至 Ubuntu 18.04, 36 CPUs, 128G MEM  / Ubuntu 20.04, 32 CPUs, 128G MEM后，发现 优化后的速度还不如不优化
 
-```
+```bash
 for i in $(seq 1 10);do printf "test.fq.gz ";done
 cat test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz test.fq.gz > aa.fq.gz 
 ```
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz 
 	Command being timed: "./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz"
 	User time (seconds): 19.61
@@ -307,7 +314,7 @@ $ /usr/bin/time -v ./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz
 ```
 
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz     
 	Command being timed: "./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz"
 	User time (seconds): 18.20
@@ -354,7 +361,7 @@ $ /usr/bin/time -v ./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz
 
 测试两个文件的速度：
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz
 	Command being timed: "./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz"
 	User time (seconds): 28.85
@@ -382,7 +389,7 @@ $ /usr/bin/time -v ./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz
 ```
 
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz 
 	Command being timed: "./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz"
 	User time (seconds): 19.87
@@ -414,7 +421,7 @@ $ /usr/bin/time -v ./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz
 - 新的问题：在 ubuntu系统中，直接使用 `gcc -o fq2fa_zlib_u fq2fa.c -lz -Lzlib` 编译链接，速度比 `fast_zlib` 修改版的尽然还要稍微快一点，原因是什么？
   - 使用 `-lz -Lzlib` 时候，使用的是系统的 `zlib`, 该版本比 `zlib-1.2.12` 有较大的速度提升 ？
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
 	Command being timed: "./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz"
 	User time (seconds): 18.59
@@ -443,7 +450,7 @@ $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
 
 查看系统（ubuntu）中zlib的版本
 
-```shell
+```bash
 $ cat /usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
 prefix=/usr
 exec_prefix=${prefix}
@@ -481,7 +488,7 @@ make && make install
 ```
 
 编译 
-```shell
+```bash
 gcc -o fq2fa_zlib-1.2.12 fq2fa.c /home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/lib/libz.a -I/home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/include
 
 gcc -o fq2fa_zlib-1.2.11 fq2fa.c /home/lixy/myproject/fast_zlib_test/zlib-1.2.11/build/lib/libz.a -I/home/lixy/myproject/fast_zlib_test/zlib-1.2.11/build/include
@@ -493,7 +500,7 @@ gcc -o fq2fa_zlib-ubuntu fq2fa.c -lz -Lzlib
 )
 ```
 
-```
+```bash
 $ /usr/bin/time -v ./fq2fa_zlib-1.2.11 aa.fq.gz aa_zlib-1.2.11.fa.gz  
 	Command being timed: "./fq2fa_zlib-1.2.11 aa.fq.gz aa_zlib-1.2.11.fa.gz"
 	User time (seconds): 29.69
@@ -583,7 +590,7 @@ $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
 
 ### 查看 apt 安装的软件是什么版本，下载到本地，看一下configure.log
 
-```
+```bash
 $ apt list --installed | rg zlib
 
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
@@ -606,7 +613,8 @@ AR=ar CC="x86_64-linux-gnu-gcc" CFLAGS="`dpkg-buildflags --get CFLAGS` `dpkg-bui
 ```
 
 创建 `build.sh`
-```
+
+```bash
 #!/bin/bash
 #@File    :   build.sh
 #@Time    :   2022/08/18 10:41:29
