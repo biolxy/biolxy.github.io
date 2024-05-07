@@ -1,4 +1,4 @@
-# <center>李祥永的个人博客</center>    
+# <center>biolxy的个人博客</center>    
 
 ### 博客地址：
 - https://biolxy.github.io/
