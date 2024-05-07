@@ -1,3 +1,17 @@
+---
+layout: post
+title: "fq2fa 使用 fast_zlib 测试加速效果"
+categories: C/C++
+tags: fast_zlib
+description: fq2fa 使用 fast_zlib 测试加速效果
+author: biolxy
+mathjax: true
+---
+
+* content
+{:toc}
+
+
 # fq2fa 尝试使用 fast_zlib
 
 ## 起因
