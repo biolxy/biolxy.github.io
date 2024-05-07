@@ -416,10 +416,10 @@ $ /usr/bin/time -v ./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz
 	Exit status: 0
 ```
 
-- 结论：在 ubuntu系统中，`fast_zlib` 项目对 `zlib`代码的修改，依旧有较大的速度提升
+  - 结论：在 ubuntu系统中，`fast_zlib` 项目对 `zlib`代码的修改，依旧有较大的速度提升
 
-- 新的问题：在 ubuntu系统中，直接使用 `gcc -o fq2fa_zlib_u fq2fa.c -lz -Lzlib` 编译链接，速度比 `fast_zlib` 修改版的尽然还要稍微快一点，原因是什么？
-  - 使用 `-lz -Lzlib` 时候，使用的是系统的 `zlib`, 该版本比 `zlib-1.2.12` 有较大的速度提升 ？
+    - 新的问题：在 ubuntu系统中，直接使用 `gcc -o fq2fa_zlib_u fq2fa.c -lz -Lzlib` 编译链接，速度比 `fast_zlib` 修改版的尽然还要稍微快一点，原因是什么？
+    - 使用 `-lz -Lzlib` 时候，使用的是系统的 `zlib`, 该版本比 `zlib-1.2.12` 有较大的速度提升 ？
 
 ```bash
 $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
@@ -448,7 +448,7 @@ $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
 	Exit status: 0
 ```
 
-查看系统（ubuntu）中zlib的版本
+## 11.2 查看系统（ubuntu）中zlib的版本
 
 ```bash
 $ cat /usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
@@ -467,7 +467,7 @@ Libs: -L${libdir} -L${sharedlibdir} -lz
 Cflags: -I${includedir}
 ```
 
-那么，`zlib-1.2.11` 会比 `zlib-1.2.12` 更快吗？
+## 11.3 那么，`zlib-1.2.11` 会比 `zlib-1.2.12` 更快吗？
 
 测试如下：
 
@@ -586,9 +586,9 @@ $ /usr/bin/time -v ./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz
   出的程序，确实比 使用 `zlib-1.2.11` 速度和 `zlib-1.2.12` 快，原因未知。
 
 
-## 为什么系统自带的zlib（deb 1.2.11）比我们手动编译的要快
+## 12 为什么系统自带的zlib（deb 1.2.11）比我们手动编译的要快
 
-### 查看 apt 安装的软件是什么版本，下载到本地，看一下configure.log
+### 12.1 查看 apt 安装的软件是什么版本，下载到本地，看一下configure.log
 
 ```bash
 $ apt list --installed | rg zlib
@@ -641,19 +641,19 @@ make && make install
 执行 `bash ./build`
 重新编译链接程序，发现 手动编译的程序的速度也来到了 `22s`, 可以确定确实是不同的编译参数导致zlib库文件的执行效率不同
 
-## fast_zlib 的优化 是否能与 ubuntu zlib的编译参数一起使用
+### 12.2 fast_zlib 的优化 是否能与 ubuntu zlib的编译参数一起使用
 
 - 可以，但是没有效，编译出的 `fq2fa_fast_zlib-1.2.11` 速度还是在 `24s`, 和未使用 ubuntu zlib的编译参数 前的速度一致
 
 
 
-## 测试 zlib-1.3.1 和 fast_zlib-1.2.13 版本各自的速度 
+## 13 测试 zlib-1.3.1 和 fast_zlib-1.2.13 版本各自的速度 
 
 - https://github.com/biolxy/zlib/tree/fast_zlib-v1.2.13
 
 > 最近 zlib 升级到了 1.3.1 ， fast_zlib 也升级到了 zlib-1.2.13
 
-### 编译zlib 时不使用优化参数
+### 13.1 编译zlib 时不使用优化参数
 
 ```bash
 ./configure --prefix=/fast_zlib_test/zlib-1.3.1/_build --shared --static
@@ -712,7 +712,7 @@ $ /usr/bin/time -v ./fq2fa_zlib-1.3.1 in.fq.gz out_fq2fa_zlib-1.3.1.fa.gz
 ```
 
 
-### 编译时添加 `-03` 优化后
+### 13.2 编译时添加 `-03` 优化后
 
 ```bash
 
