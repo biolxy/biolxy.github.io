@@ -1,14 +1,19 @@
 ---
 layout: post
 title: "我的第一个Dockerfile"
-categories: docker conda
-tags: linux python  conda
+categories: 
+  - Docker 
+  - conda
+tags: 
+  - linux 
+  - python
+  - conda
 description: 
 author: biolxy
 mathjax: false
+date: 2019-03-08
 ---
 
-* content
 {:toc}
 
 

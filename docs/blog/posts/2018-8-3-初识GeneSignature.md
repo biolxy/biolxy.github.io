@@ -1,13 +1,17 @@
 ---
 layout: post
 title: "初识Gene signature"
-categories: 肿瘤基因组
+categories: 
+  - 肿瘤基因组
 tags: signature
-keywords: Gene signature
+keywords: 
+  - Gene
+  - signature
 description: Gene signature
+date: 2018-8-3
 ---
 
-* content
+
 {:toc}
 
 

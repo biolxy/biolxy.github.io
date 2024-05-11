@@ -1,14 +1,18 @@
 ---
 layout: post
 title: "基于已有的image创建dockerimages"
-categories: Docker 
-tags: Linux Docker
+categories:
+  -  Docker 
+tags: 
+  - Linux
+  - Docker
 description: 基于已有的image，创建docker images
 author: biolxy
 mathjax: true
+date: 2018-8-19
 ---
 
-* content
+
 {:toc}
 
 

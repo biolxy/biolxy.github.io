@@ -1,15 +1,17 @@
 ---
 layout: post
 title: "一个test博客"
-categories: 生活札记
+categories: 
+  - 生活札记
 tags: markdown
 keywords: 第一次
 description: 简单的markdown博客的测试
 author: biolxy
 mathjax: true
+date: 2018-7-30
 ---
 
-* content
+
 {:toc}
 
 
