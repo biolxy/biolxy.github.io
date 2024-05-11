@@ -22,7 +22,7 @@ date: 2020-10-28
 - http://venanciogroup.uenf.br/cgi-bin/gmax_atlas/download_by_pub.cgi 去这里下载reads count 数据
 
 
-```R
+```r
 library("GenomicFeatures")
 library("dplyr")
 path1 = setwd("C:/Users/95656/Desktop/hyp/TZX/")
