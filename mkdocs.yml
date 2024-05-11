@@ -96,14 +96,15 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 plugins:
-  - offline
-  # [给单篇文章添加标签]
-  - tags
   - blog:
+    blog_dir: blog
     blog_toc: true
     post_date_format: full
     authors_file: "{blog}/.authors.yml"
     post_readtime: false
+  - offline
+  # [给单篇文章添加标签]
+  - tags
   - search:
       lang:
         - zh
