@@ -1,7 +1,7 @@
 site_name: biolxy的知识库
 site_url: https://biolxy.github.io/
 site_author: biolxy
-copyright: biolxy
+copyright: Copyright © 2024 biolxy
 repo_name: biolxy
 theme:
   name: material # 主题
