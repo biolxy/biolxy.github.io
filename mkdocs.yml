@@ -4,7 +4,6 @@ site_author: biolxy
 theme:
   name: material #主题</code>
 markdown_extensions:
-  - markdown_checklist.extension
   # Python Markdown
   - abbr
   - admonition
