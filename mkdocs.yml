@@ -102,6 +102,8 @@ plugins:
     post_date_format: full
     authors_file: "{blog}/.authors.yml"
     post_readtime: false
+    # 启用或禁用自动生成的作者配置文件
+    authors_profiles: true
   - offline
   # [给单篇文章添加标签]
   - tags
