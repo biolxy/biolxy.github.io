@@ -95,22 +95,19 @@ extra_javascript:
   - https://polyfill.io/v3/polyfill.min.js?features=es6
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+
 plugins:
+  - search
   - blog:
-    blog_dir: blog
-    blog_toc: true
-    post_date_format: full
-    authors_file: ".authors.yml"
-    post_readtime: false
-    # 启用或禁用自动生成的作者配置文件
-    authors_profiles: true
+      blog_dir: blog
+      blog_toc: true
+      post_date_format: full
+      authors_file: ".authors.yml"
+      post_readtime: false
+      authors_profiles: true  # 启用或禁用自动生成的作者配置文件
   - offline
-  # [给单篇文章添加标签]
-  - tags
-  - search:
-      lang:
-        - zh
-        - en
+  - tags  # 给单篇文章添加标签
+
 
 
 extra:
