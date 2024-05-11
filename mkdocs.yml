@@ -102,7 +102,7 @@ plugins:
       blog_dir: blog
       blog_toc: true
       post_date_format: full
-      authors_file: ".authors.yml"
+      authors_file: .authors.yml
   - offline
   - tags  # 给单篇文章添加标签
 
