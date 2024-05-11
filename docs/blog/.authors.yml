@@ -1,4 +1,7 @@
-biolxy:
-    name: biolxy
-    description: 生物信息工程师, 16年研究生毕业工作至今
-    email: biolxy@qq.com
+authors:
+  <author>:
+    name: biolxy        # Author name
+    description: 生物信息工程师, 16年研究生毕业工作至今 # Author description
+    avatar: url         # Author avatar
+    slug: url           # Author profile slug
+    url: url            # Author website URL
