@@ -1,7 +1,4 @@
 authors:
-  <author>:
-    name: biolxy        # Author name
+  biolxy:
+    name: LXY    # Author name
     description: 生物信息工程师, 16年研究生毕业工作至今 # Author description
-    avatar: url         # Author avatar
-    slug: url           # Author profile slug
-    url: url            # Author website URL
