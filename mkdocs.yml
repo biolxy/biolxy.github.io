@@ -103,8 +103,6 @@ plugins:
       blog_toc: true
       post_date_format: full
       authors_file: "{blog}/.authors.yml"
-      post_readtime: false
-      authors_profiles: true  # 启用或禁用自动生成的作者配置文件
   - offline
   - tags  # 给单篇文章添加标签
 
