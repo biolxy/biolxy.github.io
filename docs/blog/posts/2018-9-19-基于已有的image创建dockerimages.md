@@ -7,7 +7,7 @@ tags:
   - Linux
   - Docker
 description: 基于已有的image，创建docker images
-author: biolxy
+authors: [biolxy]
 mathjax: true
 date: 2018-8-19
 ---

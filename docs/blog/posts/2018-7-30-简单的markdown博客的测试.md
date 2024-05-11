@@ -6,7 +6,7 @@ categories:
 tags: markdown
 keywords: 第一次
 description: 简单的markdown博客的测试
-author: biolxy
+authors: [biolxy]
 mathjax: true
 date: 2018-7-30
 ---

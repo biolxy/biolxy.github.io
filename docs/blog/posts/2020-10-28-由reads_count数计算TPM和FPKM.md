@@ -5,7 +5,7 @@ categories:
   - 生物信息学
 tags: RNAseq
 description: RNAseq
-author: biolxy
+authors: [biolxy]
 mathjax: false
 date: 2020-10-28
 ---

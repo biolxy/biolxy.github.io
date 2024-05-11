@@ -7,7 +7,7 @@ tags:
   - 肿瘤基因组
   - 癌症基因组
 description: rename的介绍
-author: biolxy
+authors: [biolxy]
 mathjax: true
 date: 2018-9-4
 ---

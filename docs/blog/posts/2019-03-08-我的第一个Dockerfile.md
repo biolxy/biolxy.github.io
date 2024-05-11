@@ -9,7 +9,7 @@ tags:
   - python
   - conda
 description: 
-author: biolxy
+authors: [biolxy]
 mathjax: false
 date: 2019-03-08
 ---
