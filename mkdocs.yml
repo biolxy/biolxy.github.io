@@ -122,3 +122,30 @@ nav:
   - Home: index.md
   - Blog:
       - blog/index.md
+  - 肿瘤基因检测:
+      0.背景知识 Background knowledge: NGS/0.Background-knowledge.md
+      1.序列比对 reads align:
+      2.序列去重 mark/remove dup reads:
+      3.质控 QC:
+      4.变异检测 somatic mutation calling:
+      5.注释 annotate:
+      6.signature:
+      7.Fusion 基因融合:
+      8.MSI 微卫星不稳定:
+      9.TMB:
+      10.HLAtype:
+      11.Neoantigen:
+      12.HLALOH:
+      13.tumor abundance clone:
+      14.HRD:
+      15.ctDNA MRD:
+      16.RNA:
+      17.污染判定:
+      18.医学知识库:
+      19.自动化报告:
+      20.workflow:
+      21.数据传输:
+      22.性别判定:
+      23.性能验证:
+      24.行业相关:
+
