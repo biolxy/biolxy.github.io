@@ -1,14 +1,14 @@
 ---
-layout: post
-title: "给你的linux创建一个垃圾篓/回收站，防误删"
-categories: Linux
+title: 给你的linux创建一个回收站
+authors: [biolxy]
+date: 2019-04-27
+categories:
+  - Linux
+description:
 tags: Linux
-description: Linux
-author: biolxy
-mathjax: false
 ---
 
-* content
+
 {:toc}
 
 
