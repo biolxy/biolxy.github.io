@@ -50,11 +50,12 @@ theme:
 markdown_extensions:
   # Python Markdown
   - abbr
-  - admonition
   - attr_list
   - def_list
+  # [Markdown footnote 语法支持]
   - footnotes
-  - tables
+  # [Markdown 提示]
+  - admonition
   - md_in_html
   - toc:
       permalink: true
@@ -95,6 +96,8 @@ extra_javascript:
 
 plugins:
   - offline
+  # [给单篇文章添加标签]
+  - tags
   - search:
       lang:
         - zh
