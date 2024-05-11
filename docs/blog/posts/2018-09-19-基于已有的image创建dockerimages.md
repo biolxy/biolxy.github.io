@@ -9,7 +9,7 @@ tags:
 description: 基于已有的image，创建docker images
 authors: [biolxy]
 mathjax: true
-date: 2018-8-19
+date: 2018-08-19
 ---
 
 

@@ -8,7 +8,7 @@ keywords:
   - Gene
   - signature
 description: Gene signature
-date: 2018-8-3
+date: 2018-08-03
 authors: [biolxy]
 ---
 
