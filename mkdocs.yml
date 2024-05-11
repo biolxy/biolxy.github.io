@@ -1,8 +1,52 @@
 site_name: biolxy的知识库
 site_url: https://biolxy.github.io/
 site_author: biolxy
+copyright: biolxy
+repo_name: biolxy
 theme:
-  name: material #主题</code>
+  name: material # 主题
+  # [切换日间模式和夜间模式]
+  # ref: https://zhuanlan.zhihu.com/p/685390406  https://eric2003.github.io/Prometheus/home/
+  palette:
+    # 日间模式
+    - scheme: default
+      # 主颜色
+      primary: indigo
+      # 链接等可交互元件的高亮色
+      accent: orange
+      toggle:
+        # 图标
+        icon: material/weather-night
+        # 鼠标悬浮提示
+        name: 切换至夜间模式
+    # 夜间模式
+    - scheme: slate
+      primary: indigo
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至日间模式
+  features:
+    # 使用 Tab 来进行分类
+    - navigation.tabs
+    # 返回顶部的按钮，在上滑时出现
+    - navigation.top
+    # 给每个 Tab 添加一个 index.md，且在点击 Tab 时打开
+    - navigation.indexes
+    # 打开 Tab 时左侧目录全部展开
+    - navigation.expand
+    # 搜索输入一些字母时推荐补全整个单词
+    - search.suggest
+    # 搜索的关键词文章加入高亮
+    - search.highlight
+    # 可以通过按钮复制代码
+    - content.code.copy
+    # [点击按钮跳转至 GitHub 修改 Markdown 源文件]
+    - content.action.edit
+  language: zh # 一些提示性的文字会变成中文
+  icon:
+    # [添加 GitHub 仓库]
+    repo: https://github.com/biolxy
 markdown_extensions:
   # Python Markdown
   - abbr
@@ -27,6 +71,12 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
   - pymdownx.highlight
+      # 显示行号
+      linenums: true
+      # 显示编程语言名称
+      auto_title: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.keys
   - pymdownx.mark
@@ -45,7 +95,19 @@ extra_javascript:
 
 plugins:
   - offline
+  - search:
+      lang:
+        - zh
+        - en
 
+
+extra:
+  # [添加社交网络图标和链接]
+  # name 会在鼠标悬浮时提示
+  social: # icons
+    - name: GitHub | biolxy
+      icon: fontawesome/brands/github
+      link: https://github.com/biolxy
 
 # 文档布局
 nav:
