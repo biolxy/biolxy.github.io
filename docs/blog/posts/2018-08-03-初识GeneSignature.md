@@ -3,7 +3,8 @@ layout: post
 title: "初识Gene signature"
 categories: 
   - 肿瘤基因组
-tags: signature
+tags:
+  - signature
 keywords: 
   - Gene
   - signature
