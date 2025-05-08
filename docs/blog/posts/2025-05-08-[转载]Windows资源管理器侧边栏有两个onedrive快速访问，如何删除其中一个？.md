@@ -13,7 +13,7 @@ date: 2025-05-08
 # 1. 场景还原
 新安装的windows系统安装onedrive后，在资源管理器侧边栏存在两个快速访问入口，强迫症的我想删掉一个只保留一个，直接右键是无法删除的。
 
-![](https://i-blog.csdnimg.cn/direct/6b2fd4aac3f443a98e58d5200d0202c1.png)
+- ![1](https://i-blog.csdnimg.cn/direct/6b2fd4aac3f443a98e58d5200d0202c1.png)
 
 
 # 2. 导致因素
@@ -28,12 +28,12 @@ Windows 10 和 Windows 11 通常预装了 OneDrive，并自动为当前用户配
 
 HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\NameSpace,找到OneDrive - Personal 条目的文件夹并复制文件夹ID
 
-![](https://i-blog.csdnimg.cn/direct/e9703391093b455d90e7ac7631536aa9.png)
+- ![2](https://i-blog.csdnimg.cn/direct/e9703391093b455d90e7ac7631536aa9.png)
 
 在CLSID 文件夹修改System.IsPinnedtoNameSpaceTree 
 
 注册表中再次定位到HKEY_CLASSES_ROOT\CLSID\，找到刚刚搜索到的文件夹名，把System.IsPinnedtoNameSpaceTree的值改为0，再次打开资源管理器可以看到效果。
-![](https://i-blog.csdnimg.cn/direct/c56def418ee5470ca96a0414a3b917c4.png)
+- ![3](https://i-blog.csdnimg.cn/direct/c56def418ee5470ca96a0414a3b917c4.png)
 
 
 ## 2. 脚本方案 
