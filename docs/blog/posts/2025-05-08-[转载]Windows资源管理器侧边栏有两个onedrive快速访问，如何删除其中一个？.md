@@ -1,13 +1,24 @@
-1. 场景还原
+---
+title: "Windows资源管理器侧边栏有两个onedrive快速访问，如何删除其中一个？"
+categories:
+  - 杂
+tags:
+  - NGS
+authors: [转载]
+date: 2025-05-08
+---
+
+# 1. 场景还原
 新安装的windows系统安装onedrive后，在资源管理器侧边栏存在两个快速访问入口，强迫症的我想删掉一个只保留一个，直接右键是无法删除的。
 
 
 
-2. 导致因素
+# 2. 导致因素
 Windows 10 和 Windows 11 通常预装了 OneDrive，并自动为当前用户配置了一个入口。如果用户重新下载安装了一个独立版本的 OneDrive，可能会导致资源管理器同时显示两个入口。
 
-3. 解决方案
-1. 手动方案
+# 3. 解决方案
+
+## 1. 手动方案
 打开注册表，找到OneDrive - Personal 条目的文件夹
 
 定位到
@@ -22,7 +33,7 @@ HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Desktop\Nam
 
 
 
-2. 脚本方案 
+## 2. 脚本方案 
 手动方案太麻烦，下面提供一个脚本，打开powershell运行即可。
 
 ```bash
