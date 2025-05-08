@@ -1,9 +1,9 @@
 ---
 title: "Windows资源管理器侧边栏有两个onedrive快速访问，如何删除其中一个？"
 categories:
-  - 杂
+  - Windows
 tags:
-  - NGS
+  - Windows
 authors: [转载]
 date: 2025-05-08
 ---

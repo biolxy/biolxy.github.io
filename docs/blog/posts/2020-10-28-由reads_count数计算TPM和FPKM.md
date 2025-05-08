@@ -3,7 +3,8 @@ layout: post
 title: "由 reads count 数计算 TPM 和FPKM"
 categories: 
   - 生物信息学
-tags: RNAseq
+tags: 
+  - RNAseq
 description: RNAseq
 authors: [biolxy]
 mathjax: false

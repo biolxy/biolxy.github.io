@@ -3,11 +3,11 @@ layout: post
 title: "我的第一个Dockerfile"
 categories: 
   - Docker 
-  - conda
+  - Conda
 tags: 
-  - linux 
-  - python
-  - conda
+  - Linux 
+  - Python
+  - Conda
 description: 
 authors: [biolxy]
 mathjax: false
