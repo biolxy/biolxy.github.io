@@ -63,4 +63,4 @@ ID 服务器：rustdesk.example.com:21116，默认端口为21116时可以省略�
 
 Key：填写部署服务默认生成的 id_ed25519.pub 文件中的内容
 
-![](https://i-blog.csdnimg.cn/direct/02e393322bf24ed9b16456845f83d291.png)
+![示例配置](https://i-blog.csdnimg.cn/direct/02e393322bf24ed9b16456845f83d291.png)
