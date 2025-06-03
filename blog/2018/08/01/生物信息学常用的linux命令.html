@@ -1,0 +1,2434 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="这是我最初接触生物信息学时用到的命令，未仔细整理">
+      
+      
+        <meta name="author" content="biolxy">
+      
+      
+        <link rel="canonical" href="https://biolxy.github.io/blog/2018/08/01/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E5%B8%B8%E7%94%A8%E7%9A%84linux%E5%91%BD%E4%BB%A4.html">
+      
+      
+        <link rel="prev" href="../../07/31/github%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E8%AE%B0%E5%BD%95.html">
+      
+      
+        <link rel="next" href="../03/%E5%88%9D%E8%AF%86gene-signature.html">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>生物信息学常用的Linux命令 - biolxy的知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../index.html" title="biolxy的知识库" class="md-header__button md-logo" aria-label="biolxy的知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            biolxy的知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              生物信息学常用的Linux命令
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../NGS/0.Background-knowledge.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  肿瘤基因检测
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../index.html" title="biolxy的知识库" class="md-nav__button md-logo" aria-label="biolxy的知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    biolxy的知识库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    归档
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            归档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2022.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2021.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2021
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2020.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2020
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2019.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2019
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2018.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2018
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    分类
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            分类
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/cc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C/C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/conda.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/linux.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/python.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/r.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/rusedest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RuseDest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    develop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E5%8D%9A%E5%AE%A2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    博客
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%94%9F%E6%B4%BB%E6%9C%AD%E8%AE%B0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生活札记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生物信息学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%BB%9F%E8%AE%A1%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    统计学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E8%82%BF%E7%98%A4%E5%9F%BA%E5%9B%A0%E7%BB%84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    肿瘤基因组
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    肿瘤基因检测
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            肿瘤基因检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/0.Background-knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0.背景知识 Background knowledge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/1.reads-align.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1.序列比对 reads align
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/2.remove-mark-dup-reads.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.序列去重 mark/remove dup reads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/3.fastp-bam-qc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3.质控 QC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/4.somatic-mutation-calling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4.变异检测 somatic mutation calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.annotate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.注释 annotate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/6.signature.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.signature
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/7.Fusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7.Fusion 基因融合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/8.MSI.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.MSI 微卫星不稳定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/9.TMB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9.TMB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/10.HLAtype.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10.HLAtype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/11.Neoantigen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11.Neoantigen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/12.HLALOH.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12.HLALOH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/13.tumor-abundance-clone.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13.tumor abundance clone
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/14.HRD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14.HRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.MRD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15.ctDNA MRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.RNA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16.RNA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/17.CNV.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17.CNV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/18.conta.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18.污染判定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/19.Medical-knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19.医学知识库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/20.report.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20.自动化报告
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/21.workflow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    21.workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/22.data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    22.数据传输存储
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/23.gender.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    23.性别判定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/24.pv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    24.性能验证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/25.industry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    25.行业相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1、 前言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-blast" class="md-nav__link">
+    <span class="md-ellipsis">
+      2、 构建blast数据库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3、 碱基/蛋白序列比对
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4、 画树
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-cdspep" class="md-nav__link">
+    <span class="md-ellipsis">
+      5、 提取CDS/pep序列
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6、 修改环境变量
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-prottest" class="md-nav__link">
+    <span class="md-ellipsis">
+      7、 prottest的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      8、 shell 脚本知识
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-awk" class="md-nav__link">
+    <span class="md-ellipsis">
+      9、 awk的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-sed" class="md-nav__link">
+    <span class="md-ellipsis">
+      10、 sed的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-linux" class="md-nav__link">
+    <span class="md-ellipsis">
+      11、 linux 命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-perl" class="md-nav__link">
+    <span class="md-ellipsis">
+      12、 单行 perl
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-r" class="md-nav__link">
+    <span class="md-ellipsis">
+      13、 R 命令行
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-kaks" class="md-nav__link">
+    <span class="md-ellipsis">
+      14、 kaks计算
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-gffgtf" class="md-nav__link">
+    <span class="md-ellipsis">
+      15、 gff和gtf之间的格式转化
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-vim" class="md-nav__link">
+    <span class="md-ellipsis">
+      16、 vim 的使用
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17" class="md-nav__link">
+    <span class="md-ellipsis">
+      17、 数据存放
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      推荐连接
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://gravatar.com/avatar/d63d3425433de59d2c3e901977a581c7?size=256&cache=1715411947733" alt="biolxy">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          biolxy
+                        
+                      </strong>
+                      <br>
+                      生物信息工程师
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2018-08-01 00:00:00+00:00" class="md-ellipsis">2018年8月1日星期三</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../category/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6.html">生物信息学</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 5 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">生物信息学</span>
+      
+    
+      
+      
+      
+        <span class="md-tag">肿瘤基因组</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="linux">生物信息学常用的Linux命令<a class="headerlink" href="#linux" title="Permanent link">&para;</a></h1>
+<h3 id="1">1、 前言<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>东西有点杂乱，还需要慢慢整理。其中的 sed awk perl 等命令我觉得都可以单独分出来讲了</p>
+<h3 id="2-blast">2、 构建blast数据库<a class="headerlink" href="#2-blast" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">makeblastdb<span class="w"> </span>-in<span class="w"> </span>../ATaa.fa<span class="w"> </span>-dbtype<span class="w"> </span>prot<span class="w"> </span>-title<span class="w"> </span>ATaa-parse_seqids<span class="w"> </span>-out<span class="w"> </span>ATdb<span class="w">   </span><span class="c1">#可用的蛋白库</span>
+</span><span id="__span-0-2">makeblastdb<span class="w"> </span>-in<span class="w"> </span>../ATaa.fa<span class="w"> </span>-dbtype<span class="w"> </span>nucl<span class="w"> </span>-title<span class="w"> </span>ATaa-parse_seqids<span class="w"> </span>-out<span class="w"> </span>ATdb<span class="w">  </span><span class="c1">#可用的核酸白库</span>
+</span><span id="__span-0-3">blastp<span class="w"> </span>-db<span class="w"> </span>/home/hanyapeng/prot/DB/Mtrdb<span class="w"> </span>-query<span class="w"> </span>At.fa<span class="w"> </span>-outfmt<span class="w"> </span><span class="m">6</span><span class="w"> </span>-evalue<span class="w"> </span>1e-20<span class="w"> </span>-out<span class="w"> </span>Mtr.blast<span class="w"> </span>-num_threads<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-0-4">blastn<span class="w"> </span>-query<span class="w"> </span>seq.fasta<span class="w"> </span>-out<span class="w"> </span>seq.blast<span class="w"> </span>-db<span class="w"> </span>dbname<span class="w"> </span>-outfmt<span class="w"> </span><span class="m">6</span><span class="w"> </span>-evalue<span class="w"> </span>1e-5<span class="w"> </span>-num_descriptions<span class="w"> </span><span class="m">10</span><span class="w"> </span>-num_threads<span class="w"> </span><span class="m">8</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="3">3、 碱基/蛋白序列比对<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">muscle -in AtLj.fa -out AtLj.phy  # -out，输出默认的fasta格式
+</span><span id="__span-1-2">muscle -in At.fasta -phyiout At.phy  # -phyiout，则输出sequential phylip格式
+</span><span id="__span-1-3">mafft aa.fa &gt; aa.fas
+</span></code></pre></div></td></tr></table></div>
+<h3 id="4">4、 画树<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">nohup<span class="w"> </span>raxmlHPC-PTHREADS<span class="w"> </span>-s<span class="w"> </span>ALO.phy<span class="w"> </span>-n<span class="w"> </span>ALO<span class="w"> </span>-m<span class="w"> </span>PROTCATJTT<span class="w"> </span>-f<span class="w"> </span>a<span class="w"> </span>-N<span class="w"> </span><span class="m">100</span><span class="w"> </span>-p<span class="w"> </span><span class="m">12345</span><span class="w"> </span>-x<span class="w"> </span><span class="m">1234567</span><span class="w"> </span>-T<span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="p">&amp;</span><span class="w">  </span><span class="c1"># RaxML树</span>
+</span><span id="__span-2-2">nohup<span class="w"> </span>../software/PhyML_3.0_linux64<span class="w"> </span>-i<span class="w"> </span>AGO.phy<span class="w"> </span>-d<span class="w"> </span>aa<span class="w"> </span>-b<span class="w"> </span><span class="m">0</span><span class="w">  </span>-f<span class="w"> </span>e<span class="w"> </span>-s<span class="w"> </span>BEST<span class="w"> </span>-c<span class="w"> </span><span class="m">4</span><span class="w"> </span>-m<span class="w"> </span>VT<span class="w"> </span>-v<span class="w"> </span>e<span class="w"> </span>-a<span class="w"> </span>e<span class="w"> </span>-o<span class="w"> </span>lr<span class="w"> </span>--no_memory_check<span class="w"> </span><span class="p">&amp;</span><span class="w">  </span><span class="c1"># Phyml 树</span>
+</span><span id="__span-2-3">../software/FastTree<span class="w"> </span>TCP123.phy<span class="w">  </span>&gt;<span class="w"> </span>TCP.tree<span class="w">   </span><span class="c1">#fasttree 画树</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="5-cdspep">5、 提取CDS/pep序列<a class="headerlink" href="#5-cdspep" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">nohup<span class="w"> </span>hmmsearch<span class="w"> </span>-E<span class="w"> </span>1e-5<span class="w"> </span>TCP.hmm<span class="w">  </span>/home/hanyapeng/prot/Gma.prot<span class="w"> </span>&gt;<span class="w"> </span>Gma.hmm<span class="w"> </span><span class="p">&amp;</span>
+</span><span id="__span-3-2">less<span class="w"> </span>-S<span class="w"> </span>Gma.hmm<span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{if ($1~/e-/) print $9}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>list<span class="w">     </span><span class="c1">#if第一行匹配到e-，则调出第9行#  </span>
+</span><span id="__span-3-3">
+</span><span id="__span-3-4">nohup<span class="w"> </span>hmmsearch<span class="w"> </span>--domtblout<span class="w"> </span>hmmresult.txt<span class="w"> </span>-E<span class="w"> </span>1e-5<span class="w"> </span>TCP.hmm<span class="w">  </span>/home/hanyapeng/prot/Gma.prot<span class="w">  </span><span class="p">&amp;</span>
+</span><span id="__span-3-5">less<span class="w"> </span>-S<span class="w"> </span>hmmresult.txt<span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{ if ($1~/e-/) print$1&quot;\t&quot;$20&quot;\t&quot;$21}&#39;</span><span class="p">|</span>less<span class="w"> </span>-S<span class="w"> </span>&gt;<span class="w"> </span>GmaTCPdomain.list<span class="w">    </span><span class="c1"># 提取第1.20.21列为坐标</span>
+</span><span id="__span-3-6">
+</span><span id="__span-3-7">perl<span class="w"> </span>/home/lixiangyong/software/getseq.pl<span class="w"> </span>Osa.list<span class="w"> </span>/home/hanyapeng/prot/Osa.prot<span class="w"> </span>&gt;<span class="w"> </span>Osa.fa
+</span><span id="__span-3-8">perl<span class="w"> </span>/home/lixiangyong/software/get_domain.pl<span class="w">  </span>/home/hanyapeng/prot/Osa.prot<span class="w">  </span>OsaTCPdomain.list<span class="w"> </span>&gt;<span class="w"> </span>OsaTCPdomain.fa<span class="w">  </span><span class="c1">#提取domain</span>
+</span><span id="__span-3-9">
+</span><span id="__span-3-10">perl<span class="w"> </span>/home/lixiangyong/software/getseq.pl<span class="w"> </span>Chr13<span class="w"> </span>Gmax275.fa<span class="w"> </span>&gt;<span class="w"> </span>Chr13.fa<span class="w">  </span>
+</span><span id="__span-3-11">perl<span class="w"> </span>/home/hanyapeng/comm/getpromoter.pl<span class="w"> </span>/data/plant_genome/Glyma2.0/Gmax275.fa<span class="w"> </span>Q1.txt<span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="w">  </span><span class="c1"># 提取启动子序列 Q1为启动子坐标</span>
+</span><span id="__span-3-12">cat<span class="w"> </span>AT.fa<span class="w"> </span>Lj.fa<span class="w"> </span>Osa.fa<span class="w"> </span>&gt;<span class="w"> </span>ATLjOsa.fa
+</span></code></pre></div></td></tr></table></div>
+<h3 id="6">6、 修改环境变量<a class="headerlink" href="#6" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">vi .bash_profile     # 或则 .bash_login   .profile   .bashrc 
+</span><span id="__span-4-2">vi .bash_profile     # 添加环境变量 PATH=$PATH:$HOME/bin
+</span><span id="__span-4-3">source .bash_profile  #   立刻执行更改
+</span><span id="__span-4-4">
+</span><span id="__span-4-5">nano .bashrc             #和vi类似的编辑器
+</span><span id="__span-4-6">source .bashrc
+</span></code></pre></div></td></tr></table></div>
+<h3 id="7-prottest">7、 prottest的使用<a class="headerlink" href="#7-prottest" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">nohup java -jar prottest-3.4.jar -i AGO.phy -all-matrices -all-distributions  &gt; a.txt  &amp;  # 此.phy 文件为比对过的氨基酸序列文件
+</span><span id="__span-5-2">
+</span><span id="__span-5-3">nohup java -jar prottest-3.4.jar -i namefail.phy -o namefail.txt -S 1 -AIC -I -G -IG -F -ncat 8 -all &amp;
+</span><span id="__span-5-4">
+</span><span id="__span-5-5">nohup java -jar prottest-3.4.jar -i AGOdomain.phy -o AGOdomain.txt -all-matrices -all-distributions &amp;
+</span><span id="__span-5-6">
+</span><span id="__span-5-7">nohup java -jar jModelTest.jar -d example-data/aP6.fas -f -i -g 4 -s 11 -AIC -a &gt;a.txt  &amp;  此.fas文件为核苷酸序列文件
+</span><span id="__span-5-8">
+</span><span id="__span-5-9">PhyML-3.1_linux64 -i aP6.phy -d nt -n 1 -b 0 --run_id F81+I -m 000000 -f m -v e -c 1 --no_memory_check -o tlr -s BEST
+</span><span id="__span-5-10">
+</span><span id="__span-5-11">PhyML-3.1_linux64 -i aP6.phy -q -d aa -m JTT -c 4 -a e
+</span></code></pre></div></td></tr></table></div>
+<h3 id="8-shell">8、 shell 脚本知识<a class="headerlink" href="#8-shell" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">!<span class="o">=</span><span class="w"> </span>不等于,如:if<span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$a</span><span class="s2">&quot;</span><span class="w"> </span>!<span class="o">=</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$b</span><span class="s2">&quot;</span><span class="w"> </span><span class="o">]</span><span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="9-awk">9、 awk的使用<a class="headerlink" href="#9-awk" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">less<span class="w"> </span>Y2.blast<span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39; {if ($11 ~ /0\.0/) print $0}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span><span class="m">1</span><span class="w">      </span><span class="c1"># 每一行中，如果第11列=0.0，则输出全部  “~”是 =  ，$11 调取第11列 ， \ 反义符 </span>
+</span><span id="__span-7-2">awk<span class="w"> </span><span class="s1">&#39;{line[NR]=$0}END{for(i=NR;i&gt;0;i--)print line[i]}&#39;</span><span class="w"> </span>sed.txt<span class="w">  </span><span class="c1"># 把sed.txt 中的内容按行倒着输出</span>
+</span><span id="__span-7-3">less<span class="w"> </span>-S<span class="w"> </span>Gma3.fa<span class="w"> </span><span class="p">|</span>awk<span class="w"> </span><span class="s1">&#39;{if ($1~/&gt;/) print $head}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>a
+</span><span id="__span-7-4">awk<span class="w"> </span><span class="s1">&#39;!seen[$0]++&#39;</span><span class="w"> </span>&lt;filename&gt;<span class="w">    </span><span class="c1"># awk 去除重复的行</span>
+</span><span id="__span-7-5">less<span class="w"> </span>Step1.2.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;=&quot;</span><span class="w"> </span>-f<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">&#39;{printf $quot&quot; &quot;;$0}&#39;</span><span class="w"> </span><span class="c1">#将一列输出为一行</span>
+</span><span id="__span-7-6">awk<span class="w"> </span><span class="s1">&#39;{ print $(NF-1)}&#39;</span><span class="w"> </span>file<span class="w">     </span><span class="c1"># 出输出倒数第二列</span>
+</span><span id="__span-7-7">
+</span><span id="__span-7-8">less<span class="w"> </span>file<span class="w"> </span><span class="p">|</span><span class="w">  </span>awk<span class="w">  </span><span class="s1">&#39;{split($1,a,&quot;:&quot;);print a[1]&quot;-&quot;a[3]&quot;\t&quot;$5}&#39;</span><span class="w"> </span>&gt;<span class="w"> </span>our.w.d<span class="w">    </span><span class="c1"># 对awk截取字符串，file中的数据格式为:`ACAN:ENST00000561243:p.D1390E The mutant peptide: APGVEEISGLP is found in wild type sequence`， [参考](https://www.cnblogs.com/sunada2005/p/3493941.html)</span>
+</span><span id="__span-7-9">
+</span><span id="__span-7-10">awk<span class="w"> </span><span class="s1">&#39;BEGIN{total=0}{total+=$1}END{print total}&#39;</span><span class="w"> </span>file<span class="w">   </span><span class="c1"># 对文件第一列求和</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="10-sed">10、 sed的使用<a class="headerlink" href="#10-sed" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;s/Gma/Glyma/g&#39;</span><span class="w"> </span>Glyma.fa
+</span><span id="__span-8-2">sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/^$/d&#39;</span><span class="w"> </span>2_domain.txt<span class="w">  </span><span class="c1"># 删除文件空行</span>
+</span><span id="__span-8-3">sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;/#/d&#39;</span><span class="w"> </span>AtTCP.txt<span class="w">      </span><span class="c1"># 删除有\#的行</span>
+</span><span id="__span-8-4">sed<span class="w"> </span>-i<span class="w"> </span>s/^M//<span class="w"> </span>AAt.list.txt<span class="w">   </span><span class="c1"># 此处^M必需手动输入！！</span>
+</span><span id="__span-8-5">sed<span class="w"> </span>-i<span class="w"> </span>/^$/d<span class="w"> </span>file<span class="w">     </span><span class="c1">#删除空行   d 指删除含有空行符的这一行</span>
+</span><span id="__span-8-6">sed<span class="w"> </span>-i<span class="w"> </span>s/tr.*//g<span class="w"> </span>LjTCP.fa<span class="w">  </span><span class="c1">#  去除无用的注释    :%s/|.*.\[//g  #去除从|开始，到[结束内的所有字符，包括[#</span>
+</span><span id="__span-8-7">
+</span><span id="__span-8-8">sed<span class="w"> </span><span class="s1">&#39;s/^/aaa/g&#39;</span><span class="w"> </span>filename.txt<span class="w"> </span>&gt;<span class="w"> </span>outputfile.txt<span class="w">  </span><span class="c1"># 在文件中的每一行之前加上一个字符串，比如：aaa    行尾将^是 $ </span>
+</span><span id="__span-8-9">sed<span class="w"> </span>-i/<span class="se">\&gt;</span>Chr17/d<span class="w"> </span>Chr17.fa<span class="w">   </span><span class="c1"># 删除Chr17.fa 中的Chr字符</span>
+</span><span id="__span-8-10">sed<span class="w"> </span>-i<span class="w"> </span><span class="s2">&quot;s/zhangsan/lisi/g&quot;</span><span class="w"> </span><span class="sb">`</span>grep<span class="w"> </span>zhangsan<span class="w"> </span>-rl<span class="w"> </span>modules<span class="sb">`</span><span class="w"> </span><span class="c1">#批量替换，讲文件夹modules中所有文件执行sed -i       &quot;s/zhangsan/lisi/g&quot; 该符号`不是点，是Esc下面的符号 </span>
+</span><span id="__span-8-11">sed<span class="w"> </span>-i<span class="w"> </span><span class="s1">&#39;1iNew Top Line&#39;</span><span class="w"> </span>aa.txt<span class="w">    </span><span class="c1">#  sed 在句首添加一行 New Top Line</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="11-linux">11、 linux 命令<a class="headerlink" href="#11-linux" title="Permanent link">&para;</a></h3>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">date<span class="w">   </span><span class="c1">#  查看系统日期</span>
+</span><span id="__span-9-2">cal<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2016</span><span class="w">   </span><span class="c1"># 查看2016年1月的日历</span>
+</span><span id="__span-9-3">df<span class="w">     </span><span class="c1"># 查看磁盘驱动器的可用空间  </span>
+</span><span id="__span-9-4">free<span class="w">   </span><span class="c1"># 显示可用内存</span>
+</span><span id="__span-9-5">.<span class="w">     </span><span class="c1"># 工作目录     </span>
+</span><span id="__span-9-6">..<span class="w">   </span><span class="c1"># 工作目录的父目录   如：  cd ..   返回上一级    cd  ./software/  </span>
+</span><span id="__span-9-7">file<span class="w"> </span>Gma1.fa<span class="w">   </span><span class="c1"># 显示  Gma1.fa: ASCII text  该文件为文本文档ASCII</span>
+</span><span id="__span-9-8"><span class="nb">alias</span><span class="w"> </span><span class="nv">foo</span><span class="o">=</span><span class="s1">&#39;cd /usr; ls; cd -&#39;</span><span class="w">   </span><span class="c1"># 自己创建命令   unalias foo 删除</span>
+</span><span id="__span-9-9">gedit<span class="w"> </span>Gma1.fa<span class="w">   </span><span class="c1"># 图形编辑器编辑Gma1.fa </span>
+</span><span id="__span-9-10">
+</span><span id="__span-9-11">rm<span class="w"> </span>--<span class="w"> </span>-foo<span class="w">   </span><span class="c1"># 要删除第一个字符为‘-’的文件 (例如‘-foo’)</span>
+</span><span id="__span-9-12">rm<span class="w"> </span>./-foo<span class="w">   </span><span class="c1"># 要删除第一个字符为‘-’的文件 (例如‘-foo’)</span>
+</span><span id="__span-9-13">
+</span><span id="__span-9-14">chmod<span class="w"> </span><span class="m">755</span><span class="w"> </span>lixiangyong/<span class="w">  </span><span class="c1"># 更改目录权限为可读</span>
+</span><span id="__span-9-15">
+</span><span id="__span-9-16">wc<span class="w"> </span>-l<span class="w"> </span>filename<span class="w"> </span><span class="c1"># 就是查看文件里有多少行</span>
+</span><span id="__span-9-17">wc<span class="w"> </span>-w<span class="w"> </span>filename<span class="w"> </span><span class="c1"># 看文件里有多少个word。</span>
+</span><span id="__span-9-18">wc<span class="w"> </span>-L<span class="w"> </span>filename<span class="w"> </span><span class="c1"># 文件里最长的那一行是多少个字</span>
+</span><span id="__span-9-19">wc<span class="w"> </span>-c<span class="w">  </span>filename<span class="w">   </span><span class="c1"># 统计字节数</span>
+</span><span id="__span-9-20">
+</span><span id="__span-9-21">cat<span class="w"> </span>Y.list<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>&gt;<span class="w"> </span>YRedundancy.list<span class="w">    </span><span class="c1"># 去除文件Y.list中的重复的行命名为YR.list</span>
+</span><span id="__span-9-22">less<span class="w"> </span>-S<span class="w"> </span>AGO.fa<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span><span class="s2">&quot;&gt;&quot;</span><span class="w"> </span><span class="p">|</span>wc<span class="w"> </span>-l<span class="w">  </span><span class="c1"># 检索&gt;有多少个  同  grep -c &quot;&gt;&quot; AGO.fa</span>
+</span><span id="__span-9-23"><span class="k">for</span><span class="w"> </span>tar<span class="w"> </span><span class="k">in</span><span class="w"> </span>*.tar.gz<span class="p">;</span><span class="w">  </span><span class="k">do</span><span class="w"> </span>tar<span class="w"> </span>xvf<span class="w"> </span><span class="nv">$tar</span><span class="p">;</span><span class="w"> </span><span class="k">done</span><span class="w">    </span><span class="c1">#批量解压文件#</span>
+</span><span id="__span-9-24">split<span class="w"> </span>-l<span class="w"> </span><span class="m">10</span><span class="w"> </span>splitfile.txt<span class="w"> </span>D<span class="w">  </span><span class="c1"># 将文件按每10行分割，新文件命名为 Daa Dab#</span>
+</span><span id="__span-9-25">rename<span class="w"> </span>linux<span class="w"> </span>unix<span class="w"> </span>linux*<span class="w">    </span><span class="c1"># 文件批量  </span>
+</span><span id="__span-9-26">find<span class="w"> </span>.<span class="w"> </span>-name<span class="w"> </span><span class="s1">&#39;*.txt&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>xargs<span class="w"> </span>perl<span class="w"> </span>-pi<span class="w"> </span>-e<span class="w"> </span><span class="s1">&#39;s/aaa/bbb/g&#39;</span><span class="w">  </span><span class="c1"># 遍历整个文件夹，把所有txt文件中的aaa替换成bbb</span>
+</span><span id="__span-9-27">mkdir<span class="w"> </span><span class="k">$(</span>date<span class="w"> </span>+%F<span class="k">)</span><span class="w">  </span><span class="c1">#创建一个以日期为名的文件夹</span>
+</span><span id="__span-9-28">touch<span class="w"> </span><span class="o">{</span><span class="m">1</span>..9<span class="o">}</span>.txt<span class="w">   </span><span class="c1"># 批量创建文件</span>
+</span><span id="__span-9-29">
+</span><span id="__span-9-30">ls<span class="w"> </span>-F<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;/$&#39;</span><span class="w">         </span><span class="c1">#  查看当前目录下的文件夹 </span>
+</span><span id="__span-9-31"><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="sb">`</span>ls<span class="w"> </span>-F<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s1">&#39;/$&#39;</span><span class="sb">`</span><span class="p">;</span><span class="k">do</span><span class="w"> </span>sudo<span class="w"> </span>du<span class="w"> </span>-sh<span class="w"> </span><span class="nv">$i</span><span class="p">;</span><span class="k">done</span><span class="w">   </span><span class="c1">#查看当前目录下，每个子目录及其子目录的总大小</span>
+</span><span id="__span-9-32">
+</span><span id="__span-9-33">rename<span class="w"> </span><span class="s2">&quot;s/AA/aa/&quot;</span><span class="w"> </span>*
+</span><span id="__span-9-34">rename<span class="w"> </span>.fas<span class="w"> </span>.fa<span class="w"> </span>*.fas<span class="w">    </span><span class="c1"># CentOS 下可用</span>
+</span><span id="__span-9-35">
+</span><span id="__span-9-36">iostat<span class="w"> </span>-d<span class="w"> </span>-k<span class="w"> </span><span class="m">1</span><span class="w"> </span>10可以看到每个盘的读写速度
+</span><span id="__span-9-37">
+</span><span id="__span-9-38">find<span class="w"> </span>/home/lxy<span class="w"> </span>-type<span class="w"> </span>f<span class="w"> </span>-size<span class="w"> </span>+100M<span class="w">    </span><span class="c1">#列出文件夹 /home/lxy 下大于100M的文件</span>
+</span><span id="__span-9-39">find<span class="w"> </span>.<span class="w"> </span>-type<span class="w"> </span>l<span class="w"> </span>-exec<span class="w"> </span>rm<span class="w">  </span><span class="o">{}</span><span class="w"> </span><span class="se">\;</span><span class="w">  </span><span class="c1">#列出当前路径 .  下的link类型的文件(type</span>
+</span><span id="__span-9-40"><span class="w"> </span>l<span class="o">)</span><span class="w"> </span>并删除
+</span></code></pre></div></td></tr></table></div>
+<h3 id="12-perl">12、 单行 perl<a class="headerlink" href="#12-perl" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">perl -e &quot;print lc($a)&quot;    # Perl 大小写转换
+</span></code></pre></div></td></tr></table></div>
+<h3 id="13-r">13、 R 命令行<a class="headerlink" href="#13-r" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">Rscript /home/muscle/test.r  # linux 上运行r脚本
+</span></code></pre></div></td></tr></table></div>
+<h3 id="14-kaks">14、 kaks计算<a class="headerlink" href="#14-kaks" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">perl pal2nal.perl aligned.protein.fas original.cds.fas -output fasta &gt; aligned.cds.fas
+</span><span id="__span-12-2">perl ../software/pal2nal.pl 2.fas 2.cds -output paml &gt; 2.nuc    #kaks计算
+</span></code></pre></div></td></tr></table></div>
+<h3 id="15-gffgtf">15、 gff和gtf之间的格式转化<a class="headerlink" href="#15-gffgtf" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">gffread my.gff3 -T -o my.gtf # gff2gtf
+</span><span id="__span-13-2">gffread merged.gtf -o- &gt; merged.gff3  # gtf2gff
+</span></code></pre></div></td></tr></table></div>
+<h3 id="16-vim">16、 vim 的使用<a class="headerlink" href="#16-vim" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">:12,23s/aa/bb/g     # 将从12 行到23 行中出现的所有包含aa 的字符串中的aa 替换为bb
+</span><span id="__span-14-2">:s/\&lt;aa\&gt;/bb/g      # 将光标所在行出现的所有aa 替换为bb, 仅替换aa 这个单词
+</span><span id="__span-14-3">:12,23s/^/#/        # 将从12 行到23 行的行首加入# 字符
+</span><span id="__span-14-4">
+</span><span id="__span-14-5">:10,15s#^#\#\##g          #  vim的 V模式下，下注释x  10 -15  行，##注释
+</span><span id="__span-14-6">
+</span><span id="__span-14-7">Esc shift+ : wq   enter   =  Esc shift+ : x  enter       #保存并退出
+</span><span id="__span-14-8">Esc shift+ : q！  enter                                  #不保存强制退出 
+</span><span id="__span-14-9">vi foo.txt ls-output.txt    # 同时vi编辑多个文件  ：n   ：N   ：buffer 2 来回切换     也可以先打开一个，在用：e ls-output.txt
+</span></code></pre></div></td></tr></table></div>
+<h3 id="17">17、 数据存放<a class="headerlink" href="#17" title="Permanent link">&para;</a></h3>
+<p>/data/public/hanyapeng/Gm/Gma.collinear.groups      # 大豆中所有旁系同源基因<br />
+/data/public/wanglei/inparanoid4.0/Soybeanparalog2.txt     # 大豆中所有旁系同源基因</p>
+<h2 id="_1">推荐连接<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://github.com/stephenturner/oneliners">Bioinformatics one-liners</a></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024 biolxy
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/biolxy" target="_blank" rel="noopener" title="GitHub | biolxy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.top", "navigation.indexes", "navigation.expand", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

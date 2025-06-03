@@ -1,0 +1,3339 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="fq2fa 使用 fast_zlib 测试加速效果">
+      
+      
+        <meta name="author" content="biolxy">
+      
+      
+        <link rel="canonical" href="https://biolxy.github.io/blog/2024/05/06/fq2fa-%E4%BD%BF%E7%94%A8-fast_zlib-%E6%B5%8B%E8%AF%95%E5%8A%A0%E9%80%9F%E6%95%88%E6%9E%9C.html">
+      
+      
+        <link rel="prev" href="../../../2022/08/11/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6%E4%B9%A0%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF%E7%94%9F%E4%BF%A1%E6%8C%87%E6%9C%88%E5%BD%95.html">
+      
+      
+        <link rel="next" href="../10/%E5%88%A9%E7%94%A8%E8%B4%9D%E5%8F%B6%E6%96%AF%E5%AE%9A%E7%90%86%E5%88%A4%E6%96%ADsnv.html">
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>fq2fa 使用 fast_zlib 测试加速效果 - biolxy的知识库</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+        <script src="https://unpkg.com/iframe-worker/shim"></script>
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fq2fa-fast_zlib" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../../../index.html" title="biolxy的知识库" class="md-header__button md-logo" aria-label="biolxy的知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            biolxy的知识库
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              fq2fa 使用 fast_zlib 测试加速效果
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../../index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Blog
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../NGS/0.Background-knowledge.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  肿瘤基因检测
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden>
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../index.html" title="biolxy的知识库" class="md-nav__button md-logo" aria-label="biolxy的知识库" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    biolxy的知识库
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    归档
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            归档
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2025.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2025
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2024.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2024
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2022.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2022
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2021.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2021
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2020.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2020
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2019.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2019
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../archive/2018.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2018
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    分类
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            分类
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/cc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C/C++
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/conda.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/docker.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/linux.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/python.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/r.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    R
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/rusedest.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    RuseDest
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/windows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Windows
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/develop.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    develop
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E5%8D%9A%E5%AE%A2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    博客
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%94%9F%E6%B4%BB%E6%9C%AD%E8%AE%B0.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生活札记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%94%9F%E7%89%A9%E4%BF%A1%E6%81%AF%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    生物信息学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E7%BB%9F%E8%AE%A1%E5%AD%A6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    统计学
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../category/%E8%82%BF%E7%98%A4%E5%9F%BA%E5%9B%A0%E7%BB%84.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    肿瘤基因组
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    肿瘤基因检测
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            肿瘤基因检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/0.Background-knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0.背景知识 Background knowledge
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/1.reads-align.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1.序列比对 reads align
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/2.remove-mark-dup-reads.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2.序列去重 mark/remove dup reads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/3.fastp-bam-qc.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3.质控 QC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/4.somatic-mutation-calling.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4.变异检测 somatic mutation calling
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.annotate.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5.注释 annotate
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/6.signature.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6.signature
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/7.Fusion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7.Fusion 基因融合
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/8.MSI.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8.MSI 微卫星不稳定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/9.TMB.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9.TMB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/10.HLAtype.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10.HLAtype
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/11.Neoantigen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11.Neoantigen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/12.HLALOH.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12.HLALOH
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/13.tumor-abundance-clone.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13.tumor abundance clone
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/14.HRD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14.HRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.MRD.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15.ctDNA MRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/5.RNA.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16.RNA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/17.CNV.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17.CNV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/18.conta.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18.污染判定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/19.Medical-knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19.医学知识库
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/20.report.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20.自动化报告
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/21.workflow.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    21.workflow
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/22.data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    22.数据传输存储
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/23.gender.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    23.性别判定
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/24.pv.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    24.性能验证
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../NGS/25.industry.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    25.行业相关
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      起因
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-fq2fac" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 查看 fq2fa.c 文件
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 系统安装zlib
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-fast_zlib-zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 下载fast_zlib, 下载zlib
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 修改zlib代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-zlib-1212" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 编译安装 zlib-1.2.12
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-fq2fac" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 编译链接 fq2fa.c
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-zlib-fast_zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 测试 zlib 和 fast_zlib 版本各自的速度
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. 疑问？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. 听从大佬建议，使用静态库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. 发现异常
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-10" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. 解决 10 提出的异常
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11. 解决 10 提出的异常">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.1 重新编译，保持单一变量
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112-ubuntuzlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.2 查看系统（ubuntu）中zlib的版本
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113-zlib-1211-zlib-1212" class="md-nav__link">
+    <span class="md-ellipsis">
+      11.3 那么，zlib-1.2.11 会比 zlib-1.2.12 更快吗？
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-zlibdeb-1211" class="md-nav__link">
+    <span class="md-ellipsis">
+      12 为什么系统自带的zlib（deb 1.2.11）比我们手动编译的要快
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12 为什么系统自带的zlib（deb 1.2.11）比我们手动编译的要快">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#121-apt-configurelog" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.1 查看 apt 安装的软件是什么版本，下载到本地，看一下configure.log
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#122-fast_zlib-ubuntu-zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      12.2 fast_zlib 的优化 是否能与 ubuntu zlib的编译参数一起使用
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-zlib-131-fast_zlib-1213" class="md-nav__link">
+    <span class="md-ellipsis">
+      13 测试 zlib-1.3.1 和 fast_zlib-1.2.13 版本各自的速度
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13 测试 zlib-1.3.1 和 fast_zlib-1.2.13 版本各自的速度">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131-zlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.1 编译zlib 时不使用优化参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-03" class="md-nav__link">
+    <span class="md-ellipsis">
+      13.2 编译时添加 -03 优化后
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../index.html" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+                  <span class="md-ellipsis">
+                    回到主页
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+              <div class="md-post__authors md-typeset">
+                
+                  <div class="md-profile md-post__profile">
+                    <span class="md-author md-author--long">
+                      <img src="https://gravatar.com/avatar/d63d3425433de59d2c3e901977a581c7?size=256&cache=1715411947733" alt="biolxy">
+                    </span>
+                    <span class="md-profile__description">
+                      <strong>
+                        
+                          biolxy
+                        
+                      </strong>
+                      <br>
+                      生物信息工程师
+                    </span>
+                  </div>
+                
+              </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    元数据
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"/></svg>
+                        <time datetime="2024-05-06 00:00:00+00:00" class="md-ellipsis">2024年5月6日星期一</time>
+                      </div>
+                    </li>
+                    
+                    
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 3v15h3V3zm3 2 4 13 3-1-4-13zM5 5v13h3V5zM3 19v2h18v-2z"/></svg>
+                          <span class="md-ellipsis">
+                            分类于
+                            
+                              <a href="../../../category/cc.html">C/C++</a></span>
+                        </div>
+                      </li>
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"/></svg>
+                          <span class="md-ellipsis">
+                            
+                              需要 15 分钟阅读时间
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+  <nav class="md-tags" >
+    
+      
+      
+      
+        <span class="md-tag">fast_zlib</span>
+      
+    
+  </nav>
+
+
+
+<h1 id="fq2fa-fast_zlib">fq2fa 尝试使用 fast_zlib<a class="headerlink" href="#fq2fa-fast_zlib" title="Permanent link">&para;</a></h1>
+<h2 id="_1">起因<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>看到<a href="https://mp.weixin.qq.com/s/BbxeIG_hfEwtvymfyCV0yg">适用于绝大部分临床NGS数据分析的底层高度性能优化方案</a>想测试一下效果</p>
+<h2 id="1-fq2fac">1. 查看 fq2fa.c 文件<a class="headerlink" href="#1-fq2fac" title="Permanent link">&para;</a></h2>
+<p>cat <code>fq2fa.c</code></p>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+</span><span id="__span-0-2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;zlib.h&gt;</span>
+</span><span id="__span-0-3"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;klib/kseq.h&quot;</span>
+</span><span id="__span-0-4">
+</span><span id="__span-0-5">
+</span><span id="__span-0-6"><span class="n">KSEQ_INIT</span><span class="p">(</span><span class="n">gzFile</span><span class="p">,</span><span class="w"> </span><span class="n">gzread</span><span class="p">)</span>
+</span><span id="__span-0-7">
+</span><span id="__span-0-8"><span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span><span id="__span-0-9"><span class="p">{</span>
+</span><span id="__span-0-10">
+</span><span id="__span-0-11"><span class="w">        </span><span class="n">gzFile</span><span class="w"> </span><span class="n">fp</span><span class="p">;</span>
+</span><span id="__span-0-12"><span class="w">        </span><span class="n">gzFile</span><span class="w"> </span><span class="n">fo</span><span class="p">;</span>
+</span><span id="__span-0-13"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="p">){</span>
+</span><span id="__span-0-14"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+</span><span id="__span-0-15"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-16"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">){</span>
+</span><span id="__span-0-17"><span class="w">            </span><span class="n">fo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gzopen</span><span class="w"> </span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;wb&quot;</span><span class="p">);</span>
+</span><span id="__span-0-18"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-19">
+</span><span id="__span-0-20"><span class="w">        </span><span class="n">kseq_t</span><span class="w"> </span><span class="o">*</span><span class="n">seq</span><span class="p">;</span>
+</span><span id="__span-0-21"><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">l</span><span class="p">;</span>
+</span><span id="__span-0-22"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">){</span>
+</span><span id="__span-0-23"><span class="w">            </span><span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Usage: %s &lt;in.fasta|in.fasta.gz&gt;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</span><span id="__span-0-24"><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</span><span id="__span-0-25"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-26">
+</span><span id="__span-0-27"><span class="w">        </span><span class="n">fp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gzopen</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="s">&quot;r&quot;</span><span class="p">);</span>
+</span><span id="__span-0-28"><span class="w">        </span><span class="n">seq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kseq_init</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span><span class="w"> </span><span class="c1">// 分配内存给seq</span>
+</span><span id="__span-0-29"><span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">kseq_read</span><span class="p">(</span><span class="n">seq</span><span class="p">))</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">){</span><span class="w"> </span><span class="c1">//读取数据到seq中</span>
+</span><span id="__span-0-30"><span class="w">            </span><span class="n">gzprintf</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">seq</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">.</span><span class="n">s</span><span class="p">);</span>
+</span><span id="__span-0-31"><span class="w">            </span><span class="n">gzprintf</span><span class="p">(</span><span class="n">fo</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">seq</span><span class="o">-&gt;</span><span class="n">seq</span><span class="p">.</span><span class="n">s</span><span class="p">);</span>
+</span><span id="__span-0-32"><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-0-33">
+</span><span id="__span-0-34"><span class="w">        </span><span class="n">kseq_destroy</span><span class="p">(</span><span class="n">seq</span><span class="p">);</span><span class="w"> </span><span class="c1">//释放内存</span>
+</span><span id="__span-0-35"><span class="w">        </span><span class="n">gzclose</span><span class="p">(</span><span class="n">fp</span><span class="p">);</span>
+</span><span id="__span-0-36"><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">argc</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">gzclose</span><span class="p">(</span><span class="n">fo</span><span class="p">);</span>
+</span><span id="__span-0-37"><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-38">
+</span><span id="__span-0-39">
+</span><span id="__span-0-40"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="2-zlib">2. 系统安装zlib<a class="headerlink" href="#2-zlib" title="Permanent link">&para;</a></h2>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>zlib1g-dev<span class="w"> </span>zlib<span class="w"> </span>zlib-devel
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">apt-get install -y zlib1g zlib1g.dev zlib
+</span></code></pre></div></td></tr></table></div>
+<h2 id="3-fast_zlib-zlib">3. 下载fast_zlib, 下载zlib<a class="headerlink" href="#3-fast_zlib-zlib" title="Permanent link">&para;</a></h2>
+<ul>
+<li>下载 klib
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">git clone https://github.com/attractivechaos/klib.git
+</span></code></pre></div></td></tr></table></div>
+移动到 <code>fq2fa</code> 文件夹</li>
+</ul>
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gildor2/fast_zlib.git
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>http://www.zlib.net/</li>
+<li>下载 http://www.zlib.net/zlib-1.2.12.tar.gz
+<div class="language-shell highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">$<span class="w"> </span>sha256sum<span class="w"> </span>zlib-1.2.12.tar.gz<span class="w"> </span>
+</span><span id="__span-5-2">91844808532e5ce316b3c010929493c0244f3d37593afd6de04f71821d5136d9<span class="w">  </span>zlib-1.2.12.tar.gz
+</span></code></pre></div></td></tr></table></div></li>
+</ul>
+<h2 id="4-zlib">4. 修改zlib代码<a class="headerlink" href="#4-zlib" title="Permanent link">&para;</a></h2>
+<ol>
+<li>复制 <code>fast_zlib/Sources/match.h</code> 到 <code>zlib-1.2.12</code></li>
+<li><code>cd zlib-1.2.12</code></li>
+<li><code>mv deflate.c deflate.old.c</code></li>
+<li><code>vim deflate.c</code></li>
+<li>写入：</li>
+</ol>
+<div class="language-c highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">C</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><span class="cp">#define ASMV</span>
+</span><span id="__span-6-2"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;deflate.old.c&quot;</span>
+</span><span id="__span-6-3">
+</span><span id="__span-6-4"><span class="cp">#undef local</span>
+</span><span id="__span-6-5"><span class="cp">#define local</span>
+</span><span id="__span-6-6">
+</span><span id="__span-6-7"><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;match.h&quot;</span>
+</span><span id="__span-6-8">
+</span><span id="__span-6-9"><span class="kt">void</span><span class="w"> </span><span class="nf">match_init</span><span class="p">()</span>
+</span><span id="__span-6-10"><span class="p">{</span>
+</span><span id="__span-6-11"><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="5-zlib-1212">5. 编译安装 zlib-1.2.12<a class="headerlink" href="#5-zlib-1212" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">./configure<span class="w"> </span>--prefix<span class="o">=</span>/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build<span class="w"> </span>--shared<span class="w"> </span>--static
+</span><span id="__span-7-2">make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</span></code></pre></div></td></tr></table></div>
+<h2 id="6-fq2fac">6. 编译链接 fq2fa.c<a class="headerlink" href="#6-fq2fac" title="Permanent link">&para;</a></h2>
+<p>下载klib</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">git clone git@github.com:attractivechaos/klib.git
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">gcc -o fq2fa_zlib fq2fa.c -lz -Lzlib 
+</span><span id="__span-9-2">gcc -o fq2fa_fast_zlib fq2fa.c -I/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build/include -L/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build/lib -lz
+</span></code></pre></div></td></tr></table></div>
+<p>查看 MD5:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">$  md5sum fq2fa_zlib fq2fa_fast_zlib 
+</span><span id="__span-10-2">4c03dc0377470f6a589e1bb4a9ffb7b0  fq2fa_zlib
+</span><span id="__span-10-3">e237f08440a7db5821aa902c5a8cfc1a  fq2fa_fast_zlib
+</span></code></pre></div></td></tr></table></div>
+<h2 id="7-zlib-fast_zlib">7. 测试 zlib 和 fast_zlib 版本各自的速度<a class="headerlink" href="#7-zlib-fast_zlib" title="Permanent link">&para;</a></h2>
+<p>生成测试文件, in.fq.gz 太小，体现不出速度差异</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">4000</span><span class="k">)</span><span class="p">;</span><span class="k">do</span><span class="w"> </span>cat<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span>&gt;&gt;<span class="w"> </span>test.fq.gz<span class="w"> </span><span class="p">;</span><span class="k">done</span>
+</span><span id="__span-11-2">$<span class="w"> </span>zcat<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span><span class="p">|</span>wc<span class="w"> </span>-l<span class="w"> </span>
+</span><span id="__span-11-3"><span class="m">4000000</span>
+</span></code></pre></div></td></tr></table></div>
+<p>fq2fa_zlib: </p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">$<span class="w"> </span>/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib<span class="w"> </span>test.fq.gz<span class="w"> </span>test_zlib.fa.gz<span class="w">  </span>
+</span><span id="__span-12-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib test.fq.gz test_zlib.fa.gz&quot;</span>
+</span><span id="__span-12-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">35</span>.82
+</span><span id="__span-12-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.17
+</span><span id="__span-12-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-12-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:36.29
+</span><span id="__span-12-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">980</span>
+</span><span id="__span-12-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-12-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">289</span>
+</span><span id="__span-12-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">14</span>
+</span><span id="__span-12-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">813</span>
+</span><span id="__span-12-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">205752</span>
+</span><span id="__span-12-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93184</span>
+</span><span id="__span-12-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-12-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-12-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<p>fq2fa_fast_zlib: </p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">$<span class="w"> </span>/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib<span class="w"> </span>test.fq.gz<span class="w"> </span>test_fast_zlib.fa.gz<span class="w">  </span>
+</span><span id="__span-13-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz&quot;</span>
+</span><span id="__span-13-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">34</span>.85
+</span><span id="__span-13-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.11
+</span><span id="__span-13-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-13-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:35.31
+</span><span id="__span-13-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">980</span>
+</span><span id="__span-13-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">290</span>
+</span><span id="__span-13-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">5</span>
+</span><span id="__span-13-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">730</span>
+</span><span id="__span-13-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">8</span>
+</span><span id="__span-13-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93184</span>
+</span><span id="__span-13-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-13-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-13-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<p>查看输出结果一致性：</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">$<span class="w"> </span>md5sum<span class="w"> </span>test_zlib.fa.gz<span class="w"> </span>test_fast_zlib.fa.gz<span class="w">  </span>
+</span><span id="__span-14-2">5bd3de8cf81c78962aa7100da6ab2719<span class="w">  </span>test_zlib.fa.gz
+</span><span id="__span-14-3">5bd3de8cf81c78962aa7100da6ab2719<span class="w">  </span>test_fast_zlib.fa.gz
+</span></code></pre></div></td></tr></table></div>
+<h2 id="8">8. 疑问？<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>fast_zlib 对 zlib的优化是否成功？ 如果成功了，为什么两个版本的程序速度没有差异</li>
+</ul>
+<h2 id="9">9. 听从大佬建议，使用静态库<a class="headerlink" href="#9" title="Permanent link">&para;</a></h2>
+<p>或者 直接用 </p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1">gcc<span class="w"> </span>-o<span class="w"> </span>fq2fa_fast_zlib<span class="w"> </span>fq2fa.c<span class="w"> </span>/home/lixy/Clion/fast_zlib_test/zlib-1.2.12/build/lib/libz.a
+</span><span id="__span-15-2">
+</span><span id="__span-15-3">$<span class="w"> </span>md5sum<span class="w"> </span>fq2fa_zlib<span class="w"> </span>fq2fa_fast_zlib<span class="w">               </span>
+</span><span id="__span-15-4">4c03dc0377470f6a589e1bb4a9ffb7b0<span class="w">  </span>fq2fa_zlib
+</span><span id="__span-15-5">262db896e101b93ca1f2b0b7b6ee8ddd<span class="w">  </span>fq2fa_fast_zlib
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">$<span class="w"> </span>/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib<span class="w"> </span>test.fq.gz<span class="w"> </span>test_fast_zlib.fa.gz<span class="w">                          </span>
+</span><span id="__span-16-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib test.fq.gz test_fast_zlib.fa.gz&quot;</span>
+</span><span id="__span-16-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">24</span>.68
+</span><span id="__span-16-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.12
+</span><span id="__span-16-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-16-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:24.99
+</span><span id="__span-16-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1012</span>
+</span><span id="__span-16-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">292</span>
+</span><span id="__span-16-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">6</span>
+</span><span id="__span-16-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">535</span>
+</span><span id="__span-16-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93240</span>
+</span><span id="__span-16-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-16-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-16-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以看到，速度明显快了&#8531;</p>
+<h2 id="10">10. 发现异常<a class="headerlink" href="#10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>上述测试是在Centos 7.9, 2 CPUs, 4G MEM 环境下测试</li>
+<li>切换至 Ubuntu 18.04, 36 CPUs, 128G MEM  / Ubuntu 20.04, 32 CPUs, 128G MEM后，发现 优化后的速度还不如不优化</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="k">for</span><span class="w"> </span>i<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="k">$(</span>seq<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">10</span><span class="k">)</span><span class="p">;</span><span class="k">do</span><span class="w"> </span><span class="nb">printf</span><span class="w"> </span><span class="s2">&quot;test.fq.gz &quot;</span><span class="p">;</span><span class="k">done</span>
+</span><span id="__span-17-2">cat<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>test.fq.gz<span class="w"> </span>&gt;<span class="w"> </span>aa.fq.gz<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_fast_zlib.fa.gz<span class="w"> </span>
+</span><span id="__span-18-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz&quot;</span>
+</span><span id="__span-18-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">19</span>.61
+</span><span id="__span-18-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.02
+</span><span id="__span-18-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-18-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:19.63
+</span><span id="__span-18-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1888</span>
+</span><span id="__span-18-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">152</span>
+</span><span id="__span-18-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-18-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">25</span>
+</span><span id="__span-18-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93128</span>
+</span><span id="__span-18-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-18-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-18-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib.fa.gz<span class="w">     </span>
+</span><span id="__span-19-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz&quot;</span>
+</span><span id="__span-19-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">18</span>.20
+</span><span id="__span-19-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.03
+</span><span id="__span-19-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">100</span>%
+</span><span id="__span-19-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:18.24
+</span><span id="__span-19-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">2040</span>
+</span><span id="__span-19-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">160</span>
+</span><span id="__span-19-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-19-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">23</span>
+</span><span id="__span-19-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-19-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-19-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-19-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>推测：</li>
+<li>Ubuntu 系统上<code>fast_zlib</code> 对 <code>longest_match</code> 函数的实现 与 CentOS 系统上的不同，所以相同的修改效果不显著，甚至是无用的</li>
+<li>更换的两个Ubuntu系统均为多核心CPU, 高内存服务器，使得 <code>fast_zlib</code> 对 <code>longest_match</code> 函数的优化仅能在 较少CPU和较少内存是体现优势</li>
+</ul>
+<h2 id="11-10">11. 解决 10 提出的异常<a class="headerlink" href="#11-10" title="Permanent link">&para;</a></h2>
+<h3 id="111">11.1 重新编译，保持单一变量<a class="headerlink" href="#111" title="Permanent link">&para;</a></h3>
+<ul>
+<li>上诉两个程序的编译命令不同，不符合单一变量原则</li>
+<li>解决：</li>
+<li>解压 zlib-1.2.12.tar.gz</li>
+<li><code>cp -r zlib-1.2.12 fast_zlib-1.2.12</code></li>
+<li>不修改 zlib 代码，直接编译 <code>zlib-1.2.12</code></li>
+<li>按 4 5 步骤，修改zlib代码，编译 <code>fast_zlib-1.2.12</code></li>
+<li>分别编译链接 <code>fq2fc</code><ul>
+<li><code>gcc -o fq2fa_fast_zlib fq2fa.c /home/lixy/myproject/fast_zlib_test/fast_zlib-1.2.12/build/lib/libz.a -I/home/lixy/myproject/fast_zlib_test/fast_zlib-1.2.12/build/include</code></li>
+<li><code>gcc -o fq2fa_zlib fq2fa.c /home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/lib/libz.a -I/home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/include</code></li>
+</ul>
+</li>
+</ul>
+<p>测试两个文件的速度：</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib.fa.gz
+</span><span id="__span-20-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib aa.fq.gz aa_zlib.fa.gz&quot;</span>
+</span><span id="__span-20-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">28</span>.85
+</span><span id="__span-20-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.05
+</span><span id="__span-20-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-20-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:28.91
+</span><span id="__span-20-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1892</span>
+</span><span id="__span-20-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">153</span>
+</span><span id="__span-20-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-20-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">37</span>
+</span><span id="__span-20-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-20-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-20-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-20-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_fast_zlib.fa.gz<span class="w"> </span>
+</span><span id="__span-21-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib aa.fq.gz aa_fast_zlib.fa.gz&quot;</span>
+</span><span id="__span-21-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">19</span>.87
+</span><span id="__span-21-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.05
+</span><span id="__span-21-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-21-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:19.92
+</span><span id="__span-21-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1948</span>
+</span><span id="__span-21-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">152</span>
+</span><span id="__span-21-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-21-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">26</span>
+</span><span id="__span-21-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93128</span>
+</span><span id="__span-21-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-21-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-21-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>结论：在 ubuntu系统中，<code>fast_zlib</code> 项目对 <code>zlib</code>代码的修改，依旧有较大的速度提升</p>
+<ul>
+<li>新的问题：在 ubuntu系统中，直接使用 <code>gcc -o fq2fa_zlib_u fq2fa.c -lz -Lzlib</code> 编译链接，速度比 <code>fast_zlib</code> 修改版的尽然还要稍微快一点，原因是什么？</li>
+<li>使用 <code>-lz -Lzlib</code> 时候，使用的是系统的 <code>zlib</code>, 该版本比 <code>zlib-1.2.12</code> 有较大的速度提升 ？</li>
+</ul>
+</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-ubuntu<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib-ubuntu.fa.gz
+</span><span id="__span-22-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz&quot;</span>
+</span><span id="__span-22-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">18</span>.59
+</span><span id="__span-22-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.07
+</span><span id="__span-22-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-22-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:18.68
+</span><span id="__span-22-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">2020</span>
+</span><span id="__span-22-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">158</span>
+</span><span id="__span-22-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-22-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">24</span>
+</span><span id="__span-22-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-22-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-22-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-22-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="112-ubuntuzlib">11.2 查看系统（ubuntu）中zlib的版本<a class="headerlink" href="#112-ubuntuzlib" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1">$<span class="w"> </span>cat<span class="w"> </span>/usr/lib/x86_64-linux-gnu/pkgconfig/zlib.pc
+</span><span id="__span-23-2"><span class="nv">prefix</span><span class="o">=</span>/usr
+</span><span id="__span-23-3"><span class="nv">exec_prefix</span><span class="o">=</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span>
+</span><span id="__span-23-4"><span class="nv">libdir</span><span class="o">=</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span>/lib/x86_64-linux-gnu
+</span><span id="__span-23-5"><span class="nv">sharedlibdir</span><span class="o">=</span><span class="si">${</span><span class="nv">libdir</span><span class="si">}</span>
+</span><span id="__span-23-6"><span class="nv">includedir</span><span class="o">=</span><span class="si">${</span><span class="nv">prefix</span><span class="si">}</span>/include
+</span><span id="__span-23-7">
+</span><span id="__span-23-8">Name:<span class="w"> </span>zlib
+</span><span id="__span-23-9">Description:<span class="w"> </span>zlib<span class="w"> </span>compression<span class="w"> </span>library
+</span><span id="__span-23-10">Version:<span class="w"> </span><span class="m">1</span>.2.11
+</span><span id="__span-23-11">
+</span><span id="__span-23-12">Requires:
+</span><span id="__span-23-13">Libs:<span class="w"> </span>-L<span class="si">${</span><span class="nv">libdir</span><span class="si">}</span><span class="w"> </span>-L<span class="si">${</span><span class="nv">sharedlibdir</span><span class="si">}</span><span class="w"> </span>-lz
+</span><span id="__span-23-14">Cflags:<span class="w"> </span>-I<span class="si">${</span><span class="nv">includedir</span><span class="si">}</span>
+</span></code></pre></div></td></tr></table></div>
+<h2 id="113-zlib-1211-zlib-1212">11.3 那么，<code>zlib-1.2.11</code> 会比 <code>zlib-1.2.12</code> 更快吗？<a class="headerlink" href="#113-zlib-1211-zlib-1212" title="Permanent link">&para;</a></h2>
+<p>测试如下：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1">axel -n 8 https://github.com/madler/zlib/archive/refs/tags/v1.2.11.tar.gz
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1">$ md5sum zlib-1.2.11.tar.gz 
+</span><span id="__span-25-2">0095d2d2d1f3442ce1318336637b695f  zlib-1.2.11.tar.gz
+</span></code></pre></div></td></tr></table></div>
+<p>编译安装 
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1">mkdir build
+</span><span id="__span-26-2">./configure --prefix=/home/lixy/myproject/fast_zlib_test/zlib-1.2.11/build  --shared --static
+</span><span id="__span-26-3">make &amp;&amp; make install
+</span></code></pre></div></td></tr></table></div></p>
+<p>编译 
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1">gcc<span class="w"> </span>-o<span class="w"> </span>fq2fa_zlib-1.2.12<span class="w"> </span>fq2fa.c<span class="w"> </span>/home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/lib/libz.a<span class="w"> </span>-I/home/lixy/myproject/fast_zlib_test/zlib-1.2.12/build/include
+</span><span id="__span-27-2">
+</span><span id="__span-27-3">gcc<span class="w"> </span>-o<span class="w"> </span>fq2fa_zlib-1.2.11<span class="w"> </span>fq2fa.c<span class="w"> </span>/home/lixy/myproject/fast_zlib_test/zlib-1.2.11/build/lib/libz.a<span class="w"> </span>-I/home/lixy/myproject/fast_zlib_test/zlib-1.2.11/build/include
+</span><span id="__span-27-4">
+</span><span id="__span-27-5">gcc<span class="w"> </span>-o<span class="w"> </span>fq2fa_zlib-ubuntu<span class="w"> </span>fq2fa.c<span class="w"> </span>-lz<span class="w"> </span>-Lzlib
+</span><span id="__span-27-6">
+</span><span id="__span-27-7"><span class="o">(</span>
+</span><span id="__span-27-8"><span class="w">    </span>gcc<span class="w"> </span>-o<span class="w"> </span>fq2fa_zlib-ubuntu<span class="w"> </span>fq2fa.c<span class="w"> </span>/usr/lib/x86_64-linux-gnu/libz.a<span class="w"> </span>-I/usr/include/
+</span><span id="__span-27-9"><span class="o">)</span>
+</span></code></pre></div></td></tr></table></div></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-1.2.11<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib-1.2.11.fa.gz<span class="w">  </span>
+</span><span id="__span-28-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-1.2.11 aa.fq.gz aa_zlib-1.2.11.fa.gz&quot;</span>
+</span><span id="__span-28-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">29</span>.69
+</span><span id="__span-28-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.03
+</span><span id="__span-28-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-28-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:29.73
+</span><span id="__span-28-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1948</span>
+</span><span id="__span-28-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">153</span>
+</span><span id="__span-28-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-28-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">38</span>
+</span><span id="__span-28-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-28-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-28-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-25">
+</span><span id="__span-28-26">
+</span><span id="__span-28-27">
+</span><span id="__span-28-28">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-1.2.12<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib-1.2.12.fa.gz<span class="w">   </span>
+</span><span id="__span-28-29"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-1.2.12 aa.fq.gz aa_zlib-1.2.12.fa.gz&quot;</span>
+</span><span id="__span-28-30"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">29</span>.02
+</span><span id="__span-28-31"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.07
+</span><span id="__span-28-32"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-28-33"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:29.10
+</span><span id="__span-28-34"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-35"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-36"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-37"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-38"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1948</span>
+</span><span id="__span-28-39"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-40"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-41"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">153</span>
+</span><span id="__span-28-42"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">2</span>
+</span><span id="__span-28-43"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">39</span>
+</span><span id="__span-28-44"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-45"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-46"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-28-47"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-48"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-49"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-50"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-28-51"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-52">
+</span><span id="__span-28-53">
+</span><span id="__span-28-54">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-ubuntu<span class="w"> </span>aa.fq.gz<span class="w"> </span>aa_zlib-ubuntu.fa.gz<span class="w"> </span>
+</span><span id="__span-28-55"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-ubuntu aa.fq.gz aa_zlib-ubuntu.fa.gz&quot;</span>
+</span><span id="__span-28-56"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">18</span>.58
+</span><span id="__span-28-57"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.03
+</span><span id="__span-28-58"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">100</span>%
+</span><span id="__span-28-59"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:18.61
+</span><span id="__span-28-60"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-61"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-62"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-63"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-64"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">2008</span>
+</span><span id="__span-28-65"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-66"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-67"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">157</span>
+</span><span id="__span-28-68"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-28-69"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">22</span>
+</span><span id="__span-28-70"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-71"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-72"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">93064</span>
+</span><span id="__span-28-73"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-74"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-75"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-28-76"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-28-77"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>发现，我们编译的 <code>zlib-1.2.11</code> 速度和 <code>zlib-1.2.12</code> 一样，但是却比使用系统默认zlib的版本慢很多</li>
+<li>难道是 zlib 在编译的过程中，可以加入一些优化参数？</li>
+<li>后续我在 一个docker image 中测试了几种版本的区别，发现，现在 ubuntu 中安装 zlib 相关的包，再 <code>gcc -o fq2fa_zlib-ubuntu fq2fa.c -lz -Lzlib</code>
+  出的程序，确实比 使用 <code>zlib-1.2.11</code> 速度和 <code>zlib-1.2.12</code> 快，原因未知。</li>
+</ul>
+<h2 id="12-zlibdeb-1211">12 为什么系统自带的zlib（deb 1.2.11）比我们手动编译的要快<a class="headerlink" href="#12-zlibdeb-1211" title="Permanent link">&para;</a></h2>
+<h3 id="121-apt-configurelog">12.1 查看 apt 安装的软件是什么版本，下载到本地，看一下configure.log<a class="headerlink" href="#121-apt-configurelog" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1">$<span class="w"> </span>apt<span class="w"> </span>list<span class="w"> </span>--installed<span class="w"> </span><span class="p">|</span><span class="w"> </span>rg<span class="w"> </span>zlib
+</span><span id="__span-29-2">
+</span><span id="__span-29-3">WARNING:<span class="w"> </span>apt<span class="w"> </span>does<span class="w"> </span>not<span class="w"> </span>have<span class="w"> </span>a<span class="w"> </span>stable<span class="w"> </span>CLI<span class="w"> </span>interface.<span class="w"> </span>Use<span class="w"> </span>with<span class="w"> </span>caution<span class="w"> </span><span class="k">in</span><span class="w"> </span>scripts.
+</span><span id="__span-29-4">
+</span><span id="__span-29-5">zlib1g-dev/focal-updates,focal-security,now<span class="w"> </span><span class="m">1</span>:1.2.11.dfsg-2ubuntu1.3<span class="w"> </span>amd64<span class="w"> </span><span class="o">[</span>installed<span class="o">]</span>
+</span><span id="__span-29-6">zlib1g/focal-updates,focal-security,now<span class="w"> </span><span class="m">1</span>:1.2.11.dfsg-2ubuntu1.3<span class="w"> </span>amd64<span class="w"> </span><span class="o">[</span>installed,automatic<span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>网上搜索ubuntu 中得这些包，找到了 build.log 文件
+- https://www.ubuntuupdates.org/pm/zlib1g-dev
+- https://www.ubuntuupdates.org/pm/zlib1g</p>
+<ul>
+<li>https://launchpadlibrarian.net/593215494/buildlog_ubuntu-focal-amd64.zlib_1%3A1.2.11.dfsg-2ubuntu1.3_BUILDING.txt.gz</li>
+</ul>
+<p>build.log 文件 编译命令就是:</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Text Only</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1">AR=ar CC=&quot;x86_64-linux-gnu-gcc&quot; CFLAGS=&quot;`dpkg-buildflags --get CFLAGS` `dpkg-buildflags --get CPPFLAGS` -Wall -D_REENTRANT -O3 -DUNALIGNED_OK&quot; LDFLAGS=&quot;`dpkg-buildflags --get LDFLAGS`&quot; uname=GNU ./configure --shared --prefix=/usr --libdir=\${prefix}/lib/x86_64-linux-gnu
+</span></code></pre></div></td></tr></table></div>
+<p>创建 <code>build.sh</code></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><span class="ch">#!/bin/bash</span>
+</span><span id="__span-31-2"><span class="c1">#@File    :   build.sh</span>
+</span><span id="__span-31-3"><span class="c1">#@Time    :   2022/08/18 10:41:29</span>
+</span><span id="__span-31-4"><span class="c1">#@Author  :   biolxy</span>
+</span><span id="__span-31-5"><span class="c1">#@Version :   1.0</span>
+</span><span id="__span-31-6"><span class="c1">#@Contact :   biolxy@aliyun.com</span>
+</span><span id="__span-31-7"><span class="c1">#@Desc    :   None</span>
+</span><span id="__span-31-8">
+</span><span id="__span-31-9"><span class="nv">SCRIPT_FOLDER</span><span class="o">=</span><span class="k">$(</span><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>dirname<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$0</span><span class="s2">&quot;</span><span class="k">)</span><span class="s2">&quot;</span><span class="p">;</span><span class="nb">pwd</span><span class="k">)</span>
+</span><span id="__span-31-10">
+</span><span id="__span-31-11">make<span class="w"> </span>distclean
+</span><span id="__span-31-12"><span class="nb">test</span><span class="w"> </span>-d<span class="w"> </span>_build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>_build
+</span><span id="__span-31-13">mkdir<span class="w"> </span>_build
+</span><span id="__span-31-14">
+</span><span id="__span-31-15">
+</span><span id="__span-31-16"><span class="c1"># --static</span>
+</span><span id="__span-31-17"><span class="c1"># --shared</span>
+</span><span id="__span-31-18">
+</span><span id="__span-31-19"><span class="nv">AR</span><span class="o">=</span>ar<span class="w"> </span><span class="nv">CC</span><span class="o">=</span><span class="s2">&quot;x86_64-linux-gnu-gcc&quot;</span><span class="w"> </span><span class="nv">CFLAGS</span><span class="o">=</span><span class="s2">&quot;`dpkg-buildflags --get CFLAGS` `dpkg-buildflags --get CPPFLAGS` -Wall -D_REENTRANT -O3 -DUNALIGNED_OK&quot;</span><span class="w"> </span><span class="nv">LDFLAGS</span><span class="o">=</span><span class="s2">&quot;`dpkg-buildflags --get LDFLAGS`&quot;</span><span class="w"> </span><span class="nv">uname</span><span class="o">=</span>GNU<span class="w"> </span>./configure<span class="w"> </span>--shared<span class="w"> </span>--prefix<span class="o">=</span><span class="si">${</span><span class="nv">SCRIPT_FOLDER</span><span class="si">}</span>/_build
+</span><span id="__span-31-20">
+</span><span id="__span-31-21">make<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>make<span class="w"> </span>install
+</span></code></pre></div></td></tr></table></div>
+<p>执行 <code>bash ./build</code>
+重新编译链接程序，发现 手动编译的程序的速度也来到了 <code>22s</code>, 可以确定确实是不同的编译参数导致zlib库文件的执行效率不同</p>
+<h3 id="122-fast_zlib-ubuntu-zlib">12.2 fast_zlib 的优化 是否能与 ubuntu zlib的编译参数一起使用<a class="headerlink" href="#122-fast_zlib-ubuntu-zlib" title="Permanent link">&para;</a></h3>
+<ul>
+<li>可以，但是没有效，编译出的 <code>fq2fa_fast_zlib-1.2.11</code> 速度还是在 <code>24s</code>, 和未使用 ubuntu zlib的编译参数 前的速度一致</li>
+</ul>
+<h2 id="13-zlib-131-fast_zlib-1213">13 测试 zlib-1.3.1 和 fast_zlib-1.2.13 版本各自的速度<a class="headerlink" href="#13-zlib-131-fast_zlib-1213" title="Permanent link">&para;</a></h2>
+<ul>
+<li>https://github.com/biolxy/zlib/tree/fast_zlib-v1.2.13</li>
+</ul>
+<blockquote>
+<p>最近 zlib 升级到了 1.3.1 ， fast_zlib 也升级到了 zlib-1.2.13</p>
+</blockquote>
+<h3 id="131-zlib">13.1 编译zlib 时不使用优化参数<a class="headerlink" href="#131-zlib" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1">./configure<span class="w"> </span>--prefix<span class="o">=</span>/fast_zlib_test/zlib-1.3.1/_build<span class="w"> </span>--shared<span class="w"> </span>--static
+</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib-1.2.13<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span>out_fq2fa_zlib-1.2.13.fa.gz<span class="w"> </span>
+</span><span id="__span-33-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib-1.2.13 in.fq.gz out_fq2fa_zlib-1.2.13.fa.gz&quot;</span>
+</span><span id="__span-33-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">24</span>.58
+</span><span id="__span-33-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.10
+</span><span id="__span-33-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-33-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:24.74
+</span><span id="__span-33-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1860</span>
+</span><span id="__span-33-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">357</span>
+</span><span id="__span-33-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">144</span>
+</span><span id="__span-33-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">166</span>
+</span><span id="__span-33-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">92624</span>
+</span><span id="__span-33-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-33-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-25">
+</span><span id="__span-33-26">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-1.3.1<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span>out_fq2fa_zlib-1.3.1.fa.gz
+</span><span id="__span-33-27"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-1.3.1 in.fq.gz out_fq2fa_zlib-1.3.1.fa.gz&quot;</span>
+</span><span id="__span-33-28"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">37</span>.16
+</span><span id="__span-33-29"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.13
+</span><span id="__span-33-30"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-33-31"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:37.48
+</span><span id="__span-33-32"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-33"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-34"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-35"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-36"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1828</span>
+</span><span id="__span-33-37"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-38"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-39"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">257</span>
+</span><span id="__span-33-40"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">154</span>
+</span><span id="__span-33-41"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">300</span>
+</span><span id="__span-33-42"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-43"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-44"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">92608</span>
+</span><span id="__span-33-45"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-46"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-47"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-33-48"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-33-49"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="132-03">13.2 编译时添加 <code>-03</code> 优化后<a class="headerlink" href="#132-03" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Bash</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_fast_zlib-1.2.13<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span>out_fq2fa_zlib-1.2.13.fa.gz
+</span><span id="__span-34-2"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_fast_zlib-1.2.13 in.fq.gz out_fq2fa_zlib-1.2.13.fa.gz&quot;</span>
+</span><span id="__span-34-3"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">23</span>.62
+</span><span id="__span-34-4"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.12
+</span><span id="__span-34-5"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-34-6"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:23.84
+</span><span id="__span-34-7"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-8"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-9"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-10"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-11"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1852</span>
+</span><span id="__span-34-12"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-13"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-14"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">152</span>
+</span><span id="__span-34-15"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">188</span>
+</span><span id="__span-34-16"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">163</span>
+</span><span id="__span-34-17"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-18"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-19"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">92624</span>
+</span><span id="__span-34-20"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-21"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-22"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-23"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-34-24"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-25">
+</span><span id="__span-34-26">
+</span><span id="__span-34-27">$<span class="w"> </span>/usr/bin/time<span class="w"> </span>-v<span class="w"> </span>./fq2fa_zlib-1.3.1<span class="w"> </span><span class="k">in</span>.fq.gz<span class="w"> </span>out_fq2fa_zlib-1.3.1.fa.gz
+</span><span id="__span-34-28"><span class="w">    </span>Command<span class="w"> </span>being<span class="w"> </span>timed:<span class="w"> </span><span class="s2">&quot;./fq2fa_zlib-1.3.1 in.fq.gz out_fq2fa_zlib-1.3.1.fa.gz&quot;</span>
+</span><span id="__span-34-29"><span class="w">    </span>User<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">21</span>.15
+</span><span id="__span-34-30"><span class="w">    </span>System<span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>seconds<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>.10
+</span><span id="__span-34-31"><span class="w">    </span>Percent<span class="w"> </span>of<span class="w"> </span>CPU<span class="w"> </span>this<span class="w"> </span>job<span class="w"> </span>got:<span class="w"> </span><span class="m">99</span>%
+</span><span id="__span-34-32"><span class="w">    </span>Elapsed<span class="w"> </span><span class="o">(</span>wall<span class="w"> </span>clock<span class="o">)</span><span class="w"> </span><span class="nb">time</span><span class="w"> </span><span class="o">(</span>h:mm:ss<span class="w"> </span>or<span class="w"> </span>m:ss<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>:21.42
+</span><span id="__span-34-33"><span class="w">    </span>Average<span class="w"> </span>shared<span class="w"> </span>text<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-34"><span class="w">    </span>Average<span class="w"> </span>unshared<span class="w"> </span>data<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-35"><span class="w">    </span>Average<span class="w"> </span>stack<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-36"><span class="w">    </span>Average<span class="w"> </span>total<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-37"><span class="w">    </span>Maximum<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">1856</span>
+</span><span id="__span-34-38"><span class="w">    </span>Average<span class="w"> </span>resident<span class="w"> </span><span class="nb">set</span><span class="w"> </span>size<span class="w"> </span><span class="o">(</span>kbytes<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-39"><span class="w">    </span>Major<span class="w"> </span><span class="o">(</span>requiring<span class="w"> </span>I/O<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-40"><span class="w">    </span>Minor<span class="w"> </span><span class="o">(</span>reclaiming<span class="w"> </span>a<span class="w"> </span>frame<span class="o">)</span><span class="w"> </span>page<span class="w"> </span>faults:<span class="w"> </span><span class="m">357</span>
+</span><span id="__span-34-41"><span class="w">    </span>Voluntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">58</span>
+</span><span id="__span-34-42"><span class="w">    </span>Involuntary<span class="w"> </span>context<span class="w"> </span>switches:<span class="w"> </span><span class="m">191</span>
+</span><span id="__span-34-43"><span class="w">    </span>Swaps:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-44"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>inputs:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-45"><span class="w">    </span>File<span class="w"> </span>system<span class="w"> </span>outputs:<span class="w"> </span><span class="m">92608</span>
+</span><span id="__span-34-46"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>sent:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-47"><span class="w">    </span>Socket<span class="w"> </span>messages<span class="w"> </span>received:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-48"><span class="w">    </span>Signals<span class="w"> </span>delivered:<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-34-49"><span class="w">    </span>Page<span class="w"> </span>size<span class="w"> </span><span class="o">(</span>bytes<span class="o">)</span>:<span class="w"> </span><span class="m">4096</span>
+</span><span id="__span-34-50"><span class="w">    </span>Exit<span class="w"> </span>status:<span class="w"> </span><span class="m">0</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>结论1: 编译zlib时不使用 <code>-03</code>时, fast_zlib-1.2.13 和 zlib-1.3.1 耗时比是 24.74 / 37.48 = 0.6601 , 可节约 &#8531; 的时间</li>
+<li>结论2: 编译zlib时使用 <code>-03</code>时, fast_zlib-1.2.13 和 zlib-1.3.1 耗时比是 23.84 / 21.42, 不能节约时间</li>
+<li>建议: 以后写c/cpp项目多使用 <code>-O3</code></li>
+</ul>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright © 2024 biolxy
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/biolxy" target="_blank" rel="noopener" title="GitHub | biolxy" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.top", "navigation.indexes", "navigation.expand", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit"], "search": "../../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="../../../../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
